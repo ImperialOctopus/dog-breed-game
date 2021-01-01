@@ -15,6 +15,7 @@ linter:
     file_names: false
     public_member_api_docs: true
     prefer_relative_imports: true
+    prefer_const_constructors: true
 
 analyzer:
   #   exclude:

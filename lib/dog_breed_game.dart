@@ -1,3 +1,4 @@
+import 'screen/menu/menu_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -14,7 +15,7 @@ class DogBreedGame extends StatelessWidget {
       providers: [],
       child: MultiBlocProvider(
         providers: [],
-        child: AppView(),
+        child: const AppView(),
       ),
     );
   }
@@ -30,7 +31,7 @@ class AppView extends StatelessWidget {
     return MaterialApp(
       title: 'Dog Breed Game!',
       theme: themeData,
-      home: Container(),
+      home: const MenuScreen(),
       routes: <String, WidgetBuilder>{
         '/play': (var context) => Container(),
         '/export': (var context) => Container(),
