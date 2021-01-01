@@ -1,8 +1,11 @@
-import 'package:dog_breed_game/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'theme/theme.dart';
+
 class DogBreedGame extends StatelessWidget {
+  const DogBreedGame();
+
   @override
   Widget build(BuildContext context) {
     return MultiRepositoryProvider(
@@ -21,14 +24,14 @@ class AppView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Codenames Offline',
+      title: 'Dog Breed Game!',
       theme: themeData,
-      home: MenuScreen(),
+      home: Container(),
       routes: <String, WidgetBuilder>{
-        '/play': (var context) => PlayScreen(),
-        '/export': (var context) => ExportScreen(),
-        '/import': (var context) => ImportScreen(),
-        '/spymaster': (var context) => SpymasterScreen(),
+        '/play': (var context) => Container(),
+        '/export': (var context) => Container(),
+        '/import': (var context) => Container(),
+        '/spymaster': (var context) => Container(),
       },
     );
   }

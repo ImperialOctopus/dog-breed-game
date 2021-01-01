@@ -1,3 +1,5 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(MyApp());
+import 'dog_breed_game.dart';
+
+void main() => runApp(DogBreedGame());
