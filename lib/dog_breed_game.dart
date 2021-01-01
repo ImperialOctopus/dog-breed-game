@@ -3,7 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'theme/theme.dart';
 
+/// Main app that provides blocs.
 class DogBreedGame extends StatelessWidget {
+  /// Const constructor.
   const DogBreedGame();
 
   @override
@@ -18,7 +20,9 @@ class DogBreedGame extends StatelessWidget {
   }
 }
 
+/// Main app view that consumes blocs.
 class AppView extends StatelessWidget {
+  /// Const constructor.
   const AppView();
 
   @override
