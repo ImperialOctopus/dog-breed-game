@@ -34,9 +34,6 @@ class AppView extends StatelessWidget {
       home: const MenuScreen(),
       routes: <String, WidgetBuilder>{
         '/play': (var context) => Container(),
-        '/export': (var context) => Container(),
-        '/import': (var context) => Container(),
-        '/spymaster': (var context) => Container(),
       },
     );
   }
