@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'screen/learn/level_select/level_select_screen.dart';
 import 'screen/menu/menu_screen.dart';
@@ -13,6 +12,7 @@ class DogBreedGame extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const AppView();
+    /*
     return MultiRepositoryProvider(
       providers: [],
       child: MultiBlocProvider(
@@ -20,6 +20,7 @@ class DogBreedGame extends StatelessWidget {
         child: const AppView(),
       ),
     );
+    */
   }
 }
 

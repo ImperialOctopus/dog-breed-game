@@ -1,6 +1,7 @@
-import 'package:dog_breed_game/component/page_indicator.dart';
-import 'package:dog_breed_game/screen/learn/level_select/level_select_page.dart';
 import 'package:flutter/material.dart';
+
+import '../../../component/page_indicator.dart';
+import 'level_select_page.dart';
 
 /// Screen to select a level in learn mode.
 class LevelSelectScreen extends StatefulWidget {

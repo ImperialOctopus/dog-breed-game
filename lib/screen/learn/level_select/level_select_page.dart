@@ -50,12 +50,12 @@ class LevelSelectPage extends StatelessWidget {
         ),
         const Spacer(),
         Padding(
-          padding: const EdgeInsets.only(bottom: 20),
+          padding: const EdgeInsets.symmetric(vertical: 20),
           child: ButtonBar(
             alignment: MainAxisAlignment.center,
             children: [
-              FlatButton(child: Text('Lesson'), onPressed: () {}),
-              FlatButton(child: Text('Quiz'), onPressed: () {}),
+              TextButton(child: const Text('Lesson'), onPressed: () {}),
+              TextButton(child: const Text('Quiz'), onPressed: () {}),
             ],
           ),
         ),

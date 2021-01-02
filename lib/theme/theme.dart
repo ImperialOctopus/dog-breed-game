@@ -22,12 +22,31 @@ final themeData = ThemeData(
     textStyle: const TextStyle(fontSize: 32),
     minimumSize: const Size(200, 60),
   )),
+  textButtonTheme: TextButtonThemeData(
+      style: TextButton.styleFrom(
+    primary: const Color.fromARGB(255, 127, 127, 127),
+    textStyle: const TextStyle(fontSize: 20),
+    minimumSize: const Size(200, 60),
+  )),
 
   textTheme: const TextTheme(
+    // Main app title
     headline1: TextStyle(
       fontSize: 48,
-      fontWeight: FontWeight.w500,
+      fontWeight: FontWeight.normal,
       color: Colors.black87,
+    ),
+    // Level select title
+    headline2: TextStyle(
+      fontSize: 18,
+      fontWeight: FontWeight.normal,
+      color: Colors.black87,
+    ),
+    // Level select subtitle
+    subtitle1: TextStyle(
+      fontSize: 16,
+      fontWeight: FontWeight.normal,
+      color: Colors.black54,
     ),
   ),
 );
