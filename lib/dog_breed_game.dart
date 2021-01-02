@@ -1,3 +1,5 @@
+import 'screen/learn/level_select_screen.dart';
+
 import 'screen/menu/menu_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -34,7 +36,7 @@ class AppView extends StatelessWidget {
       theme: themeData,
       home: const MenuScreen(),
       routes: <String, WidgetBuilder>{
-        '/play': (var context) => Container(),
+        '/learn/levelselect': (var context) => const LevelSelectScreen(),
       },
     );
   }

@@ -24,7 +24,8 @@ class MenuScreen extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(vertical: 5),
                 child: ElevatedButton(
                   child: const Text('Learn'),
-                  onPressed: () {},
+                  onPressed: () =>
+                      Navigator.of(context).pushNamed('/learn/levelselect'),
                 ),
               ),
               Padding(
