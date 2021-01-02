@@ -8,16 +8,24 @@ final themeData = ThemeData(
   accentColor: const Color.fromARGB(255, 181, 51, 70),
   textSelectionTheme: const TextSelectionThemeData(
       cursorColor: Color.fromARGB(255, 181, 51, 70)),
+
   outlinedButtonTheme: OutlinedButtonThemeData(
     style: OutlinedButton.styleFrom(
-      primary: const Color.fromARGB(255, 181, 51, 70),
+      //primary: const Color.fromARGB(255, 181, 51, 70),
       textStyle: const TextStyle(fontSize: 32),
       minimumSize: const Size(200, 60),
     ),
   ),
+  elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+    //primary: const Color.fromARGB(255, 181, 51, 70),
+    textStyle: const TextStyle(fontSize: 32),
+    minimumSize: const Size(200, 60),
+  )),
+
   textTheme: const TextTheme(
     headline1: TextStyle(
-      fontSize: 36,
+      fontSize: 48,
       fontWeight: FontWeight.w500,
       color: Colors.black87,
     ),

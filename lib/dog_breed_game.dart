@@ -11,6 +11,7 @@ class DogBreedGame extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return const AppView();
     return MultiRepositoryProvider(
       providers: [],
       child: MultiBlocProvider(
