@@ -1,9 +1,8 @@
-import 'screen/learn/level_select_screen.dart';
-
-import 'screen/menu/menu_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'screen/learn/level_select/level_select_screen.dart';
+import 'screen/menu/menu_screen.dart';
 import 'theme/theme.dart';
 
 /// Main app that provides blocs.
