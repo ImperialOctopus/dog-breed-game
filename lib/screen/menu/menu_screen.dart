@@ -14,7 +14,10 @@ class MenuScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text('Menu'),
+            Text(
+              'Dog Game',
+              style: Theme.of(context).textTheme.headline1,
+            ),
           ],
         ),
       ),
