@@ -13,7 +13,6 @@ class LevelSelectPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         const Spacer(),
         Row(
@@ -42,12 +41,21 @@ class LevelSelectPage extends StatelessWidget {
             )
           ],
         ),
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 10),
-          child: Container(
-            child: Image.asset(level.imagePath, fit: BoxFit.cover),
+        SizedBox(
+          height: 300,
+          width: double.infinity,
+          child: FittedBox(
+            fit: BoxFit.cover,
+            clipBehavior: Clip.hardEdge,
+            child: Image.asset(
+              level.imagePath,
+            ),
           ),
         ),
+
+        //child: Image.asset(level.imagePath),
+
+        //child: Image.asset(level.imagePath),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
           child: Text(level.description),
