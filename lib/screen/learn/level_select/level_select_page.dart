@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 
+import '../../../model/lesson_level.dart';
+
 /// Pages in level select screen.
 class LevelSelectPage extends StatelessWidget {
+  /// LessonLevel to display.
+  final LessonLevel level;
+
   /// Level select page.
-  const LevelSelectPage();
+  const LevelSelectPage({required this.level});
 
   @override
   Widget build(BuildContext context) {
@@ -25,12 +30,12 @@ class LevelSelectPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'Level 1',
+                  level.title,
                   style: Theme.of(context).textTheme.headline5,
                 ),
                 const Padding(padding: EdgeInsets.only(top: 4)),
                 Text(
-                  'Common Breeds',
+                  level.subtitle,
                   style: Theme.of(context).textTheme.subtitle1,
                 ),
               ],
@@ -40,13 +45,12 @@ class LevelSelectPage extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 10),
           child: Container(
-            height: 300,
-            color: Colors.grey,
+            child: Image.asset(level.imagePath, fit: BoxFit.cover),
           ),
         ),
-        const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-          child: Text('The top 5 most common breeds in the UK'),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+          child: Text(level.description),
         ),
         const Spacer(),
         Padding(
