@@ -2,12 +2,16 @@ import 'package:flutter/material.dart';
 
 import '../../../component/page_indicator.dart';
 import '../../../data/lessons.dart';
+import '../../../model/lesson_level.dart';
 import 'level_select_page.dart';
 
 /// Screen to select a level in learn mode.
 class LevelSelectScreen extends StatefulWidget {
+  /// Lessons to display on this screen.
+  final List<LessonLevel> lessons;
+
   /// Const constructor
-  const LevelSelectScreen();
+  const LevelSelectScreen({required this.lessons});
 
   @override
   _LevelSelectScreenState createState() => _LevelSelectScreenState();
@@ -40,15 +44,9 @@ class _LevelSelectScreenState extends State<LevelSelectScreen> {
             child: PageView(
               controller: _pageController,
               onPageChanged: (index) => setState(() => activePage = index),
-              children: [
-                LevelSelectPage(level: lessons[0]),
-                const Center(
-                  child: Text('Page 2'),
-                ),
-                const Center(
-                  child: Text('Page 3'),
-                ),
-              ],
+              children: lessons
+                  .map((level) => LevelSelectPage(level: level))
+                  .toList(),
             ),
           ),
           Padding(
