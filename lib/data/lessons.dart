@@ -1,5 +1,6 @@
 import '../model/lesson_level.dart';
 
+/// Default lesson set
 const lessons = [
   LessonLevel(
       title: 'Level 1',
