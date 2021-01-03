@@ -52,10 +52,6 @@ class LevelSelectPage extends StatelessWidget {
             ),
           ),
         ),
-
-        //child: Image.asset(level.imagePath),
-
-        //child: Image.asset(level.imagePath),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
           child: Text(level.description),

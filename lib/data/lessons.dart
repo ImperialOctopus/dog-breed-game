@@ -6,15 +6,18 @@ const lessons = [
       title: 'Level 1',
       subtitle: 'Common Breeds',
       imagePath: 'assets/sample/labrador.jpg',
-      description: ''),
+      description:
+          'First level. Check out some information about the top 5 most common dogs in the UK and then try out the quiz to see how well you can recognise them!'),
   LessonLevel(
       title: 'Level 2',
       subtitle: 'Uncommon Breeds',
       imagePath: 'assets/sample/box.jpg',
-      description: ''),
+      description:
+          'Second level! Now we\'re going to try out some less common breeds. Read through the summary under \'Lesson\', then try the Quiz and see how you do.'),
   LessonLevel(
       title: 'Level 3',
       subtitle: 'Filling In Some Gaps',
       imagePath: 'assets/sample/pom.jpg',
-      description: ''),
+      description:
+          'This lesson will fill in some gaps left in the previous sets of breeds. Once you feel comfortable try out the Quiz to get a mix of breeds from this set of lessons.'),
 ];
