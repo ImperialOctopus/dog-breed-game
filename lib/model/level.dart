@@ -1,5 +1,5 @@
-/// Model of a lesson level.
-class LessonLevel {
+/// Model of a level.
+class Level {
   /// Title of lesson.
   final String title;
 
@@ -15,7 +15,7 @@ class LessonLevel {
   /// [title] is displayed at the top of the card. [subtitle] is below it.
   /// [image] represents the whole lesson. [description] describes the content
   /// of the lesson
-  const LessonLevel(
+  const Level(
       {required this.title,
       required this.subtitle,
       required this.imagePath,

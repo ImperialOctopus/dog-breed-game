@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-import '../../../model/lesson_level.dart';
+import '../../../model/level.dart';
 
 /// Pages in level select screen.
 class LevelSelectPage extends StatelessWidget {
   /// LessonLevel to display.
-  final LessonLevel level;
+  final Level level;
 
   /// Level select page.
   const LevelSelectPage({required this.level});

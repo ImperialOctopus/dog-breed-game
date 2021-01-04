@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 
 import '../../../component/page_indicator.dart';
 import '../../../data/lessons.dart';
-import '../../../model/lesson_level.dart';
+import '../../../model/level.dart';
 import 'level_select_page.dart';
 
 /// Screen to select a level in learn mode.
 class LevelSelectScreen extends StatefulWidget {
   /// Lessons to display on this screen.
-  final List<LessonLevel> lessons;
+  final List<Level> lessons;
 
   /// Const constructor
   const LevelSelectScreen({required this.lessons});
