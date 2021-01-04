@@ -1,4 +1,4 @@
-import 'package:dog_breed_game/model/level_lesson.dart';
+import 'level_lesson.dart';
 
 /// Model of a level.
 class Level {
