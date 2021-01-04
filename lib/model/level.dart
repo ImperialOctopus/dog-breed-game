@@ -1,3 +1,5 @@
+import 'package:dog_breed_game/model/level_lesson.dart';
+
 /// Model of a level.
 class Level {
   /// Title of lesson.
@@ -12,12 +14,17 @@ class Level {
   /// Lesson description.
   final String description;
 
+  /// This level's lesson.
+  final LevelLesson lesson;
+
   /// [title] is displayed at the top of the card. [subtitle] is below it.
   /// [image] represents the whole lesson. [description] describes the content
   /// of the lesson
-  const Level(
-      {required this.title,
-      required this.subtitle,
-      required this.imagePath,
-      required this.description});
+  const Level({
+    required this.title,
+    required this.subtitle,
+    required this.imagePath,
+    required this.description,
+    required this.lesson,
+  });
 }
