@@ -1,6 +1,7 @@
-import 'package:dog_breed_game/model/level_lesson.dart';
+import 'package:flutter/material.dart';
 
 import '../model/level.dart';
+import '../model/level_lesson.dart';
 
 /// Default lesson set
 const lessons = [
@@ -10,7 +11,9 @@ const lessons = [
     imagePath: 'assets/sample/labrador.jpg',
     description:
         'First level. Check out some information about the top 5 most common dogs in the UK and then try out the quiz to see how well you can recognise them!',
-    lesson: LevelLesson(lessonBody: []),
+    lesson: LevelLesson(lessonBody: [
+      Text('Less-on-1'),
+    ]),
   ),
   Level(
     title: 'Level 2',
