@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../model/level.dart';
+import '../lesson/lesson_screen.dart';
 
 /// Pages in level select screen.
 class LevelSelectPage extends StatelessWidget {
@@ -62,7 +63,13 @@ class LevelSelectPage extends StatelessWidget {
           child: ButtonBar(
             alignment: MainAxisAlignment.center,
             children: [
-              TextButton(child: const Text('Lesson'), onPressed: () {}),
+              TextButton(
+                child: const Text('Lesson'),
+                onPressed: () => Navigator.of(context).push(
+                  MaterialPageRoute<LessonScreen>(
+                      builder: (context) => LessonScreen(lesson: level.lesson)),
+                ),
+              ),
               TextButton(child: const Text('Quiz'), onPressed: () {}),
             ],
           ),
