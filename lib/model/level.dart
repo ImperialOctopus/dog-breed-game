@@ -1,4 +1,5 @@
-import 'level_lesson.dart';
+import 'lesson.dart';
+import 'quiz/quiz.dart';
 
 /// Model of a level.
 class Level {
@@ -15,7 +16,10 @@ class Level {
   final String description;
 
   /// This level's lesson.
-  final LevelLesson lesson;
+  final Lesson lesson;
+
+  /// This level's quiz
+  final Quiz quiz;
 
   /// [title] is displayed at the top of the card. [subtitle] is below it.
   /// [image] represents the whole lesson. [description] describes the content
@@ -26,5 +30,6 @@ class Level {
     required this.imagePath,
     required this.description,
     required this.lesson,
+    required this.quiz,
   });
 }

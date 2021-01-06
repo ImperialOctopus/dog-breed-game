@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-import '../../../model/level_lesson.dart';
+import '../../../model/lesson.dart';
 
 /// Screen to show a single lesson.
 class LessonScreen extends StatelessWidget {
   /// Lesson to show on this screen.
-  final LevelLesson lesson;
+  final Lesson lesson;
 
   /// [lesson] is the lesson to show.
   const LessonScreen({required this.lesson});
