@@ -1,3 +1,4 @@
+import '../quiz/quiz_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../../../model/level.dart';
@@ -70,7 +71,13 @@ class LevelSelectPage extends StatelessWidget {
                       builder: (context) => LessonScreen(lesson: level.lesson)),
                 ),
               ),
-              TextButton(child: const Text('Quiz'), onPressed: () {}),
+              TextButton(
+                child: const Text('Quiz'),
+                onPressed: () => Navigator.of(context).push(
+                  MaterialPageRoute<QuizScreen>(
+                      builder: (context) => QuizScreen(quiz: level.quiz)),
+                ),
+              ),
             ],
           ),
         ),
