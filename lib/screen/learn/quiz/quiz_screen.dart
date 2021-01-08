@@ -35,13 +35,14 @@ class _QuizScreenState extends State<QuizScreen> {
           'Golden Retriever',
         ],
         progress: progress,
+        correctAnswer: 0,
+        chosenAnswer: chosenAnswer,
         onAnswerPressed: (i) => setState(() {
           chosenAnswer = i;
           progress = 0.5;
           imagePath = 'assets/sample/kiss.jpg';
         }),
-        correctAnswer: 0,
-        chosenAnswer: chosenAnswer,
+        onNextPressed: () {},
       ),
     );
   }

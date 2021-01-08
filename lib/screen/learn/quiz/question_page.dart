@@ -20,14 +20,17 @@ class QuestionPage extends StatelessWidget {
   /// Progress to show on bar at the bottom.
   final double progress;
 
-  /// Callback when answer button is pressed.
-  final Function(int) onAnswerPressed;
-
   /// Correct answer.
   final int correctAnswer;
 
   /// Answer the player chose.
   final int? chosenAnswer;
+
+  /// Callback when answer button is pressed.
+  final Function(int) onAnswerPressed;
+
+  /// Callback when next button is pressed.
+  final Function() onNextPressed;
 
   /// Const constructor.
   const QuestionPage({
@@ -37,6 +40,7 @@ class QuestionPage extends StatelessWidget {
     required this.answers,
     required this.progress,
     required this.onAnswerPressed,
+    required this.onNextPressed,
     required this.correctAnswer,
     this.chosenAnswer,
   });
@@ -156,10 +160,9 @@ class QuestionPage extends StatelessWidget {
   }
 
   Widget _nextPageButton() {
-    if (chosenAnswer == null) {
-      return const ElevatedButton(onPressed: null, child: Text('Next'));
-    } else {
-      return ElevatedButton(onPressed: () {}, child: const Text('Next'));
-    }
+    return ElevatedButton(
+      onPressed: (chosenAnswer == null) ? null : onNextPressed,
+      child: const Text('Next'),
+    );
   }
 }
