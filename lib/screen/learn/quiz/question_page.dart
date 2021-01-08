@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../theme/answer_button_theme.dart';
+
 /// Page to display a single question.
 class QuestionPage extends StatelessWidget {
   /// Path to image of dog.
@@ -27,15 +29,6 @@ class QuestionPage extends StatelessWidget {
   /// Answer the player chose.
   final int? chosenAnswer;
 
-  static final ButtonStyle _answerCorrectStyle = OutlinedButton.styleFrom(
-    primary: Colors.black,
-    backgroundColor: Colors.green.shade700,
-  );
-  static final ButtonStyle _answerIncorrectStyle = OutlinedButton.styleFrom(
-    primary: Colors.black,
-    backgroundColor: const Color.fromARGB(255, 181, 51, 70),
-  );
-
   /// Const constructor.
   const QuestionPage({
     required this.imagePath,
@@ -54,8 +47,40 @@ class QuestionPage extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Image.asset(imagePath),
-        LinearProgressIndicator(value: progress),
+        SizedBox(
+          height: 300,
+          width: double.infinity,
+          child: FittedBox(
+            fit: BoxFit.cover,
+            clipBehavior: Clip.hardEdge,
+            child: AnimatedSwitcher(
+              child: Image.asset(
+                imagePath,
+                key: ValueKey<String>(imagePath),
+                fit: BoxFit.cover,
+                height: 300,
+              ),
+              duration: const Duration(milliseconds: 300),
+              transitionBuilder: (child, animation) {
+                return SlideTransition(
+                  position: Tween<Offset>(
+                    begin: const Offset(1, 0),
+                    end: Offset.zero,
+                  ).animate(animation),
+                  child: child,
+                );
+              },
+              switchOutCurve: const Threshold(0),
+              switchInCurve: Curves.ease,
+            ),
+          ),
+        ),
+        TweenAnimationBuilder<double>(
+          tween: Tween<double>(begin: 0, end: progress),
+          duration: const Duration(milliseconds: 100),
+          builder: (context, progress, _) =>
+              LinearProgressIndicator(value: progress),
+        ),
         Padding(
           padding: const EdgeInsets.all(10),
           child: Row(
@@ -108,24 +133,26 @@ class QuestionPage extends StatelessWidget {
   }
 
   Widget _answerButton(int answer) {
-    return OutlinedButton(
-      style: _buttonStyle(answer),
-      child: Text(answers[answer]),
-      onPressed: () => onAnswerPressed(answer),
+    return AnimatedTheme(
+      child: OutlinedButton(
+        child: Text(answers[answer]),
+        onPressed: () => onAnswerPressed(answer),
+      ),
+      data: ThemeData(outlinedButtonTheme: _buttonStyle(answer)),
+      duration: const Duration(milliseconds: 200),
     );
   }
 
-  ButtonStyle? _buttonStyle(int thisAnswer) {
-    if (chosenAnswer == null) {
-      return null;
+  OutlinedButtonThemeData? _buttonStyle(int thisAnswer) {
+    if (chosenAnswer != null) {
+      if (thisAnswer == correctAnswer) {
+        return answerCorrectStyle;
+      }
+      if (thisAnswer == chosenAnswer) {
+        return answerIncorrectStyle;
+      }
     }
-    if (thisAnswer == correctAnswer) {
-      return _answerCorrectStyle;
-    }
-    if (thisAnswer == chosenAnswer) {
-      return _answerIncorrectStyle;
-    }
-    return null;
+    return answerDefaultStyle;
   }
 
   Widget _nextPageButton() {
