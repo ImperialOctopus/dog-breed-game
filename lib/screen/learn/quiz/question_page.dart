@@ -29,11 +29,11 @@ class QuestionPage extends StatelessWidget {
 
   static final ButtonStyle _answerCorrectStyle = OutlinedButton.styleFrom(
     primary: Colors.black,
-    backgroundColor: Colors.green,
+    backgroundColor: Colors.green.shade700,
   );
   static final ButtonStyle _answerIncorrectStyle = OutlinedButton.styleFrom(
     primary: Colors.black,
-    backgroundColor: Colors.red,
+    backgroundColor: const Color.fromARGB(255, 181, 51, 70),
   );
 
   /// Const constructor.
