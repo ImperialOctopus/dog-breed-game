@@ -83,17 +83,22 @@ class QuestionPage extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.all(20),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Row(children: [
-                  Expanded(child: _answerButton(0)),
-                  Expanded(child: _answerButton(1)),
-                ]),
-                Row(children: [
-                  Expanded(child: _answerButton(2)),
-                  Expanded(child: _answerButton(3)),
-                ]),
+                Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Row(children: [
+                        Expanded(child: _answerButton(0)),
+                        Expanded(child: _answerButton(1)),
+                      ]),
+                      Row(children: [
+                        Expanded(child: _answerButton(2)),
+                        Expanded(child: _answerButton(3)),
+                      ]),
+                    ]),
+                Center(child: _nextPageButton()),
               ],
             ),
           ),
@@ -104,14 +109,13 @@ class QuestionPage extends StatelessWidget {
 
   Widget _answerButton(int answer) {
     return OutlinedButton(
-      style: _buttonStyle(correctAnswer, chosenAnswer, answer),
+      style: _buttonStyle(answer),
       child: Text(answers[answer]),
       onPressed: () => onAnswerPressed(answer),
     );
   }
 
-  ButtonStyle? _buttonStyle(
-      int correctAnswer, int? chosenAnswer, int thisAnswer) {
+  ButtonStyle? _buttonStyle(int thisAnswer) {
     if (chosenAnswer == null) {
       return null;
     }
@@ -122,5 +126,13 @@ class QuestionPage extends StatelessWidget {
       return _answerIncorrectStyle;
     }
     return null;
+  }
+
+  Widget _nextPageButton() {
+    if (chosenAnswer == null) {
+      return const ElevatedButton(onPressed: null, child: Text('Next'));
+    } else {
+      return ElevatedButton(onPressed: () {}, child: const Text('Next'));
+    }
   }
 }
