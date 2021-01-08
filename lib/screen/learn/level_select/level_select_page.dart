@@ -6,7 +6,7 @@ import '../lesson/lesson_screen.dart';
 
 /// Pages in level select screen.
 class LevelSelectPage extends StatelessWidget {
-  /// LessonLevel to display.
+  /// Level to display.
   final Level level;
 
   /// Level select page.

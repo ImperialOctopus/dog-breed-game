@@ -11,14 +11,14 @@ final themeData = ThemeData(
 
   outlinedButtonTheme: OutlinedButtonThemeData(
     style: OutlinedButton.styleFrom(
-      //primary: const Color.fromARGB(255, 181, 51, 70),
+      primary: const Color.fromARGB(255, 181, 51, 70),
       textStyle: const TextStyle(fontSize: 32),
       minimumSize: const Size(200, 60),
     ),
   ),
   elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-    //primary: const Color.fromARGB(255, 181, 51, 70),
+    primary: const Color.fromARGB(255, 181, 51, 70),
     textStyle: const TextStyle(fontSize: 32),
     minimumSize: const Size(200, 60),
   )),
