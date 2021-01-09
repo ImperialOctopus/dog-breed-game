@@ -16,16 +16,20 @@ class QuizScreen extends StatefulWidget {
 }
 
 class _QuizScreenState extends State<QuizScreen> {
-  List<int> chosenAnswers = [];
-  double progress = 0.4;
-  String imagePath = 'assets/sample/labrador.jpg';
+  late int questionIndex;
+
+  @override
+  void initState() {
+    super.initState();
+    questionIndex = 0;
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
       body: QuestionPage(
-        imagePath: imagePath,
+        imagePath: '',
         size: 'Large',
         rarity: 'Rare',
         answers: [
@@ -34,14 +38,10 @@ class _QuizScreenState extends State<QuizScreen> {
           'Pug',
           'Golden Retriever',
         ],
-        progress: progress,
+        progress: 0.4,
         correctAnswers: [0],
-        chosenAnswers: chosenAnswers,
-        onAnswerPressed: (i) => setState(() {
-          chosenAnswers = [i];
-          progress = 0.5;
-          imagePath = 'assets/sample/kiss.jpg';
-        }),
+        chosenAnswers: [],
+        onAnswerPressed: (i) => setState(() {}),
         onNextPressed: () {},
       ),
     );
