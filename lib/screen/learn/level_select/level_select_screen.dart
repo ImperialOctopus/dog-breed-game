@@ -9,7 +9,7 @@ class LevelSelectScreen extends StatefulWidget {
   /// Lessons to display on this screen.
   final List<Level> levels;
 
-  /// Const constructor
+  /// Screen to select a level in learn mode.
   const LevelSelectScreen({required this.levels});
 
   @override

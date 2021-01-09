@@ -7,7 +7,7 @@ class LessonScreen extends StatelessWidget {
   /// Lesson to show on this screen.
   final Lesson lesson;
 
-  /// [lesson] is the lesson to show.
+  /// Screen to show a single lesson.
   const LessonScreen({required this.lesson});
 
   @override

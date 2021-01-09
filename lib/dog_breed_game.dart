@@ -16,7 +16,7 @@ class DogBreedGame extends StatelessWidget {
     return MultiRepositoryProvider(
       providers: [
         RepositoryProvider<QuizDataRepository>(
-          create: (context) => LocalQuizDataRepository(),
+          create: (context) => const LocalQuizDataRepository(),
         )
       ],
       child: const AppView(),

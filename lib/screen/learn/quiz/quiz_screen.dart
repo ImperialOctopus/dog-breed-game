@@ -9,7 +9,7 @@ class QuizScreen extends StatefulWidget {
   /// Quiz to show.
   final Quiz quiz;
 
-  /// Const constructor.
+  /// Screen to show a quiz.
   const QuizScreen({required this.quiz});
 
   @override

@@ -9,7 +9,7 @@ class LevelSelectPage extends StatelessWidget {
   /// Level to display.
   final Level level;
 
-  /// Level select page.
+  /// Pages in level select screen.
   const LevelSelectPage({required this.level});
 
   @override

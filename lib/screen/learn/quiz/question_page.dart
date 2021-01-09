@@ -32,7 +32,7 @@ class QuestionPage extends StatelessWidget {
   /// Callback when next button is pressed.
   final Function() onNextPressed;
 
-  /// Const constructor.
+  /// Page to display a single question.
   const QuestionPage({
     required this.imagePath,
     required this.size,
