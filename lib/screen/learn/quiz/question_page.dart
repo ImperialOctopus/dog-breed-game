@@ -15,16 +15,16 @@ class QuestionPage extends StatelessWidget {
   final String rarity;
 
   /// List of options for answer buttons.
-  final List<String> answers;
+  final Iterable<String> answers;
 
   /// Progress to show on bar at the bottom.
   final double progress;
 
   /// Correct answer.
-  final List<int> correctAnswers;
+  final Iterable<int> correctAnswers;
 
   /// Answer the player chose.
-  final List<int> chosenAnswers;
+  final Iterable<int> chosenAnswers;
 
   /// Callback when answer button is pressed.
   final Function(int) onAnswerPressed;
@@ -139,7 +139,7 @@ class QuestionPage extends StatelessWidget {
   Widget _answerButton(int answer) {
     return AnimatedTheme(
       child: OutlinedButton(
-        child: Text(answers[answer]),
+        child: Text(answers.elementAt(answer)),
         onPressed: () => onAnswerPressed(answer),
       ),
       data: ThemeData(outlinedButtonTheme: _buttonStyle(answer)),
