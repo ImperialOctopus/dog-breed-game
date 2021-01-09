@@ -21,10 +21,10 @@ class QuestionPage extends StatelessWidget {
   final double progress;
 
   /// Correct answer.
-  final int correctAnswer;
+  final List<int> correctAnswers;
 
   /// Answer the player chose.
-  final int? chosenAnswer;
+  final List<int> chosenAnswers;
 
   /// Callback when answer button is pressed.
   final Function(int) onAnswerPressed;
@@ -41,8 +41,8 @@ class QuestionPage extends StatelessWidget {
     required this.progress,
     required this.onAnswerPressed,
     required this.onNextPressed,
-    required this.correctAnswer,
-    this.chosenAnswer,
+    required this.correctAnswers,
+    required this.chosenAnswers,
   });
 
   @override
@@ -148,20 +148,18 @@ class QuestionPage extends StatelessWidget {
   }
 
   OutlinedButtonThemeData? _buttonStyle(int thisAnswer) {
-    if (chosenAnswer != null) {
-      if (thisAnswer == correctAnswer) {
-        return answerCorrectStyle;
-      }
-      if (thisAnswer == chosenAnswer) {
-        return answerIncorrectStyle;
-      }
+    if (correctAnswers.contains(thisAnswer)) {
+      return answerCorrectStyle;
+    } else if (chosenAnswers.contains(thisAnswer)) {
+      return answerIncorrectStyle;
+    } else {
+      return answerDefaultStyle;
     }
-    return answerDefaultStyle;
   }
 
   Widget _nextPageButton() {
     return ElevatedButton(
-      onPressed: (chosenAnswer == null) ? null : onNextPressed,
+      onPressed: (chosenAnswers.isEmpty) ? null : onNextPressed,
       child: const Text('Next'),
     );
   }

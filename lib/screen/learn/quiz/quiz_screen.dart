@@ -16,7 +16,7 @@ class QuizScreen extends StatefulWidget {
 }
 
 class _QuizScreenState extends State<QuizScreen> {
-  int? chosenAnswer;
+  List<int> chosenAnswers = [];
   double progress = 0.4;
   String imagePath = 'assets/sample/labrador.jpg';
 
@@ -35,10 +35,10 @@ class _QuizScreenState extends State<QuizScreen> {
           'Golden Retriever',
         ],
         progress: progress,
-        correctAnswer: 0,
-        chosenAnswer: chosenAnswer,
+        correctAnswers: [0],
+        chosenAnswers: chosenAnswers,
         onAnswerPressed: (i) => setState(() {
-          chosenAnswer = i;
+          chosenAnswers = [i];
           progress = 0.5;
           imagePath = 'assets/sample/kiss.jpg';
         }),
