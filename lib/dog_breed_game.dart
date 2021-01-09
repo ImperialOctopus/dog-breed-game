@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'data/levels/levels.dart' as data;
-import 'screen/learn/level_select/level_select_screen.dart';
+import 'repository/local_quiz_data_repository.dart';
+import 'repository/quiz_data_repository.dart';
 import 'screen/menu/menu_screen.dart';
 import 'theme/theme.dart';
 
@@ -12,15 +13,19 @@ class DogBreedGame extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const AppView();
-    /*
     return MultiRepositoryProvider(
-      providers: [],
-      child: MultiBlocProvider(
-        providers: [],
-        child: const AppView(),
-      ),
+      providers: [
+        RepositoryProvider<QuizDataRepository>(
+          create: (context) => LocalQuizDataRepository(),
+        )
+      ],
+      child: const AppView(),
     );
+    /*
+    MultiBlocProvider(
+      providers: [],
+      child: const AppView(),
+    ),
     */
   }
 }
@@ -36,11 +41,6 @@ class AppView extends StatelessWidget {
       title: 'Dog Breed Game!',
       theme: themeData,
       home: const MenuScreen(),
-      routes: <String, WidgetBuilder>{
-        '/learn/levelselect': (var context) => const LevelSelectScreen(
-              levels: data.levels,
-            ),
-      },
     );
   }
 }

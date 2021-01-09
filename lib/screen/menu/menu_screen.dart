@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../repository/quiz_data_repository.dart';
+import '../learn/level_select/level_select_screen.dart';
 
 /// Starting menu screen
 class MenuScreen extends StatelessWidget {
@@ -24,8 +28,14 @@ class MenuScreen extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(vertical: 5),
                 child: ElevatedButton(
                   child: const Text('Learn'),
-                  onPressed: () =>
-                      Navigator.of(context).pushNamed('/learn/levelselect'),
+                  onPressed: () => Navigator.of(context).push<void>(
+                    MaterialPageRoute(
+                      builder: (context) => LevelSelectScreen(
+                          levels:
+                              RepositoryProvider.of<QuizDataRepository>(context)
+                                  .allLevels),
+                    ),
+                  ),
                 ),
               ),
               Padding(
