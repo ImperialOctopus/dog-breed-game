@@ -4,13 +4,14 @@ import 'progress_repository.dart';
 
 /// Progress repository stored only in memory.
 class MemoryProgressRepository implements ProgressRepository {
-  final List<LevelProgress> _progress = const [];
+  List<LevelProgress> _progress = const [];
 
   /// Progress repository stored only in memory.
-  const MemoryProgressRepository();
+  MemoryProgressRepository();
 
   @override
   Future<LevelProgress> readProgressById(int id) async {
+    print(_progress.map((e) => e.id));
     return _progress.singleWhere((element) => element.id == id,
         orElse: () => LevelProgress.zero(id: id));
   }
@@ -21,7 +22,7 @@ class MemoryProgressRepository implements ProgressRepository {
 
   @override
   Future<void> updateProgress(LevelProgress progress) async {
-    _progress.removeWhere((element) => element.id == progress.id);
-    _progress.add(progress);
+    _progress = _progress.where((element) => element.id != progress.id).toList()
+      ..add(progress);
   }
 }

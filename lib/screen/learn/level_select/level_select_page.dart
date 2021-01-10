@@ -96,7 +96,7 @@ class LevelSelectPage extends StatelessWidget {
                 ),
                 onPressed: (level.quiz == null)
                     ? null
-                    : () => Navigator.of(context).push(
+                    : () => Navigator.of(context).push<void>(
                         MaterialPageRoute<QuizScreen>(
                             builder: (context) => QuizScreen(level: level))),
               ),

@@ -19,12 +19,13 @@ const level_01 = Level(
   quiz: Quiz(questions: [
     Question(
       imagePath: 'assets/sample/labrador.jpg',
-      answers: {
-        'Dog': false,
-        'Cat': false,
-        'Labrador': true,
-        'Pug': false,
-      },
+      answers: [
+        'Dog',
+        'Cat',
+        'Labrador',
+        'Pug',
+      ],
+      correctAnswer: 2,
       size: 'Small',
       rarity: 'Rare',
     )

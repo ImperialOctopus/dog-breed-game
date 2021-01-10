@@ -4,7 +4,10 @@ class Question {
   final String imagePath;
 
   /// List of potential answers.
-  final Map<String, bool> answers;
+  final List<String> answers;
+
+  /// Correct answer index.
+  final int correctAnswer;
 
   /// Size of dog.
   final String size;
@@ -16,6 +19,7 @@ class Question {
   const Question({
     required this.imagePath,
     required this.answers,
+    required this.correctAnswer,
     required this.size,
     required this.rarity,
   });

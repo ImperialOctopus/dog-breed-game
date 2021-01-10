@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../bloc/progress/progress_bloc.dart';
 import '../../../bloc/progress/progress_event.dart';
-import '../../../extension/indexed_iterable.dart';
 import '../../../model/level.dart';
 import '../../../model/quiz/question.dart';
 import '../../../model/quiz/quiz.dart';
@@ -23,7 +22,7 @@ class QuizScreen extends StatefulWidget {
 }
 
 class _QuizScreenState extends State<QuizScreen> {
-  List<int> chosenAnswers = [];
+  int? chosenAnswer;
 
   late int questionIndex;
   late int score;
@@ -49,13 +48,10 @@ class _QuizScreenState extends State<QuizScreen> {
         imagePath: currentQuestion.imagePath,
         size: currentQuestion.size,
         rarity: currentQuestion.rarity,
-        answers: currentQuestion.answers.keys,
+        answers: currentQuestion.answers,
         progress: progress,
-        correctAnswers: currentQuestion.answers.entries
-            .mapIndexed<int?>(
-                (mapEntry, index) => (mapEntry.value) ? index : null)
-            .whereType<int>(),
-        chosenAnswers: chosenAnswers,
+        correctAnswer: currentQuestion.correctAnswer,
+        chosenAnswer: chosenAnswer,
         onAnswerPressed: onAnswerPressed,
         onNextPressed: onNextPressed,
       ),
@@ -63,32 +59,33 @@ class _QuizScreenState extends State<QuizScreen> {
   }
 
   void onAnswerPressed(int i) {
-    setState(() {
-      if (currentQuestion.answers.values.elementAt(i)) {
-        score += 1;
-      }
-      chosenAnswers = [i];
-    });
+    if (chosenAnswer == null) {
+      setState(() {
+        if (currentQuestion.correctAnswer == i) {
+          score += 1;
+        }
+        chosenAnswer = i;
+      });
+    }
   }
 
   void onNextPressed() {
-    setState(() {
-      chosenAnswers = [];
-      if (questionIndex < quiz.questions.length) {
+    if (questionIndex < quiz.questions.length - 1) {
+      setState(() {
         questionIndex += 1;
-        chosenAnswers = [];
-      } else {
-        BlocProvider.of<ProgressBloc>(context).add(QuizCompleted(
-            levelId: level.id, score: score / quiz.questions.length));
-        Navigator.of(context).pushReplacement(
-          MaterialPageRoute<ResultScreen>(
-            builder: (context) => ResultScreen(
-                title: level.title,
-                score: score,
-                questionNumber: quiz.questions.length),
-          ),
-        );
-      }
-    });
+        chosenAnswer = null;
+      });
+    } else {
+      BlocProvider.of<ProgressBloc>(context).add(QuizCompleted(
+          levelId: level.id, score: score / quiz.questions.length));
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute<ResultScreen>(
+          builder: (context) => ResultScreen(
+              title: level.title,
+              score: score,
+              questionNumber: quiz.questions.length),
+        ),
+      );
+    }
   }
 }

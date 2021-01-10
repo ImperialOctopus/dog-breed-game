@@ -10,6 +10,6 @@ const level_02 = Level(
   imagePath: 'assets/sample/box.jpg',
   description:
       'Second level! Now we\'re going to try out some less common breeds. Read through the summary under \'Lesson\', then try the Quiz and see how you do.',
-  lesson: Lesson(lessonBody: []),
-  quiz: Quiz(questions: []),
+  lesson: null,
+  quiz: null,
 );

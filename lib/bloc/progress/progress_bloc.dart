@@ -44,15 +44,15 @@ class ProgressBloc extends Bloc<ProgressEvent, ProgressState> {
   Stream<ProgressState> _mapLoadToState(LoadProgress event) async* {
     yield const ProgressLoading();
 
-    try {
-      final progress = await Future.wait<LevelProgress>(
-          _quizDataRepository.allLevels.map<Future<LevelProgress>>(
-              (level) => _progressRepository.readProgressByLevel(level)));
+    final progress = <LevelProgress>[];
 
-      yield ProgressLoaded(progress: progress);
-    } catch (e) {
-      yield ProgressLoadError(e.toString());
+    for (final level in _quizDataRepository.allLevels) {
+      progress.add(await _progressRepository.readProgressByLevel(level));
     }
+
+    yield ProgressLoaded(progress: progress);
+    //catch (e) {
+    //yield ProgressLoadError(e.toString());
   }
 
   Stream<ProgressState> _mapUpdateToState(UpdateProgress event) async* {
@@ -61,6 +61,7 @@ class ProgressBloc extends Bloc<ProgressEvent, ProgressState> {
   }
 
   Stream<ProgressState> _mapQuizCompletedToState(QuizCompleted event) async* {
+    print(event);
     final _state = state;
     if (_state is ProgressLoaded) {
       final progress = _state.getProgressById(event.levelId);

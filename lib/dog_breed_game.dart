@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'bloc/progress/progress_bloc.dart';
+import 'bloc/progress/progress_event.dart';
 import 'repository/progress/memory_progress_repository.dart';
 import 'repository/progress/progress_repository.dart';
 import 'repository/quiz_data/local_quiz_data_repository.dart';
@@ -29,12 +30,12 @@ class _DogBreedGameState extends State<DogBreedGame> {
     super.initState();
 
     _quizDataRepository = const LocalQuizDataRepository();
-    _progressRepository = const MemoryProgressRepository();
+    _progressRepository = MemoryProgressRepository();
 
     _progressBloc = ProgressBloc(
       progressRepository: _progressRepository,
       quizDataRepository: _quizDataRepository,
-    );
+    )..add(const LoadProgress());
   }
 
   @override
