@@ -1,3 +1,4 @@
+import 'package:dog_breed_game/model/level.dart';
 import 'package:equatable/equatable.dart';
 
 import '../../model/progress/level_progress.dart';
@@ -35,8 +36,11 @@ class ProgressLoaded extends ProgressState {
   const ProgressLoaded({required this.progress});
 
   /// Returns level progress for the provided id.
-  LevelProgress getProgressByLevel(int id) =>
+  LevelProgress getProgressById(int id) =>
       progress.singleWhere((element) => element.levelId == id);
+
+  /// Returns progress for a single level.
+  LevelProgress getProgressByLevel(Level level) => getProgressById(level.id);
 
   @override
   List<Object?> get props => [progress];

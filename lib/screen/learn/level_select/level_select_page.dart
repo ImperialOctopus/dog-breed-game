@@ -1,8 +1,11 @@
-import '../quiz/quiz_screen.dart';
+import 'package:dog_breed_game/bloc/progress/progress_state.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../bloc/progress/progress_bloc.dart';
 import '../../../model/level.dart';
 import '../lesson/lesson_screen.dart';
+import '../quiz/quiz_screen.dart';
 
 /// Pages in level select screen.
 class LevelSelectPage extends StatelessWidget {
@@ -72,7 +75,23 @@ class LevelSelectPage extends StatelessWidget {
                 ),
               ),
               TextButton(
-                child: const Text('Quiz'),
+                child: BlocBuilder<ProgressBloc, ProgressState>(
+                  builder: (context, state) {
+                    if (state is ProgressLoaded) {
+                      return Column(
+                        children: [
+                          const Text('Quiz'),
+                          Text(
+                              (state.getProgressByLevel(level).quizProgress[0] *
+                                      100)
+                                  .toStringAsFixed(0))
+                        ],
+                      );
+                    } else {
+                      return const Text('Quiz');
+                    }
+                  },
+                ),
                 onPressed: () => Navigator.of(context).push(
                   MaterialPageRoute<QuizScreen>(
                       builder: (context) => QuizScreen(quiz: level.quiz)),
