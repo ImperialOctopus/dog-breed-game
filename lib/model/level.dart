@@ -19,10 +19,10 @@ class Level {
   final String description;
 
   /// This level's lesson.
-  final Lesson lesson;
+  final Lesson? lesson;
 
   /// This level's quiz
-  final Quiz quiz;
+  final Quiz? quiz;
 
   /// [title] is displayed at the top of the card. [subtitle] is below it.
   /// [image] represents the whole lesson. [description] describes the content

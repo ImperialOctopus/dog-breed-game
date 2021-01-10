@@ -1,3 +1,4 @@
+import 'package:dog_breed_game/model/quiz/question.dart';
 import 'package:flutter/material.dart';
 
 import '../../model/lesson.dart';
@@ -15,5 +16,17 @@ const level_01 = Level(
   lesson: Lesson(lessonBody: [
     Text('Less-on-1'),
   ]),
-  quiz: Quiz(questions: []),
+  quiz: Quiz(questions: [
+    Question(
+      imagePath: 'assets/sample/labrador.jpg',
+      answers: {
+        'Dog': false,
+        'Cat': false,
+        'Labrador': true,
+        'Pug': false,
+      },
+      size: 'Small',
+      rarity: 'Rare',
+    )
+  ]),
 );

@@ -1,8 +1,8 @@
-import 'package:dog_breed_game/bloc/progress/progress_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../bloc/progress/progress_bloc.dart';
+import '../../../bloc/progress/progress_state.dart';
 import '../../../model/level.dart';
 import '../lesson/lesson_screen.dart';
 import '../quiz/quiz_screen.dart';
@@ -69,10 +69,13 @@ class LevelSelectPage extends StatelessWidget {
             children: [
               TextButton(
                 child: const Text('Lesson'),
-                onPressed: () => Navigator.of(context).push(
-                  MaterialPageRoute<LessonScreen>(
-                      builder: (context) => LessonScreen(lesson: level.lesson)),
-                ),
+                onPressed: (level.lesson == null)
+                    ? null
+                    : () => Navigator.of(context).push(
+                          MaterialPageRoute<LessonScreen>(
+                              builder: (context) =>
+                                  LessonScreen(lesson: level.lesson!)),
+                        ),
               ),
               TextButton(
                 child: BlocBuilder<ProgressBloc, ProgressState>(
@@ -81,10 +84,12 @@ class LevelSelectPage extends StatelessWidget {
                       return Column(
                         children: [
                           const Text('Quiz'),
-                          Text(
-                              (state.getProgressByLevel(level).quizProgress[0] *
+                          Text((state
+                                          .getProgressByLevel(level)
+                                          .getQuizProgress(0) *
                                       100)
-                                  .toStringAsFixed(0))
+                                  .toStringAsFixed(0) +
+                              '%')
                         ],
                       );
                     } else {
@@ -92,10 +97,12 @@ class LevelSelectPage extends StatelessWidget {
                     }
                   },
                 ),
-                onPressed: () => Navigator.of(context).push(
-                  MaterialPageRoute<QuizScreen>(
-                      builder: (context) => QuizScreen(quiz: level.quiz)),
-                ),
+                onPressed: (level.quiz == null)
+                    ? null
+                    : () => Navigator.of(context).push(
+                        MaterialPageRoute<QuizScreen>(
+                            builder: (context) =>
+                                QuizScreen(quiz: level.quiz!))),
               ),
             ],
           ),
