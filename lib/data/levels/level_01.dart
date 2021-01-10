@@ -10,6 +10,7 @@ const level_01 = Level(
   id: 0,
   title: 'Level 1',
   subtitle: 'Common Breeds',
+  iconData: Icons.ac_unit,
   imagePath: 'assets/sample/labrador.jpg',
   description:
       'First level. Check out some information about the top 5 most common dogs in the UK and then try out the quiz to see how well you can recognise them!',
@@ -26,7 +27,8 @@ const level_01 = Level(
         'Pug',
       ],
       correctAnswer: 2,
-      size: 'Small',
+      //size: 'Small',
+
       rarity: 'Rare',
     )
   ]),

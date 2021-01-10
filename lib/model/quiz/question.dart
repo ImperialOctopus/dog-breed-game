@@ -10,17 +10,17 @@ class Question {
   final int correctAnswer;
 
   /// Size of dog.
-  final String size;
+  final String? size;
 
   /// Rarity of dog.
-  final String rarity;
+  final String? rarity;
 
   /// Const constructor.
   const Question({
     required this.imagePath,
     required this.answers,
     required this.correctAnswer,
-    required this.size,
-    required this.rarity,
+    this.size,
+    this.rarity,
   });
 }

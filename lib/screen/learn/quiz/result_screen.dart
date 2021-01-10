@@ -1,21 +1,19 @@
+import '../../../component/level_header.dart';
+import '../../../model/level.dart';
 import 'package:flutter/material.dart';
 
 /// Screen to show results of quiz.
 class ResultScreen extends StatelessWidget {
-  /// Quiz title.
-  final String title;
+  /// Level this is the result for.
+  final Level level;
 
   /// Score they got.
   final int score;
 
-  /// Total number of questions.
-  final int questionNumber;
-
   /// Screen to show results of quiz.
   const ResultScreen({
-    required this.title,
+    required this.level,
     required this.score,
-    required this.questionNumber,
   });
 
   @override
@@ -23,10 +21,21 @@ class ResultScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(),
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text(title),
-          Text(score.toString()),
-          Text(questionNumber.toString()),
+          LevelHeader(
+            iconData: level.iconData,
+            title: level.title,
+            subtitle: level.subtitle,
+          ),
+          const Spacer(),
+          const Text('Your Score:'),
+          Text(
+            (score * 100).toStringAsFixed(0) + '%',
+            style: Theme.of(context).textTheme.headline2,
+          ),
+          const Spacer(),
         ],
       ),
     );

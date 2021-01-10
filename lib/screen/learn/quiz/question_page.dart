@@ -8,11 +8,10 @@ class QuestionPage extends StatelessWidget {
   final String imagePath;
 
   /// Text to display next to size icon.
-  final String size;
+  final String? size;
 
   /// Text to display next to rarity icon.
-
-  final String rarity;
+  final String? rarity;
 
   /// List of options for answer buttons.
   final Iterable<String> answers;
@@ -94,7 +93,7 @@ class QuestionPage extends StatelessWidget {
                 children: [
                   const Padding(
                       padding: EdgeInsets.all(5), child: Icon(Icons.rule)),
-                  Text(size),
+                  Text(size ?? '???'),
                 ],
               )),
               Expanded(
@@ -102,7 +101,7 @@ class QuestionPage extends StatelessWidget {
                 children: [
                   const Padding(
                       padding: EdgeInsets.all(5), child: Icon(Icons.people)),
-                  Text(rarity),
+                  Text(rarity ?? '???'),
                 ],
               )),
             ],

@@ -81,9 +81,9 @@ class _QuizScreenState extends State<QuizScreen> {
       Navigator.of(context).pushReplacement(
         MaterialPageRoute<ResultScreen>(
           builder: (context) => ResultScreen(
-              title: level.title,
-              score: score,
-              questionNumber: quiz.questions.length),
+            level: level,
+            score: score,
+          ),
         ),
       );
     }

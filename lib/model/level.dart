@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 import 'lesson.dart';
 import 'quiz/quiz.dart';
 
@@ -10,7 +12,10 @@ class Level {
   final String title;
 
   /// Subtitle of lesson.
-  final String subtitle;
+  final String? subtitle;
+
+  /// IconData for this level's icon.
+  final IconData iconData;
 
   /// Image to summarise lesson.
   final String imagePath;
@@ -30,10 +35,11 @@ class Level {
   const Level({
     required this.id,
     required this.title,
-    required this.subtitle,
+    this.subtitle,
+    required this.iconData,
     required this.imagePath,
     required this.description,
-    required this.lesson,
-    required this.quiz,
+    this.lesson,
+    this.quiz,
   });
 }

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../bloc/progress/progress_bloc.dart';
 import '../../../bloc/progress/progress_state.dart';
+import '../../../component/level_header.dart';
 import '../../../model/level.dart';
 import '../lesson/lesson_screen.dart';
 import '../quiz/quiz_screen.dart';
@@ -20,31 +21,10 @@ class LevelSelectPage extends StatelessWidget {
     return Column(
       children: [
         const Spacer(),
-        Row(
-          children: [
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10),
-              child: Icon(
-                Icons.text_rotate_up_sharp,
-                size: 100,
-              ),
-            ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  level.title,
-                  style: Theme.of(context).textTheme.headline5,
-                ),
-                const Padding(padding: EdgeInsets.only(top: 4)),
-                Text(
-                  level.subtitle,
-                  style: Theme.of(context).textTheme.subtitle1,
-                ),
-              ],
-            )
-          ],
+        LevelHeader(
+          iconData: Icons.text_rotate_up,
+          title: level.title,
+          subtitle: level.subtitle,
         ),
         SizedBox(
           height: 300,

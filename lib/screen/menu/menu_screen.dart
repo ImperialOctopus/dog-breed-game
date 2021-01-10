@@ -38,11 +38,11 @@ class MenuScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 5),
+              const Padding(
+                padding: EdgeInsets.symmetric(vertical: 5),
                 child: ElevatedButton(
-                  child: const Text('Practice'),
-                  onPressed: () {},
+                  child: Text('Practice'),
+                  onPressed: null,
                 ),
               ),
             ],
