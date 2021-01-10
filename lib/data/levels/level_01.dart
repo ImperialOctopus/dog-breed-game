@@ -6,6 +6,7 @@ import '../../model/quiz/quiz.dart';
 
 /// Level 1 - Common breeds
 const level_01 = Level(
+  id: 0,
   title: 'Level 1',
   subtitle: 'Common Breeds',
   imagePath: 'assets/sample/labrador.jpg',

@@ -6,6 +6,7 @@ import '../../model/quiz/quiz.dart';
 
 /// Level 1 - Filling in gaps
 const level_03 = Level(
+  id: 2,
   title: 'Level 3',
   subtitle: 'Filling In Some Gaps',
   imagePath: 'assets/sample/pom.jpg',

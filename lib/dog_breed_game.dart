@@ -1,32 +1,62 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'repository/local_quiz_data_repository.dart';
-import 'repository/quiz_data_repository.dart';
+import 'bloc/progress/progress_bloc.dart';
+import 'repository/progress/memory_progress_repository.dart';
+import 'repository/progress/progress_repository.dart';
+import 'repository/quiz_data/local_quiz_data_repository.dart';
+import 'repository/quiz_data/quiz_data_repository.dart';
 import 'screen/menu/menu_screen.dart';
 import 'theme/theme.dart';
 
 /// Main app that provides blocs.
-class DogBreedGame extends StatelessWidget {
+class DogBreedGame extends StatefulWidget {
   /// Const constructor.
   const DogBreedGame();
+
+  @override
+  _DogBreedGameState createState() => _DogBreedGameState();
+}
+
+class _DogBreedGameState extends State<DogBreedGame> {
+  late final QuizDataRepository _quizDataRepository;
+  late final ProgressRepository _progressRepository;
+
+  late final ProgressBloc _progressBloc;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _quizDataRepository = const LocalQuizDataRepository();
+    _progressRepository = const MemoryProgressRepository();
+
+    _progressBloc = ProgressBloc(
+      progressRepository: _progressRepository,
+      quizDataRepository: _quizDataRepository,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return MultiRepositoryProvider(
       providers: [
-        RepositoryProvider<QuizDataRepository>(
-          create: (context) => const LocalQuizDataRepository(),
+        RepositoryProvider<QuizDataRepository>.value(
+          value: _quizDataRepository,
+        ),
+        RepositoryProvider<ProgressRepository>.value(
+          value: _progressRepository,
         )
       ],
-      child: const AppView(),
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider<ProgressBloc>.value(
+            value: _progressBloc,
+          ),
+        ],
+        child: const AppView(),
+      ),
     );
-    /*
-    MultiBlocProvider(
-      providers: [],
-      child: const AppView(),
-    ),
-    */
   }
 }
 

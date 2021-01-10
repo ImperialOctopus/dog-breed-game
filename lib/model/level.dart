@@ -3,6 +3,9 @@ import 'quiz/quiz.dart';
 
 /// Model of a level.
 class Level {
+  /// Unique identifier of a level.
+  final int id;
+
   /// Title of lesson.
   final String title;
 
@@ -25,6 +28,7 @@ class Level {
   /// [image] represents the whole lesson. [description] describes the content
   /// of the lesson
   const Level({
+    required this.id,
     required this.title,
     required this.subtitle,
     required this.imagePath,

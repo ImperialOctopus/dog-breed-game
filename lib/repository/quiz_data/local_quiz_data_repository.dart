@@ -1,5 +1,5 @@
-import '../data/levels/levels.dart';
-import '../model/level.dart';
+import '../../data/levels/levels.dart';
+import '../../model/level.dart';
 import 'quiz_data_repository.dart';
 
 /// Quiz data repo using local data.

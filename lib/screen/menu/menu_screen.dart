@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../repository/quiz_data_repository.dart';
+import '../../repository/quiz_data/quiz_data_repository.dart';
 import '../learn/level_select/level_select_screen.dart';
 
 /// Starting menu screen.

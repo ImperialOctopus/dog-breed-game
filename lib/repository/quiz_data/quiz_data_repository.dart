@@ -1,4 +1,4 @@
-import '../model/level.dart';
+import '../../model/level.dart';
 
 /// Repository providing data for quiz.
 abstract class QuizDataRepository {

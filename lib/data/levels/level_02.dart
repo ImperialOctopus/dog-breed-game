@@ -4,6 +4,7 @@ import '../../model/quiz/quiz.dart';
 
 /// Level 2 - Uncommon breeds
 const level_02 = Level(
+  id: 1,
   title: 'Level 2',
   subtitle: 'Uncommon Breeds',
   imagePath: 'assets/sample/box.jpg',
