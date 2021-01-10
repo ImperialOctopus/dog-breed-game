@@ -1,6 +1,4 @@
-import '../../model/lesson.dart';
 import '../../model/level.dart';
-import '../../model/quiz/quiz.dart';
 
 /// Level 2 - Uncommon breeds
 const level_02 = Level(

@@ -67,39 +67,37 @@ class LevelSelectPage extends StatelessWidget {
           child: ButtonBar(
             alignment: MainAxisAlignment.center,
             children: [
-              TextButton(
-                child: const Text('Lesson'),
-                onPressed: (level.lesson == null)
-                    ? null
-                    : () => Navigator.of(context).push(
-                          MaterialPageRoute<LessonScreen>(
-                              builder: (context) =>
-                                  LessonScreen(lesson: level.lesson!)),
-                        ),
-              ),
-              TextButton(
-                child: BlocBuilder<ProgressBloc, ProgressState>(
-                  builder: (context, state) {
-                    if (state is ProgressLoaded) {
-                      return Column(
-                        children: [
-                          const Text('Quiz'),
-                          Text((state.getProgressByLevel(level).quizScore * 100)
-                                  .toStringAsFixed(0) +
-                              '%')
-                        ],
-                      );
-                    } else {
-                      return const Text('Quiz');
-                    }
-                  },
+              if (level.lesson != null)
+                TextButton(
+                  child: const Text('Lesson'),
+                  onPressed: () => Navigator.of(context).push(
+                    MaterialPageRoute<LessonScreen>(
+                        builder: (context) =>
+                            LessonScreen(lesson: level.lesson!)),
+                  ),
                 ),
-                onPressed: (level.quiz == null)
-                    ? null
-                    : () => Navigator.of(context).push<void>(
-                        MaterialPageRoute<QuizScreen>(
-                            builder: (context) => QuizScreen(level: level))),
-              ),
+              if (level.quiz != null)
+                TextButton(
+                  child: BlocBuilder<ProgressBloc, ProgressState>(
+                    builder: (context, state) {
+                      if (state is ProgressLoaded) {
+                        final score = state.getProgressByLevel(level).quizScore;
+                        return Column(
+                          children: [
+                            const Text('Quiz'),
+                            if (score != 0)
+                              Text((score * 100).toStringAsFixed(0) + '%')
+                          ],
+                        );
+                      } else {
+                        return const Text('Quiz');
+                      }
+                    },
+                  ),
+                  onPressed: () => Navigator.of(context).push<void>(
+                      MaterialPageRoute<QuizScreen>(
+                          builder: (context) => QuizScreen(level: level))),
+                ),
             ],
           ),
         ),
