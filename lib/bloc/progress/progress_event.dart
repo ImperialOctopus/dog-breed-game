@@ -17,7 +17,7 @@ class LoadProgress extends ProgressEvent {
   List<Object?> get props => [];
 }
 
-/// User changed their progress.
+/// Progress was changed.
 class UpdateProgress extends ProgressEvent {
   /// Progress model.
   final LevelProgress progress;
@@ -27,4 +27,31 @@ class UpdateProgress extends ProgressEvent {
 
   @override
   List<Object?> get props => [progress];
+}
+
+/// Quiz was completed.
+class QuizCompleted extends ProgressEvent {
+  /// ID of level.
+  final int levelId;
+
+  /// Score achieved.
+  final double score;
+
+  /// Quiz was completed.
+  const QuizCompleted({required this.levelId, required this.score});
+
+  @override
+  List<Object?> get props => [levelId, score];
+}
+
+/// Lesson was completed.
+class LessonCompleted extends ProgressEvent {
+  /// ID of level.
+  final int levelId;
+
+  /// Lesson was completed.
+  const LessonCompleted({required this.levelId});
+
+  @override
+  List<Object?> get props => [levelId];
 }

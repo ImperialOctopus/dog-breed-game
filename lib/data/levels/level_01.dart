@@ -1,8 +1,8 @@
-import 'package:dog_breed_game/model/quiz/question.dart';
 import 'package:flutter/material.dart';
 
 import '../../model/lesson.dart';
 import '../../model/level.dart';
+import '../../model/quiz/question.dart';
 import '../../model/quiz/quiz.dart';
 
 /// Level 1 - Common breeds

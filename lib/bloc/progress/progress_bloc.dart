@@ -23,11 +23,22 @@ class ProgressBloc extends Bloc<ProgressEvent, ProgressState> {
   Stream<ProgressState> mapEventToState(ProgressEvent event) async* {
     if (event is LoadProgress) {
       yield* _mapLoadToState(event);
-    } else if (event is UpdateProgress) {
-      yield* _mapUpdateToState(event);
-    } else {
-      throw FallThroughError();
+      return;
     }
+    if (event is UpdateProgress) {
+      yield* _mapUpdateToState(event);
+      return;
+    }
+
+    if (event is QuizCompleted) {
+      yield* _mapQuizCompletedToState(event);
+      return;
+    }
+    if (event is LessonCompleted) {
+      yield* _mapLessonCompletedToState(event);
+      return;
+    }
+    throw FallThroughError();
   }
 
   Stream<ProgressState> _mapLoadToState(LoadProgress event) async* {
@@ -47,5 +58,27 @@ class ProgressBloc extends Bloc<ProgressEvent, ProgressState> {
   Stream<ProgressState> _mapUpdateToState(UpdateProgress event) async* {
     await _progressRepository.updateProgress(event.progress);
     add(const LoadProgress());
+  }
+
+  Stream<ProgressState> _mapQuizCompletedToState(QuizCompleted event) async* {
+    final _state = state;
+    if (_state is ProgressLoaded) {
+      final progress = _state.getProgressById(event.levelId);
+      if (event.score > progress.quizScore) {
+        add(UpdateProgress(
+            progress: progress.copyWith(quizScore: event.score)));
+      }
+    }
+  }
+
+  Stream<ProgressState> _mapLessonCompletedToState(
+      LessonCompleted event) async* {
+    final _state = state;
+    if (_state is ProgressLoaded) {
+      final progress = _state.getProgressById(event.levelId);
+      if (!progress.lessonComplete) {
+        add(UpdateProgress(progress: progress.copyWith(lessonComplete: true)));
+      }
+    }
   }
 }

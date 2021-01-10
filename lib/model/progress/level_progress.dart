@@ -1,41 +1,31 @@
 /// Progress in a single level.
 class LevelProgress {
   /// ID of the level.
-  final int levelId;
+  final int id;
 
-  /// List representing completed lessons.
-  final Iterable<bool> _lessonProgress;
+  /// Completed lesson.
+  final bool lessonComplete;
 
-  /// List representing high scores in quizzes.
-  final Iterable<double> _quizProgress;
-
-  static const bool _defaultLessonProgress = false;
-
-  static const double _defaultQuizProgress = 0;
+  /// High score in quiz.
+  final double quizScore;
 
   /// Progress in a single level.
   const LevelProgress({
-    required this.levelId,
-    required Iterable<bool> lessonProgress,
-    required Iterable<double> quizProgress,
-  })   : _lessonProgress = lessonProgress,
-        _quizProgress = quizProgress;
+    required this.id,
+    required this.lessonComplete,
+    required this.quizScore,
+  });
 
   /// LevelProgress with no progress.
-  const LevelProgress.zero({required int id})
-      : levelId = id,
-        _lessonProgress = const [],
-        _quizProgress = const [];
+  const LevelProgress.zero({required this.id})
+      : lessonComplete = false,
+        quizScore = 0;
 
-  /// Get progress for the lesson at index.
-  bool getLessonProgress(int index) =>
-      (index >= 0 && index < _lessonProgress.length)
-          ? _lessonProgress.elementAt(index)
-          : _defaultLessonProgress;
-
-  /// Get progress for the quiz at index.
-  double getQuizProgress(int index) =>
-      (index >= 0 && index < _quizProgress.length)
-          ? _quizProgress.elementAt(index)
-          : _defaultQuizProgress;
+  /// Copy this object with properties changed.
+  LevelProgress copyWith({int? id, bool? lessonComplete, double? quizScore}) =>
+      LevelProgress(
+        id: id ?? this.id,
+        lessonComplete: lessonComplete ?? this.lessonComplete,
+        quizScore: quizScore ?? this.quizScore,
+      );
 }

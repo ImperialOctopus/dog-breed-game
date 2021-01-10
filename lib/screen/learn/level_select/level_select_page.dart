@@ -84,10 +84,7 @@ class LevelSelectPage extends StatelessWidget {
                       return Column(
                         children: [
                           const Text('Quiz'),
-                          Text((state
-                                          .getProgressByLevel(level)
-                                          .getQuizProgress(0) *
-                                      100)
+                          Text((state.getProgressByLevel(level).quizScore * 100)
                                   .toStringAsFixed(0) +
                               '%')
                         ],
@@ -101,8 +98,7 @@ class LevelSelectPage extends StatelessWidget {
                     ? null
                     : () => Navigator.of(context).push(
                         MaterialPageRoute<QuizScreen>(
-                            builder: (context) =>
-                                QuizScreen(quiz: level.quiz!))),
+                            builder: (context) => QuizScreen(level: level))),
               ),
             ],
           ),

@@ -11,7 +11,7 @@ class MemoryProgressRepository implements ProgressRepository {
 
   @override
   Future<LevelProgress> readProgressById(int id) async {
-    return _progress.singleWhere((element) => element.levelId == id,
+    return _progress.singleWhere((element) => element.id == id,
         orElse: () => LevelProgress.zero(id: id));
   }
 
@@ -21,7 +21,7 @@ class MemoryProgressRepository implements ProgressRepository {
 
   @override
   Future<void> updateProgress(LevelProgress progress) async {
-    _progress.removeWhere((element) => element.levelId == progress.levelId);
+    _progress.removeWhere((element) => element.id == progress.id);
     _progress.add(progress);
   }
 }
