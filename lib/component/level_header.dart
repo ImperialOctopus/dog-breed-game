@@ -19,10 +19,10 @@ class LevelHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 10),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10),
           child: Icon(
-            Icons.text_rotate_up_sharp,
+            iconData,
             size: 100,
           ),
         ),

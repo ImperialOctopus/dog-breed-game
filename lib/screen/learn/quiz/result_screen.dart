@@ -32,7 +32,8 @@ class ResultScreen extends StatelessWidget {
           const Spacer(),
           const Text('Your Score:'),
           Text(
-            (score * 100).toStringAsFixed(0) + '%',
+            ((score / level.quiz!.questions.length) * 100).toStringAsFixed(0) +
+                '%',
             style: Theme.of(context).textTheme.headline2,
           ),
           const Spacer(),

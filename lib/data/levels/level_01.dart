@@ -27,9 +27,42 @@ const level_01 = Level(
         'Pug',
       ],
       correctAnswer: 2,
-      //size: 'Small',
-
-      rarity: 'Rare',
-    )
+      size: 'Small',
+      rarity: 'Unobtainable',
+    ),
+    Question(
+      imagePath: 'assets/sample/box.jpg',
+      answers: [
+        'Conglomerate',
+        'Zebra',
+        'Pog',
+        'Pug',
+      ],
+      correctAnswer: 1,
+      size: 'Small',
+    ),
+    Question(
+      imagePath: 'assets/sample/kiss.jpg',
+      answers: [
+        'Doge',
+        'Cat',
+        'Box',
+        'Resplendent Quetzal',
+      ],
+      correctAnswer: 3,
+      size: 'Very Big',
+    ),
+    Question(
+      imagePath: 'assets/sample/look.jpg',
+      answers: [
+        'SpongeBob',
+        'Spongebob',
+        'Spong Bobe',
+        'Bob-Sponge',
+      ],
+      correctAnswer: 0,
+      size: 'Sponge',
+      rarity: 'Bob',
+    ),
   ]),
 );

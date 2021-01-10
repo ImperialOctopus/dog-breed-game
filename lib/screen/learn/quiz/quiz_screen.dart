@@ -31,7 +31,9 @@ class _QuizScreenState extends State<QuizScreen> {
   Level get level => widget.level;
 
   Question get currentQuestion => quiz.questions[questionIndex];
-  double get progress => (questionIndex + 1) / quiz.questions.length;
+  double get progress =>
+      (questionIndex + ((chosenAnswer == null) ? 0 : 1)) /
+      quiz.questions.length;
 
   @override
   void initState() {
