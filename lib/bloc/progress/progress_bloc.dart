@@ -61,7 +61,6 @@ class ProgressBloc extends Bloc<ProgressEvent, ProgressState> {
   }
 
   Stream<ProgressState> _mapQuizCompletedToState(QuizCompleted event) async* {
-    print(event);
     final _state = state;
     if (_state is ProgressLoaded) {
       final progress = _state.getProgressById(event.levelId);

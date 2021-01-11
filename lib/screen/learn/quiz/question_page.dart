@@ -1,3 +1,4 @@
+import 'package:dog_breed_game/component/fixed_height_asset_image.dart';
 import 'package:flutter/material.dart';
 
 import '../../../theme/answer_button_theme.dart';
@@ -51,19 +52,10 @@ class QuestionPage extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         AnimatedSwitcher(
-          child: SizedBox(
+          child: FixedHeightAssetImage(
             key: ValueKey<String>(imagePath),
+            imagePath: imagePath,
             height: 300,
-            width: double.infinity,
-            child: FittedBox(
-              fit: BoxFit.cover,
-              clipBehavior: Clip.hardEdge,
-              child: Image.asset(
-                imagePath,
-                fit: BoxFit.cover,
-                height: 300,
-              ),
-            ),
           ),
           duration: const Duration(milliseconds: 300),
           transitionBuilder: (child, animation) {

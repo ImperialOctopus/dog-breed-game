@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../bloc/progress/progress_bloc.dart';
 import '../../../bloc/progress/progress_state.dart';
+import '../../../component/fixed_height_asset_image.dart';
 import '../../../component/level_header.dart';
 import '../../../model/level.dart';
 import '../lesson/lesson_screen.dart';
@@ -29,16 +30,9 @@ class LevelSelectPage extends StatelessWidget {
                 title: level.title,
                 subtitle: level.subtitle,
               ),
-              SizedBox(
+              FixedHeightAssetImage(
+                imagePath: level.imagePath,
                 height: 300,
-                width: double.infinity,
-                child: FittedBox(
-                  fit: BoxFit.cover,
-                  clipBehavior: Clip.hardEdge,
-                  child: Image.asset(
-                    level.imagePath,
-                  ),
-                ),
               ),
               Padding(
                 padding:
