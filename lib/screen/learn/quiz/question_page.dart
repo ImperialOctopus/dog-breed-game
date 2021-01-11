@@ -50,33 +50,33 @@ class QuestionPage extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        SizedBox(
-          height: 300,
-          width: double.infinity,
-          child: FittedBox(
-            fit: BoxFit.cover,
-            clipBehavior: Clip.hardEdge,
-            child: AnimatedSwitcher(
+        AnimatedSwitcher(
+          child: SizedBox(
+            key: ValueKey<String>(imagePath),
+            height: 300,
+            width: double.infinity,
+            child: FittedBox(
+              fit: BoxFit.cover,
+              clipBehavior: Clip.hardEdge,
               child: Image.asset(
                 imagePath,
-                key: ValueKey<String>(imagePath),
                 fit: BoxFit.cover,
                 height: 300,
               ),
-              duration: const Duration(milliseconds: 300),
-              transitionBuilder: (child, animation) {
-                return SlideTransition(
-                  position: Tween<Offset>(
-                    begin: const Offset(1, 0),
-                    end: Offset.zero,
-                  ).animate(animation),
-                  child: child,
-                );
-              },
-              switchOutCurve: const Threshold(0),
-              switchInCurve: Curves.ease,
             ),
           ),
+          duration: const Duration(milliseconds: 300),
+          transitionBuilder: (child, animation) {
+            return SlideTransition(
+              position: Tween<Offset>(
+                begin: const Offset(1, 0),
+                end: Offset.zero,
+              ).animate(animation),
+              child: child,
+            );
+          },
+          switchOutCurve: const Threshold(0),
+          switchInCurve: Curves.ease,
         ),
         TweenAnimationBuilder<double>(
           tween: Tween<double>(begin: 0, end: progress),
