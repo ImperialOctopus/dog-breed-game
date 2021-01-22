@@ -50,7 +50,7 @@ class _LevelSelectScreenState extends State<LevelSelectScreen> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(bottom: 35),
+            padding: const EdgeInsets.all(15),
             child: Row(
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.center,

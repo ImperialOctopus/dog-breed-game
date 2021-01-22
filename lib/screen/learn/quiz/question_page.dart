@@ -1,6 +1,6 @@
-import 'package:dog_breed_game/component/fixed_height_asset_image.dart';
 import 'package:flutter/material.dart';
 
+import '../../../component/fixed_height_asset_image.dart';
 import '../../../theme/answer_button_theme.dart';
 
 /// Page to display a single question.

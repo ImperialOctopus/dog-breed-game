@@ -22,7 +22,7 @@ class LevelSelectPage extends StatelessWidget {
     return CustomScrollView(
       slivers: [
         SliverFillRemaining(
-          hasScrollBody: false,
+          hasScrollBody: true,
           child: Column(
             children: [
               LevelHeader(
@@ -35,51 +35,46 @@ class LevelSelectPage extends StatelessWidget {
                 height: 300,
               ),
               Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                padding: const EdgeInsets.all(10),
                 child: Text(level.description),
               ),
               const Spacer(),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 20),
-                child: ButtonBar(
-                  alignment: MainAxisAlignment.center,
-                  children: [
-                    if (level.lesson != null)
-                      TextButton(
-                        child: const Text('Lesson'),
-                        onPressed: () => Navigator.of(context).push(
-                          MaterialPageRoute<LessonScreen>(
-                              builder: (context) =>
-                                  LessonScreen(lesson: level.lesson!)),
-                        ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  if (level.lesson != null)
+                    TextButton(
+                      child: const Text('Lesson'),
+                      onPressed: () => Navigator.of(context).push(
+                        MaterialPageRoute<LessonScreen>(
+                            builder: (context) =>
+                                LessonScreen(lesson: level.lesson!)),
                       ),
-                    if (level.quiz != null)
-                      TextButton(
-                        child: BlocBuilder<ProgressBloc, ProgressState>(
-                          builder: (context, state) {
-                            if (state is ProgressLoaded) {
-                              final score =
-                                  state.getProgressByLevel(level).quizScore;
-                              return Column(
-                                children: [
-                                  const Text('Quiz'),
-                                  if (score != 0)
-                                    Text((score * 100).toStringAsFixed(0) + '%')
-                                ],
-                              );
-                            } else {
-                              return const Text('Quiz');
-                            }
-                          },
-                        ),
-                        onPressed: () => Navigator.of(context).push<void>(
-                            MaterialPageRoute<QuizScreen>(
-                                builder: (context) =>
-                                    QuizScreen(level: level))),
+                    ),
+                  if (level.quiz != null)
+                    TextButton(
+                      child: BlocBuilder<ProgressBloc, ProgressState>(
+                        builder: (context, state) {
+                          if (state is ProgressLoaded) {
+                            final score =
+                                state.getProgressByLevel(level).quizScore;
+                            return Column(
+                              children: [
+                                const Text('Quiz'),
+                                if (score != 0)
+                                  Text((score * 100).toStringAsFixed(0) + '%')
+                              ],
+                            );
+                          } else {
+                            return const Text('Quiz');
+                          }
+                        },
                       ),
-                  ],
-                ),
+                      onPressed: () => Navigator.of(context).push<void>(
+                          MaterialPageRoute<QuizScreen>(
+                              builder: (context) => QuizScreen(level: level))),
+                    ),
+                ],
               ),
             ],
           ),
