@@ -101,7 +101,7 @@ class QuestionPage extends StatelessWidget {
         ),
         Expanded(
           child: Padding(
-            padding: const EdgeInsets.all(20),
+            padding: const EdgeInsets.symmetric(horizontal: 10),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -118,10 +118,13 @@ class QuestionPage extends StatelessWidget {
                         Expanded(child: _answerButton(3)),
                       ]),
                     ]),
-                Center(child: _nextPageButton()),
               ],
             ),
           ),
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 10),
+          child: Center(child: _nextPageButton()),
         ),
       ],
     );
