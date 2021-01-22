@@ -23,7 +23,12 @@ class MenuScreen extends StatelessWidget {
                 'Dog Game',
                 style: Theme.of(context).textTheme.headline1,
               ),
-              Container(height: 50),
+              //Container(height: 10),
+              Text(
+                'Working Title',
+                style: Theme.of(context).textTheme.subtitle1,
+              ),
+              Container(height: 30),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 5),
                 child: ElevatedButton(

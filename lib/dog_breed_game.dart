@@ -71,7 +71,14 @@ class AppView extends StatelessWidget {
     return MaterialApp(
       title: 'Dog Breed Game!',
       theme: themeData,
-      home: const MenuScreen(),
+      home: SafeArea(
+        child: Navigator(
+          pages: [
+            const MaterialPage<void>(child: MenuScreen()),
+          ],
+          onPopPage: (route, dynamic result) => route.didPop(result),
+        ),
+      ),
     );
   }
 }
