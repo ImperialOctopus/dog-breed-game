@@ -1,4 +1,3 @@
-import '../../model/level.dart';
 import '../../model/progress/level_progress.dart';
 import 'progress_repository.dart';
 
@@ -10,14 +9,10 @@ class MemoryProgressRepository implements ProgressRepository {
   MemoryProgressRepository();
 
   @override
-  Future<LevelProgress> readProgressById(int id) async {
+  Future<LevelProgress> getProgress(int id) async {
     return _progress.singleWhere((element) => element.id == id,
         orElse: () => LevelProgress.zero(id: id));
   }
-
-  @override
-  Future<LevelProgress> readProgressByLevel(Level level) =>
-      readProgressById(level.id);
 
   @override
   Future<void> updateProgress(LevelProgress progress) async {

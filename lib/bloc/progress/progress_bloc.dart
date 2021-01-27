@@ -47,7 +47,7 @@ class ProgressBloc extends Bloc<ProgressEvent, ProgressState> {
     final progress = <LevelProgress>[];
 
     for (final level in _quizDataRepository.allLevels) {
-      progress.add(await _progressRepository.readProgressByLevel(level));
+      progress.add(await _progressRepository.getProgress(level.id));
     }
 
     yield ProgressLoaded(progress: progress);
