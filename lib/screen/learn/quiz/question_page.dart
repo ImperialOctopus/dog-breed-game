@@ -1,27 +1,16 @@
+import 'package:dog_breed_game/model/level/question.dart';
 import 'package:flutter/material.dart';
 
-import '../../../component/fixed_height_asset_image.dart';
+import '../../../component/fixed_height_cover_box.dart';
 import '../../../theme/answer_button_theme.dart';
 
 /// Page to display a single question.
 class QuestionPage extends StatelessWidget {
-  /// Path to image of dog.
-  final String imagePath;
-
-  /// Text to display next to size icon.
-  final String? size;
-
-  /// Text to display next to rarity icon.
-  final String? rarity;
-
-  /// List of options for answer buttons.
-  final Iterable<String> answers;
+  /// Question to display.
+  final Question question;
 
   /// Progress to show on bar at the bottom.
   final double progress;
-
-  /// Correct answer.
-  final int correctAnswer;
 
   /// Answer the player chose.
   final int? chosenAnswer;
@@ -34,14 +23,10 @@ class QuestionPage extends StatelessWidget {
 
   /// Page to display a single question.
   const QuestionPage({
-    required this.imagePath,
-    required this.size,
-    required this.rarity,
-    required this.answers,
+    required this.question,
     required this.progress,
     required this.onAnswerPressed,
     required this.onNextPressed,
-    required this.correctAnswer,
     required this.chosenAnswer,
   });
 
@@ -52,9 +37,9 @@ class QuestionPage extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         AnimatedSwitcher(
-          child: FixedHeightAssetImage(
-            key: ValueKey<String>(imagePath),
-            imagePath: imagePath,
+          child: FixedHeightCoverBox(
+            key: ValueKey<String>(question.imagePath),
+            child: Image.asset(question.imagePath),
             height: 300,
           ),
           duration: const Duration(milliseconds: 300),
@@ -85,7 +70,7 @@ class QuestionPage extends StatelessWidget {
                 children: [
                   const Padding(
                       padding: EdgeInsets.all(5), child: Icon(Icons.rule)),
-                  Text(size ?? '???'),
+                  question.size ?? const Text('???'),
                 ],
               )),
               Expanded(
@@ -93,7 +78,7 @@ class QuestionPage extends StatelessWidget {
                 children: [
                   const Padding(
                       padding: EdgeInsets.all(5), child: Icon(Icons.people)),
-                  Text(rarity ?? '???'),
+                  question.rarity ?? const Text('???'),
                 ],
               )),
             ],
@@ -133,7 +118,7 @@ class QuestionPage extends StatelessWidget {
   Widget _answerButton(int answer) {
     return AnimatedTheme(
       child: OutlinedButton(
-        child: Text(answers.elementAt(answer)),
+        child: Text(question.answers.elementAt(answer)),
         onPressed: () => onAnswerPressed(answer),
       ),
       data: ThemeData(outlinedButtonTheme: _buttonStyle(answer)),
@@ -145,7 +130,7 @@ class QuestionPage extends StatelessWidget {
     if (chosenAnswer == null) {
       return answerDefaultStyle;
     }
-    if (thisAnswer == correctAnswer) {
+    if (thisAnswer == question.correctAnswer) {
       return answerCorrectStyle;
     }
     if (thisAnswer == chosenAnswer) {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../model/level.dart';
+import '../../component/level/level.dart';
 
 /// Level 2 - Uncommon breeds
 const level_02 = Level(

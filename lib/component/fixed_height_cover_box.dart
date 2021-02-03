@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 
 /// Asset image with a fixed height and infinite width.
-class FixedHeightAssetImage extends StatelessWidget {
+class FixedHeightCoverBox extends StatelessWidget {
   /// Path to the image asset.
-  final String imagePath;
+  final Widget child;
 
   /// Fixed height to fit to.
   final double height;
 
   /// Asset image with a fixed height and infinite width.
-  const FixedHeightAssetImage({
+  const FixedHeightCoverBox({
     Key? key,
-    required this.imagePath,
+    required this.child,
     required this.height,
   }) : super(key: key);
 
@@ -23,9 +23,7 @@ class FixedHeightAssetImage extends StatelessWidget {
       child: FittedBox(
         fit: BoxFit.cover,
         clipBehavior: Clip.hardEdge,
-        child: Image.asset(
-          imagePath,
-        ),
+        child: child,
       ),
     );
   }

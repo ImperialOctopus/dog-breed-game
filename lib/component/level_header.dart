@@ -3,17 +3,16 @@ import 'package:flutter/material.dart';
 /// Header with information about a level.
 class LevelHeader extends StatelessWidget {
   /// IconData for the icon.
-  final IconData iconData;
+  final Widget icon;
 
   /// Text of title.
-  final String title;
+  final Widget title;
 
   /// Text of subtitle.
-  final String? subtitle;
+  final Widget? subtitle;
 
   /// Header with information about a level.
-  const LevelHeader(
-      {required this.iconData, required this.title, this.subtitle});
+  const LevelHeader({required this.icon, required this.title, this.subtitle});
 
   @override
   Widget build(BuildContext context) {
@@ -21,26 +20,21 @@ class LevelHeader extends StatelessWidget {
       children: [
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10),
-          child: Icon(
-            iconData,
-            size: 100,
+          child: SizedBox(
+            height: 100,
+            width: 100,
+            child: icon,
           ),
         ),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
-              title,
-              style: Theme.of(context).textTheme.headline5,
-            ),
+            title,
             if (subtitle != null)
               Padding(
                 padding: const EdgeInsets.only(top: 4),
-                child: Text(
-                  subtitle!,
-                  style: Theme.of(context).textTheme.subtitle1,
-                ),
+                child: subtitle,
               ),
           ],
         )

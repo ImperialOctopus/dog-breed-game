@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-import '../../model/level.dart';
+import '../../component/level/level.dart';
 import '../../model/progress/level_progress.dart';
 
 /// State for the progress bloc.

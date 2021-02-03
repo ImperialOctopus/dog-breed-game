@@ -1,21 +1,20 @@
+import 'package:dog_breed_game/model/level/question.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../bloc/progress/progress_bloc.dart';
 import '../../../bloc/progress/progress_event.dart';
-import '../../../model/level.dart';
-import '../../../model/quiz/question.dart';
-import '../../../model/quiz/quiz.dart';
+import '../../../model/level/quiz.dart';
 import 'question_page.dart';
 import 'result_screen.dart';
 
 /// Screen to show a quiz.
 class QuizScreen extends StatefulWidget {
-  /// Level to display quiz from.
-  final Level level;
+  /// Quiz to display.
+  final Quiz quiz;
 
   /// Screen to show a quiz.
-  const QuizScreen({required this.level});
+  const QuizScreen({required this.quiz});
 
   @override
   _QuizScreenState createState() => _QuizScreenState();
@@ -27,8 +26,7 @@ class _QuizScreenState extends State<QuizScreen> {
   late int questionIndex;
   late int score;
 
-  Quiz get quiz => widget.level.quiz!;
-  Level get level => widget.level;
+  Quiz get quiz => widget.quiz;
 
   Question get currentQuestion => quiz.questions[questionIndex];
   double get progress =>
@@ -47,12 +45,8 @@ class _QuizScreenState extends State<QuizScreen> {
     return Scaffold(
       appBar: AppBar(),
       body: QuestionPage(
-        imagePath: currentQuestion.imagePath,
-        size: currentQuestion.size,
-        rarity: currentQuestion.rarity,
-        answers: currentQuestion.answers,
+        question: currentQuestion,
         progress: progress,
-        correctAnswer: currentQuestion.correctAnswer,
         chosenAnswer: chosenAnswer,
         onAnswerPressed: onAnswerPressed,
         onNextPressed: onNextPressed,
@@ -79,11 +73,11 @@ class _QuizScreenState extends State<QuizScreen> {
       });
     } else {
       BlocProvider.of<ProgressBloc>(context).add(QuizCompleted(
-          levelId: level.id, score: score / quiz.questions.length));
+          levelId: quiz.id, score: score / quiz.questions.length));
       Navigator.of(context).pushReplacement(
         MaterialPageRoute<ResultScreen>(
           builder: (context) => ResultScreen(
-            level: level,
+            quiz: quiz,
             score: score,
           ),
         ),

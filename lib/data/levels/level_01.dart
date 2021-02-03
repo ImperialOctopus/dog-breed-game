@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../model/lesson.dart';
-import '../../model/level.dart';
+import '../../component/level/lesson.dart';
+import '../../component/level/level.dart';
 import '../../model/quiz/question.dart';
 import '../../model/quiz/quiz.dart';
 
