@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../component/page_indicator.dart';
-import '../../../model/level.dart';
+import '../../../model/level/level.dart';
 import 'level_select_page.dart';
 
 /// Screen to select a level in learn mode.

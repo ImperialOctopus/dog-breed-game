@@ -1,11 +1,12 @@
+import 'package:dog_breed_game/model/level/level.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../bloc/progress/progress_bloc.dart';
 import '../../../bloc/progress/progress_state.dart';
-import '../../../component/fixed_height_asset_image.dart';
+import '../../../component/fixed_height_cover_box.dart';
 import '../../../component/level_header.dart';
-import '../../../model/level.dart';
+import '../../../component/level/level.dart';
 import '../lesson/lesson_screen.dart';
 import '../quiz/quiz_screen.dart';
 
@@ -26,12 +27,13 @@ class LevelSelectPage extends StatelessWidget {
           child: Column(
             children: [
               LevelHeader(
-                iconData: level.iconData,
+                icon: level.icon,
                 title: level.title,
                 subtitle: level.subtitle,
               ),
-              FixedHeightAssetImage(
-                imagePath: level.imagePath,
+              FixedHeightCoverBox(
+                child: Image.asset()
+                imagePath: level.,
                 height: 300,
               ),
               Padding(

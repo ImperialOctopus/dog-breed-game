@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../model/lesson.dart';
-import '../../model/level.dart';
+import '../../component/level/lesson.dart';
+import '../../component/level/level.dart';
 
 /// Level 1 - Filling in gaps
 const level_03 = Level(

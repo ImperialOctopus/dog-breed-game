@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../model/lesson.dart';
+import '../../../model/level/lesson.dart';
 
 /// Screen to show a single lesson.
 class LessonScreen extends StatelessWidget {
@@ -18,7 +18,7 @@ class LessonScreen extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: lesson.lessonBody,
+          children: lesson.children,
         ),
       ),
     );
