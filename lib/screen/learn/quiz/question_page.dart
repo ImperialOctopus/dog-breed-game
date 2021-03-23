@@ -1,7 +1,7 @@
-import 'package:dog_breed_game/model/level/question.dart';
 import 'package:flutter/material.dart';
 
 import '../../../component/fixed_height_cover_box.dart';
+import '../../../model/level/question.dart';
 import '../../../theme/answer_button_theme.dart';
 
 /// Page to display a single question.
