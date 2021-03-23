@@ -1,9 +1,7 @@
-import 'package:dog_breed_game/model/level/question.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../bloc/progress/progress_bloc.dart';
-import '../../../bloc/progress/progress_event.dart';
+import '../../../model/level/question.dart';
 import '../../../model/level/quiz.dart';
 import 'question_page.dart';
 import 'result_screen.dart';
