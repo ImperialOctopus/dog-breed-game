@@ -8,7 +8,7 @@ import '../../routes/router_event.dart';
 
 /// Screen for world select.
 class WorldSelectScreen extends StatelessWidget {
-  final List<World> worlds = [
+  final List<World> _worlds = [
     world01,
   ];
 
@@ -17,13 +17,15 @@ class WorldSelectScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: ElevatedButton(
-        onPressed: () {
-          BlocProvider.of<RouterBloc>(context)
-              .add(RouterEventWorldSelected(world: worlds.first));
-        },
-        child: const Text('Open'),
+    return Scaffold(
+      body: Center(
+        child: ElevatedButton(
+          onPressed: () {
+            BlocProvider.of<RouterBloc>(context)
+                .add(RouterEventWorldSelected(world: _worlds.first));
+          },
+          child: const Text('Open'),
+        ),
       ),
     );
   }

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../screen/learn/world_select_screen.dart';
+
 /// Learn main route.
 class LearnRoute extends StatelessWidget {
   /// Learn main route.
@@ -7,7 +9,6 @@ class LearnRoute extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
-    throw UnimplementedError();
+    return WorldSelectScreen();
   }
 }
