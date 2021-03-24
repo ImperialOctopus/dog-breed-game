@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../routes/router_bloc.dart';
-import '../../routes/router_event.dart';
+import '../../routes/bloc/router_bloc.dart';
+import '../../routes/bloc/router_event.dart';
 
 /// Starting menu screen.
 class MenuScreen extends StatelessWidget {
