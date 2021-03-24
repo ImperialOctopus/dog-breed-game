@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../model/level/question.dart';
 import '../../../model/level/quiz.dart';
@@ -70,8 +69,6 @@ class _QuizScreenState extends State<QuizScreen> {
         chosenAnswer = null;
       });
     } else {
-      BlocProvider.of<ProgressBloc>(context).add(QuizCompleted(
-          levelId: quiz.id, score: score / quiz.questions.length));
       Navigator.of(context).pushReplacement(
         MaterialPageRoute<ResultScreen>(
           builder: (context) => ResultScreen(

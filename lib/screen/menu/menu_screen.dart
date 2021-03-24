@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../routes/router_bloc.dart';
+import '../../routes/router_event.dart';
 
 /// Starting menu screen.
 class MenuScreen extends StatelessWidget {
@@ -25,11 +29,12 @@ class MenuScreen extends StatelessWidget {
                 style: Theme.of(context).textTheme.subtitle1,
               ),
               Container(height: 30),
-              const Padding(
-                padding: EdgeInsets.symmetric(vertical: 5),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 5),
                 child: ElevatedButton(
-                  child: Text('Learn'),
-                  onPressed: null,
+                  child: const Text('Learn'),
+                  onPressed: () => BlocProvider.of<RouterBloc>(context)
+                      .add(const RouterEventLearn()),
                 ),
               ),
               const Padding(
