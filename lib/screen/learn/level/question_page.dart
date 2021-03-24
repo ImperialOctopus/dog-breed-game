@@ -70,7 +70,7 @@ class QuestionPage extends StatelessWidget {
                 children: [
                   const Padding(
                       padding: EdgeInsets.all(5), child: Icon(Icons.rule)),
-                  question.size ?? const Text('???'),
+                  Text(question.size ?? '???'),
                 ],
               )),
               Expanded(
@@ -78,7 +78,7 @@ class QuestionPage extends StatelessWidget {
                 children: [
                   const Padding(
                       padding: EdgeInsets.all(5), child: Icon(Icons.people)),
-                  question.rarity ?? const Text('???'),
+                  Text(question.rarity ?? '???'),
                 ],
               )),
             ],

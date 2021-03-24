@@ -8,7 +8,7 @@ class World {
   final Widget title;
 
   /// Icon image.
-  final Image iconImage;
+  final String imagePath;
 
   /// List of levels.
   final List<Level> levels;
@@ -16,7 +16,7 @@ class World {
   /// Data structure for a world.
   const World({
     required this.title,
-    required this.iconImage,
+    required this.imagePath,
     required this.levels,
   });
 }

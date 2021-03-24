@@ -24,17 +24,17 @@ class LevelSelectPage extends StatelessWidget {
           child: Column(
             children: [
               LevelHeader(
-                icon: level.icon,
+                imagePath: level.imagePath,
                 title: level.title,
                 subtitle: level.subtitle,
               ),
               FixedHeightCoverBox(
-                child: level.icon,
+                child: Image.asset(level.imagePath),
                 height: 300,
               ),
               Padding(
                 padding: const EdgeInsets.all(10),
-                child: level.subtitle,
+                child: Text(level.subtitle ?? ''),
               ),
               const Spacer(),
               Row(
