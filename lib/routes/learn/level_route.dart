@@ -5,9 +5,10 @@ import '../../model/level/level.dart';
 import '../../model/level/quiz.dart';
 import '../../screen/learn/level/lesson_screen.dart';
 import '../../screen/learn/level/quiz_screen.dart';
+import '../provides_page.dart';
 
 /// Route for a level.
-class LevelRoute extends StatelessWidget {
+class LevelRoute extends StatelessWidget with ProvidesPage<void> {
   /// Level to display.
   final Level level;
 
@@ -27,4 +28,7 @@ class LevelRoute extends StatelessWidget {
 
     throw FallThroughError();
   }
+
+  @override
+  Page<void> get page => MaterialPage(child: this);
 }
