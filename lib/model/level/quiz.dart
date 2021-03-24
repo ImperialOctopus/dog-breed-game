@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 import 'level.dart';
 import 'question.dart';
 
@@ -11,14 +9,14 @@ class Quiz extends Level {
   /// Data for a quiz.
   const Quiz({
     required int id,
-    required Widget icon,
-    required Widget title,
-    Widget? subtitle,
+    required String title,
+    String? subtitle,
+    required String imagePath,
     required this.questions,
   }) : super(
           id: id,
-          icon: icon,
           title: title,
           subtitle: subtitle,
+          imagePath: imagePath,
         );
 }

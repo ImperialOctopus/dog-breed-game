@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 /// Question for a quiz.
 class Question {
   /// Image path.
@@ -12,10 +10,10 @@ class Question {
   final int correctAnswer;
 
   /// Size of dog.
-  final Widget? size;
+  final String? size;
 
   /// Rarity of dog.
-  final Widget? rarity;
+  final String? rarity;
 
   /// Const constructor.
   const Question({

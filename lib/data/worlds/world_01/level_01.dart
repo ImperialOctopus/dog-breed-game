@@ -1,23 +1,13 @@
-import 'package:flutter/material.dart';
-
-import '../../../component/level/lesson.dart';
-import '../../../component/level/level.dart';
-import '../../../model/quiz/question.dart';
-import '../../../model/quiz/quiz.dart';
+import '../../../model/level/question.dart';
+import '../../../model/level/quiz.dart';
 
 /// Level 1 - Common breeds
-const level_01 = Level(
+const level_01 = Quiz(
   id: 0,
   title: 'Level 1',
   subtitle: 'Common Breeds',
-  iconData: Icons.ac_unit,
   imagePath: 'assets/sample/labrador.jpg',
-  description:
-      'First level. Check out some information about the top 5 most common dogs in the UK and then try out the quiz to see how well you can recognise them!',
-  lesson: Lesson(lessonBody: [
-    Text('Less-on-1'),
-  ]),
-  quiz: Quiz(questions: [
+  questions: [
     Question(
       imagePath: 'assets/sample/labrador.jpg',
       answers: [
@@ -64,5 +54,5 @@ const level_01 = Level(
       size: 'Sponge',
       rarity: 'Bob',
     ),
-  ]),
+  ],
 );
