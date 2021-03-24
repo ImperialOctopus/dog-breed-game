@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 
-import '../model/level/level.dart';
-import '../model/world.dart';
+import '../../model/level/level.dart';
+import '../../model/world.dart';
 
 /// State for router bloc.
 abstract class RouterState extends Equatable {

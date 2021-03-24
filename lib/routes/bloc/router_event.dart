@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 
-import '../model/level/level.dart';
-import '../model/world.dart';
+import '../../model/level/level.dart';
+import '../../model/world.dart';
 
 /// Event for router bloc.
 abstract class RouterEvent extends Equatable {

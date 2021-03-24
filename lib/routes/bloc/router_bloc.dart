@@ -1,8 +1,8 @@
-import '../model/world.dart';
+import '../../model/world.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'router_event.dart';
-import 'router_state.dart';
+import '../bloc/router_event.dart';
+import '../bloc/router_state.dart';
 
 /// Bloc for app router.
 class RouterBloc extends Bloc<RouterEvent, RouterState> {

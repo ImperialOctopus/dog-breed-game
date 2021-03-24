@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../data/worlds/world_01/world_01.dart';
 import '../../model/world.dart';
-import '../../routes/router_bloc.dart';
-import '../../routes/router_event.dart';
+import '../../routes/bloc/router_bloc.dart';
+import '../../routes/bloc/router_event.dart';
 
 /// Screen for world select.
 class WorldSelectScreen extends StatelessWidget {

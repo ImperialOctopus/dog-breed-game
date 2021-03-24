@@ -4,8 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../component/fixed_height_cover_box.dart';
 import '../../../component/level_header.dart';
 import '../../../model/level/level.dart';
-import '../../../routes/router_bloc.dart';
-import '../../../routes/router_event.dart';
+import '../../../routes/bloc/router_bloc.dart';
+import '../../../routes/bloc/router_event.dart';
 
 /// Pages in level select screen.
 class LevelSelectPage extends StatelessWidget {
