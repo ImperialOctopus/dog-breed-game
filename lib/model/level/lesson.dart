@@ -10,14 +10,14 @@ class Lesson extends Level {
   /// Informational lesson from a level.
   const Lesson({
     required int id,
-    required Widget icon,
-    required Widget title,
-    Widget? subtitle,
+    required String title,
+    String? subtitle,
+    required String imagePath,
     required this.children,
   }) : super(
           id: id,
-          icon: icon,
           title: title,
           subtitle: subtitle,
+          imagePath: imagePath,
         );
 }
