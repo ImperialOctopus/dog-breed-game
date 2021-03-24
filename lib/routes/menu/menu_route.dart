@@ -14,13 +14,13 @@ class MenuRoute extends StatelessWidget with ProvidesPage<void> {
   }
 
   @override
-  Page<void> get page => _MenuRoutePage(route: this);
+  Page<void> get page => _MenuRoutePage(child: this);
 }
 
 class _MenuRoutePage extends Page<void> {
-  final MenuRoute route;
+  final MenuRoute child;
 
-  const _MenuRoutePage({required this.route});
+  const _MenuRoutePage({required this.child});
 
   @override
   Route createRoute(BuildContext context) {
@@ -31,7 +31,7 @@ class _MenuRoutePage extends Page<void> {
         final curveTween = CurveTween(curve: Curves.easeInOut);
         return SlideTransition(
           position: animation.drive(curveTween).drive(tween),
-          child: route,
+          child: child,
         );
       },
     );
