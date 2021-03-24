@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 
+import '../../model/level/lesson.dart';
 import '../../model/level/level.dart';
+import '../../model/level/quiz.dart';
+import '../../screen/learn/level/lesson_screen.dart';
+import '../../screen/learn/level/quiz_screen.dart';
 
 /// Route for a level.
 class LevelRoute extends StatelessWidget {
@@ -12,7 +16,15 @@ class LevelRoute extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
-    throw UnimplementedError();
+    final _level = level;
+
+    if (_level is Quiz) {
+      return QuizScreen(quiz: _level);
+    }
+    if (_level is Lesson) {
+      return LessonScreen(lesson: _level);
+    }
+
+    throw FallThroughError();
   }
 }

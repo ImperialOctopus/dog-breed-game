@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../screen/menu/menu_screen.dart';
+
 /// Main menu route.
 class MenuRoute extends StatelessWidget {
   /// Main menu route.
@@ -7,7 +9,6 @@ class MenuRoute extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
-    throw UnimplementedError();
+    return const MenuScreen();
   }
 }
