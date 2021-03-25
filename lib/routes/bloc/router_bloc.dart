@@ -20,19 +20,17 @@ class RouterBloc extends Bloc<RouterEvent, RouterState> {
       return;
     }
     if (event is RouterEventWorldSelected) {
-      yield RouterStateLearn(world: event.world);
+      yield RouterStateLearnWorld(world: event.world);
       return;
     }
     if (event is RouterEventLevelSelected) {
       final _state = state;
-      World? _world;
-      if (_state is RouterStateLearn) {
-        _world = _state.world;
+      if (_state is RouterStateLearnWorld) {
+        yield RouterStateLearnLevel(
+          world: _state.world,
+          level: event.level,
+        );
       }
-      yield RouterStateLearn(
-        world: _world,
-        level: event.level,
-      );
       return;
     }
 
@@ -42,15 +40,13 @@ class RouterBloc extends Bloc<RouterEvent, RouterState> {
   RouterState _mapPopToState() {
     final _state = state;
 
+    if (_state is RouterStateLearnLevel) {
+      return RouterStateLearnWorld(world: _state.world);
+    }
+    if (_state is RouterStateLearnWorld) {
+      return const RouterStateLearn();
+    }
     if (_state is RouterStateLearn) {
-      if (_state.level != null) {
-        return RouterStateLearn(world: _state.world);
-      }
-
-      if (_state.world != null) {
-        return const RouterStateLearn();
-      }
-
       return const RouterStateHome();
     }
 

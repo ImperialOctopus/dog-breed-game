@@ -9,7 +9,7 @@ abstract class RouterState extends Equatable {
   const RouterState();
 }
 
-/// Home route.
+/// /
 class RouterStateHome extends RouterState {
   /// Home route.
   const RouterStateHome();
@@ -18,17 +18,50 @@ class RouterStateHome extends RouterState {
   List<Object?> get props => [];
 }
 
-/// Learn route.
+/// /learn
 class RouterStateLearn extends RouterState {
-  /// World to display.
-  final World? world;
-
-  /// Level to display.
-  final Level? level;
-
-  /// Learn route.
-  const RouterStateLearn({this.world, this.level});
+  /// /learn
+  const RouterStateLearn();
 
   @override
-  List<Object?> get props => [world, level];
+  List<Object?> get props => [];
+}
+
+/// /learn/{world}
+class RouterStateLearnWorld extends RouterStateLearn {
+  /// World to display.
+  final World world;
+
+  /// /learn/{world}
+  const RouterStateLearnWorld({required this.world});
+
+  @override
+  List<Object?> get props => [world];
+}
+
+/// /learn/{world}/{level}
+class RouterStateLearnLevel extends RouterStateLearnWorld {
+  /// Level to display.
+  final Level level;
+
+  /// /learn/{world}/{level}
+  const RouterStateLearnLevel({required World world, required this.level})
+      : super(world: world);
+
+  @override
+  List<Object?> get props => [...super.props, level];
+}
+
+/// Show result of a quiz level.
+class RouterStateLearnResult extends RouterStateLearnLevel {
+  /// Score from the quiz.
+  final int score;
+
+  /// Show result of a quiz level.
+  const RouterStateLearnResult(
+      {required World world, required Level level, required this.score})
+      : super(world: world, level: level);
+
+  @override
+  List<Object?> get props => [...super.props, score];
 }
