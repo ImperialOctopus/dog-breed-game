@@ -8,9 +8,13 @@ class ResultScreen extends StatelessWidget {
   /// Level this is the result for.
   final Quiz quiz;
 
+  /// Score.
+  final int score;
+
   /// Screen to show results of quiz.
   const ResultScreen({
     required this.quiz,
+    required this.score,
   });
 
   @override
