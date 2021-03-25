@@ -4,7 +4,7 @@ import '../../screen/learn/world_select_screen.dart';
 import '../provides_page.dart';
 
 /// Learn main route.
-class LearnRoute extends StatelessWidget with ProvidesPage<void> {
+class LearnRoute extends StatelessWidget implements ProvidesPage<void> {
   /// Learn main route.
   const LearnRoute();
 

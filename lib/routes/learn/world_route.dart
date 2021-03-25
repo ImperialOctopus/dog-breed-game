@@ -5,7 +5,7 @@ import '../../screen/learn/world/level_select_screen.dart';
 import '../provides_page.dart';
 
 /// Level select inside a world.
-class WorldRoute extends StatelessWidget with ProvidesPage<void> {
+class WorldRoute extends StatelessWidget implements ProvidesPage<void> {
   /// World to display.
   final World world;
 
