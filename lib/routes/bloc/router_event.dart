@@ -50,3 +50,15 @@ class RouterEventLevelSelected extends RouterEvent {
   @override
   List<Object?> get props => [level];
 }
+
+/// Open quiz results.
+class RouterEventQuizResults extends RouterEvent {
+  /// Score.
+  final int score;
+
+  /// Open quiz results.
+  const RouterEventQuizResults({required this.score});
+
+  @override
+  List<Object?> get props => [score];
+}

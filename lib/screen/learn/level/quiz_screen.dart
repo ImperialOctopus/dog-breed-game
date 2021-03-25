@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../model/level/question.dart';
 import '../../../model/level/quiz.dart';
+import '../../../routes/bloc/router_bloc.dart';
+import '../../../routes/bloc/router_event.dart';
 import 'question_page.dart';
-import 'result_screen.dart';
 
 /// Screen to show a quiz.
 class QuizScreen extends StatefulWidget {
@@ -69,14 +71,8 @@ class _QuizScreenState extends State<QuizScreen> {
         chosenAnswer = null;
       });
     } else {
-      Navigator.of(context).pushReplacement(
-        MaterialPageRoute<ResultScreen>(
-          builder: (context) => ResultScreen(
-            quiz: quiz,
-            score: score,
-          ),
-        ),
-      );
+      BlocProvider.of<RouterBloc>(context)
+          .add(RouterEventQuizResults(score: score));
     }
   }
 }
