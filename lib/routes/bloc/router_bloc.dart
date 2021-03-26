@@ -1,5 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../model/level/lesson.dart';
+import '../../model/level/quiz.dart';
 import '../bloc/router_event.dart';
 import '../bloc/router_state.dart';
 
@@ -25,10 +27,27 @@ class RouterBloc extends Bloc<RouterEvent, RouterState> {
     if (event is RouterEventLevelSelected) {
       final _state = state;
       if (_state is RouterStateLearnWorld) {
-        yield RouterStateLearnLevel(
-          world: _state.world,
-          level: event.level,
-        );
+        final _level = event.level;
+        if (_level is Quiz) {
+          yield RouterStateLearnQuiz(
+            world: _state.world,
+            level: _level,
+          );
+        }
+        if (_level is Lesson) {
+          yield RouterStateLearnLesson(
+            world: _state.world,
+            level: _level,
+          );
+        }
+      }
+      return;
+    }
+    if (event is RouterEventQuizResults) {
+      final _state = state;
+      if (_state is RouterStateLearnQuiz) {
+        yield RouterStateLearnResult(
+            world: _state.world, quiz: _state.level, score: event.score);
       }
       return;
     }
