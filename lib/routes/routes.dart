@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'bloc/router_state.dart';
 import 'learn/learn_route.dart';
-import 'learn/level_route.dart';
+import 'learn/lesson_route.dart';
+import 'learn/quiz_route.dart';
+import 'learn/result_route.dart';
 import 'learn/world_route.dart';
 import 'menu/menu_route.dart';
 
@@ -13,14 +15,14 @@ List<Page> buildRoutes(RouterState routerState) {
     if (routerState is RouterStateLearn) const LearnRoute().page,
     if (routerState is RouterStateLearnWorld)
       WorldRoute(world: routerState.world).page,
-    if (routerState is RouterStateLearnLevel)
+    if (routerState is RouterStateLearnLesson)
+      LessonRoute(lesson: routerState.level).page,
+    if (routerState is RouterStateLearnQuiz)
       if (routerState is RouterStateLearnResult)
-        LevelRoute(
-          level: routerState.level,
-          showResults: true,
-          score: routerState.score,
-        ).page
+        ResultRoute(quiz: routerState.level, score: routerState.score).page
       else
-        LevelRoute(level: routerState.level).page,
+        QuizRoute(
+          quiz: routerState.level,
+        ).page,
   ];
 }
