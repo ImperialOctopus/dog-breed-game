@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../component/fixed_height_cover_box.dart';
+import '../../../components/fixed_height_cover_box.dart';
 import '../../../model/level/question.dart';
 import '../../../theme/answer_button_theme.dart';
 

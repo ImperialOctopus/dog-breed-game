@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../component/level_header.dart';
+import '../../../components/level_header.dart';
 import '../../../model/level/quiz.dart';
 
 /// Screen to show results of quiz.

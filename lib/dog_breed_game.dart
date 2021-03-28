@@ -17,6 +17,8 @@ class DogBreedGame extends StatefulWidget {
 }
 
 class _DogBreedGameState extends State<DogBreedGame> {
+  final _heroController = HeroController();
+
   late final RouterBloc _routerBloc;
 
   @override
@@ -37,6 +39,7 @@ class _DogBreedGameState extends State<DogBreedGame> {
             builder: (context, routerState) {
           return Navigator(
             pages: buildRoutes(routerState),
+            observers: [_heroController],
             onPopPage: (route, dynamic result) {
               if (!route.didPop(result)) {
                 return false;

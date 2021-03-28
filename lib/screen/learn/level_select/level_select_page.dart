@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../component/fixed_height_cover_box.dart';
-import '../../../component/level_header.dart';
+import '../../../components/fixed_height_cover_box.dart';
+import '../../../components/level_header.dart';
 import '../../../model/level/level.dart';
 import '../../../routes/bloc/router_bloc.dart';
 import '../../../routes/bloc/router_event.dart';
