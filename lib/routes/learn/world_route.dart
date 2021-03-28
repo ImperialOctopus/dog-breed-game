@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../model/world.dart';
-import '../../screen/learn/world/level_select_screen.dart';
+import '../../screen/learn/level_select/level_select_screen.dart';
 import '../provides_page.dart';
 
 /// Level select inside a world.
@@ -14,7 +14,7 @@ class WorldRoute extends StatelessWidget implements ProvidesPage<void> {
 
   @override
   Widget build(BuildContext context) {
-    return LevelSelectScreen(levels: world.levels);
+    return LevelSelectScreen(world: world);
   }
 
   @override
