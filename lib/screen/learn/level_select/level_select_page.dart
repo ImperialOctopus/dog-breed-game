@@ -23,11 +23,6 @@ class LevelSelectPage extends StatelessWidget {
           hasScrollBody: true,
           child: Column(
             children: [
-              LevelHeader(
-                imagePath: level.imagePath,
-                title: level.title,
-                subtitle: level.subtitle,
-              ),
               FixedHeightCoverBox(
                 child: Image.asset(level.imagePath),
                 height: 300,

@@ -53,7 +53,11 @@ class _WorldSelectScreenState extends State<WorldSelectScreen> {
                 onPageChanged: (index) => setState(() => activePage = index),
                 children: widget.worlds
                     .map((world) => SlidingCard(
-                          imagePath: world.imagePath,
+                          image: Image.asset(
+                            world.imagePath,
+                            fit: BoxFit.cover,
+                          ),
+                          heroTag: world,
                           child: WorldCardContents(
                             title: world.title,
                             subtitle: world.subtitle,
