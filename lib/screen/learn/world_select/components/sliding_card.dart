@@ -24,13 +24,10 @@ class SlidingCard extends StatelessWidget {
       child: Column(
         children: <Widget>[
           ClipRRect(
-            //<--clipping image
             borderRadius: const BorderRadius.vertical(top: Radius.circular(32)),
             child: Image.asset(
-              //<-- main image
               imagePath,
-              height: MediaQuery.of(context).size.height * 0.3,
-              fit: BoxFit.none,
+              fit: BoxFit.cover,
             ),
           ),
           const SizedBox(height: 8),

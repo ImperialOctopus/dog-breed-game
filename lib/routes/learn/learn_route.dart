@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../data/worlds/world_01/world_01.dart';
+import '../../data/worlds/worlds.dart';
 import '../../screen/learn/world_select/world_select_screen.dart';
 import '../provides_page.dart';
 
@@ -12,7 +12,7 @@ class LearnRoute extends StatelessWidget implements ProvidesPage<void> {
   @override
   Widget build(BuildContext context) {
     return const WorldSelectScreen(
-      worlds: [world01],
+      worlds: worlds,
     );
   }
 
