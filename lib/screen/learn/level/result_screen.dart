@@ -26,7 +26,7 @@ class ResultScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           LevelHeader(
-            imagePath: quiz.imagePath,
+            leading: Image.asset(quiz.imagePath, fit: BoxFit.cover),
             title: quiz.title,
             subtitle: quiz.subtitle,
           ),

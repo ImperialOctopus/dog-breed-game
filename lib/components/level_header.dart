@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 /// Header with information about a level.
 class LevelHeader extends StatelessWidget {
-  /// IconData for the icon.
-  final String imagePath;
+  /// Leading widget.
+  final Widget leading;
 
   /// Text of title.
   final String title;
@@ -16,10 +16,7 @@ class LevelHeader extends StatelessWidget {
 
   /// Header with information about a level.
   const LevelHeader(
-      {required this.imagePath,
-      required this.title,
-      this.subtitle,
-      this.onTap});
+      {required this.leading, required this.title, this.subtitle, this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -27,14 +24,12 @@ class LevelHeader extends StatelessWidget {
       onTap: onTap,
       child: Row(
         children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: SizedBox(
-              height: 100,
-              width: 100,
-              child: Image.asset(imagePath),
-            ),
+          SizedBox(
+            height: 100,
+            width: 150,
+            child: leading,
           ),
+          Container(width: 10),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
