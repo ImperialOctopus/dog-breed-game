@@ -1,50 +1,53 @@
 import 'package:flutter/material.dart';
 
+import '../../../../model/world.dart';
+
 /// Contents for world card.
 class WorldCardContents extends StatelessWidget {
-  /// Title
-  final String title;
-
-  /// Subtitle
-  final String? subtitle;
+  /// World to describe.
+  final World world;
 
   /// Callback for button.
   final VoidCallback? onPressed;
 
+  static const double _startButtonBorderRadius = 16;
+
   /// Contents for world card.
-  const WorldCardContents({required this.title, this.subtitle, this.onPressed});
+  const WorldCardContents({required this.world, this.onPressed});
 
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        Text(title, style: const TextStyle(fontSize: 20)),
-        if (subtitle != null) ...[
+        Text(world.title, style: const TextStyle(fontSize: 20)),
+        if (world.subtitle != null) ...[
           const SizedBox(height: 8),
-          Text(subtitle!, style: const TextStyle(color: Colors.grey)),
+          Text(world.subtitle!, style: const TextStyle(color: Colors.grey)),
         ],
+        Text(world.description),
         const Spacer(),
         Row(
           children: <Widget>[
             ElevatedButton(
-              child: const Text('Reserve'),
+              child: const Text('Start'),
               style: ElevatedButton.styleFrom(
-                primary: const Color(0xFF162A49),
+                //primary: const Color(0xFF162A49),
                 textStyle: const TextStyle(
                   color: Colors.white,
+                  fontSize: 20,
                 ),
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(32),
+                  borderRadius: BorderRadius.circular(_startButtonBorderRadius),
                 ),
               ),
               onPressed: onPressed,
             ),
             const Spacer(),
             const Text(
-              '0.00 \$',
+              '59\% Complete',
               style: TextStyle(
-                fontWeight: FontWeight.bold,
+                fontWeight: FontWeight.normal,
                 fontSize: 20,
               ),
             ),

@@ -5,6 +5,9 @@ class World {
   /// Widget to display as title.
   final String title;
 
+  /// Text for description.
+  final String description;
+
   /// Text of subtitle.
   final String? subtitle;
 
@@ -18,6 +21,7 @@ class World {
   const World({
     required this.title,
     this.subtitle,
+    required this.description,
     required this.imagePath,
     required this.levels,
   });
