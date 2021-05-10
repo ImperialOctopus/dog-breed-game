@@ -48,12 +48,16 @@ class LevelSelectScreen extends StatelessWidget {
             child: ListView(
               children: world.levels
                   .map<Widget>(
-                    (level) => LevelHeader(
-                      leading: Image.asset(level.imagePath, fit: BoxFit.cover),
-                      title: level.title,
-                      subtitle: level.subtitle,
-                      onTap: () => BlocProvider.of<RouterBloc>(context)
-                          .add(RouterEventLevelSelected(level: level)),
+                    (level) => Hero(
+                      tag: level,
+                      child: LevelHeader(
+                        leading:
+                            Image.asset(level.imagePath, fit: BoxFit.cover),
+                        title: level.title,
+                        subtitle: level.subtitle,
+                        onTap: () => BlocProvider.of<RouterBloc>(context)
+                            .add(RouterEventLevelSelected(level: level)),
+                      ),
                     ),
                   )
                   .separate(const Divider(
