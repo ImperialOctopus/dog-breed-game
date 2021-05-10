@@ -11,6 +11,9 @@ class SlidingCard extends StatelessWidget {
   /// Child widget.
   final Widget child;
 
+  /// Default border radius for cards.
+  static const double borderRadius = 16;
+
   /// Cards for sliding world select.
   const SlidingCard({
     Key? key,
@@ -24,21 +27,22 @@ class SlidingCard extends StatelessWidget {
     return Card(
       margin: const EdgeInsets.only(left: 8, right: 8, bottom: 24),
       elevation: 8,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(32)),
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(borderRadius)),
       child: Column(
         children: <Widget>[
           if (heroTag == null)
             ClipRRect(
-              borderRadius:
-                  const BorderRadius.vertical(top: Radius.circular(32)),
+              borderRadius: const BorderRadius.vertical(
+                  top: Radius.circular(borderRadius)),
               child: image,
             )
           else
             Hero(
               tag: heroTag!,
               child: ClipRRect(
-                borderRadius:
-                    const BorderRadius.vertical(top: Radius.circular(32)),
+                borderRadius: const BorderRadius.vertical(
+                    top: Radius.circular(borderRadius)),
                 child: image,
               ),
             ),
