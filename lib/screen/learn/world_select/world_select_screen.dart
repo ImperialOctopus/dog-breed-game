@@ -51,22 +51,20 @@ class _WorldSelectScreenState extends State<WorldSelectScreen> {
               child: PageView(
                 controller: pageController,
                 onPageChanged: (index) => setState(() => activePage = index),
-                children: widget.worlds
-                    .map((world) => SlidingCard(
-                          image: Image.asset(
-                            world.imagePath,
-                            fit: BoxFit.cover,
-                          ),
-                          heroTag: world,
-                          child: WorldCardContents(
-                            title: world.title,
-                            subtitle: world.subtitle,
-                            onPressed: () =>
-                                BlocProvider.of<RouterBloc>(context).add(
-                                    RouterEventWorldSelected(world: world)),
-                          ),
-                        ))
-                    .toList(),
+                children: widget.worlds.map((world) {
+                  return SlidingCard(
+                    image: Image.asset(
+                      world.imagePath,
+                      fit: BoxFit.cover,
+                    ),
+                    heroTag: world,
+                    child: WorldCardContents(
+                      world: world,
+                      onPressed: () => BlocProvider.of<RouterBloc>(context)
+                          .add(RouterEventWorldSelected(world: world)),
+                    ),
+                  );
+                }).toList(),
               ),
             ),
             Padding(
