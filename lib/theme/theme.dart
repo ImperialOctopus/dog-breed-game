@@ -3,6 +3,13 @@ import 'package:flutter/material.dart';
 const _primaryColor = Color.fromARGB(255, 110, 20, 69);
 const _accentColor = Color.fromARGB(255, 181, 51, 70);
 
+const _primaryScheme = ColorScheme.light(
+  primary: _primaryColor,
+  primaryVariant: _primaryColor,
+  secondary: _accentColor,
+  secondaryVariant: _accentColor,
+);
+
 /// Default app theme
 final themeData = ThemeData(
   // Define the default brightness and colors.
@@ -11,16 +18,16 @@ final themeData = ThemeData(
   accentColor: _accentColor,
   textSelectionTheme: const TextSelectionThemeData(cursorColor: _accentColor),
 
+  colorScheme: _primaryScheme,
+
   outlinedButtonTheme: OutlinedButtonThemeData(
     style: OutlinedButton.styleFrom(
-      primary: _primaryColor,
       textStyle: const TextStyle(fontSize: 32),
       minimumSize: const Size(200, 60),
     ),
   ),
   elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-    primary: _primaryColor,
     textStyle: const TextStyle(fontSize: 32),
     minimumSize: const Size(200, 60),
   )),
