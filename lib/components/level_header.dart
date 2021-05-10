@@ -11,12 +11,19 @@ class LevelHeader extends StatelessWidget {
   /// Text of subtitle.
   final String? subtitle;
 
+  /// Height.
+  final double height;
+
   /// Callback when this is tapped.
   final VoidCallback? onTap;
 
   /// Header with information about a level.
   const LevelHeader(
-      {required this.leading, required this.title, this.subtitle, this.onTap});
+      {required this.leading,
+      required this.title,
+      this.subtitle,
+      this.height = 100,
+      this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +32,7 @@ class LevelHeader extends StatelessWidget {
       child: Row(
         children: [
           SizedBox(
-            height: 100,
+            height: height,
             width: 150,
             child: leading,
           ),

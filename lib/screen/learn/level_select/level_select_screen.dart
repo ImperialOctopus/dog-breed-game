@@ -24,26 +24,37 @@ class LevelSelectScreen extends StatelessWidget {
         children: [
           PhysicalModel(
             color: Colors.white,
-            elevation: 4,
-            child: LevelHeader(
-              leading: Hero(
-                tag: world,
-                child: Image.asset(world.imagePath, fit: BoxFit.cover),
-              ),
-              title: world.title,
-              subtitle: world.subtitle,
+            elevation: 2,
+            child: Row(
+              children: [
+                SizedBox(
+                  height: 70,
+                  width: 150,
+                  child: Hero(
+                    tag: world,
+                    child: Image.asset(world.imagePath, fit: BoxFit.cover),
+                  ),
+                ),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(world.title),
+                        const Text('59% complete'),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
-          // Full-size world image.
-          /*
-          Hero(
-            tag: world,
-            child: FixedHeightCoverBox(
-              child: Image.asset(world.imagePath),
-              height: 300,
-            ),
+          Divider(
+            color: Theme.of(context).primaryColor,
+            height: 0,
+            thickness: 2,
           ),
-          */
           Expanded(
             child: ListView(
               children: world.levels
