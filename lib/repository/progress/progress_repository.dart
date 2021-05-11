@@ -1,10 +1,10 @@
-import '../../model/progress/level_progress.dart';
+import '../../model/progress/progress.dart';
 
 /// Repository for user progress through levels.
 abstract class ProgressRepository {
   /// Returns level progress for an id.
-  Future<LevelProgress> getProgress(int id);
+  Future<Progress> get loadProgress;
 
   /// Stores a level progress object.
-  Future<void> updateProgress(LevelProgress progress);
+  Future<void> saveProgress(Progress progress);
 }

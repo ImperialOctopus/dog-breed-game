@@ -1,22 +1,21 @@
-import '../../model/progress/level_progress.dart';
+import '../../model/progress/progress.dart';
 import 'progress_repository.dart';
 
 /// Progress repository stored only in memory.
 class MemoryProgressRepository implements ProgressRepository {
-  List<LevelProgress> _progress = const [];
+  Progress _progress = Progress();
 
   /// Progress repository stored only in memory.
   MemoryProgressRepository();
 
   @override
-  Future<LevelProgress> getProgress(int id) async {
-    return _progress.singleWhere((element) => element.id == id,
-        orElse: () => LevelProgress.zero(id: id));
+  Future<Progress> get loadProgress async {
+    await Future<void>.delayed(const Duration(seconds: 1));
+    return _progress;
   }
 
   @override
-  Future<void> updateProgress(LevelProgress progress) async {
-    _progress = _progress.where((element) => element.id != progress.id).toList()
-      ..add(progress);
+  Future<void> saveProgress(Progress progress) async {
+    _progress = progress;
   }
 }
