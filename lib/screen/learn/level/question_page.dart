@@ -1,4 +1,3 @@
-import 'package:dog_breed_game/components/level_header.dart';
 import 'package:flutter/material.dart';
 
 import '../../../components/fixed_height_cover_box.dart';
