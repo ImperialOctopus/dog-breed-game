@@ -1,3 +1,1 @@
-class Progress {
-  final learnProgress
-}
+class Progress {}
