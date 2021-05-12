@@ -2,7 +2,10 @@ import 'level/level.dart';
 
 /// Data structure for a world.
 class World {
-  /// Widget to display as title.
+  /// World's unique id string.
+  final String id;
+
+  /// Text to display as title.
   final String title;
 
   /// Text for description.
@@ -19,6 +22,7 @@ class World {
 
   /// Data structure for a world.
   const World({
+    required this.id,
     required this.title,
     this.subtitle,
     required this.description,

@@ -8,7 +8,7 @@ class Quiz extends Level {
 
   /// Data for a quiz.
   const Quiz({
-    required int id,
+    required String id,
     required String title,
     String? subtitle,
     required String imagePath,

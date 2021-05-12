@@ -1,5 +1,9 @@
 import 'progress_item.dart';
 
+/// Function to replace worlds in progress model.
+typedef MapLevels = Map<String, ProgressItem> Function(
+    Map<String, ProgressItem> levels);
+
 /// Progress for a world.
 class WorldProgress {
   final Map<String, ProgressItem> _levels;
@@ -19,4 +23,9 @@ class WorldProgress {
     }
     return _progress;
   }
+
+  /// Transform properties of this by a function.
+  WorldProgress migrate(MapLevels mapLevels) => WorldProgress(
+        levels: mapLevels(_levels),
+      );
 }
