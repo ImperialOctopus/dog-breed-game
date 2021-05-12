@@ -14,6 +14,7 @@ class LessonRoute extends StatelessWidget implements ProvidesPage<void> {
 
   @override
   Widget build(BuildContext context) {
+    // Lesson is set in router based on selected lesson.
     return LessonScreen(lesson: lesson);
   }
 

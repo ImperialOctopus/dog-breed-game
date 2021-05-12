@@ -5,6 +5,9 @@ import 'bloc/progress/progress_cubit.dart';
 import 'bloc/splash/splash_bloc.dart';
 import 'bloc/splash/splash_event.dart';
 import 'bloc/splash/splash_state.dart';
+import 'model/learn_structure.dart';
+import 'repository/learn_structure/learn_structure_repository.dart';
+import 'repository/learn_structure/local_learn_structure_repository.dart';
 import 'repository/progress/memory_progress_repository.dart';
 import 'repository/progress/progress_repository.dart';
 import 'routes/bloc/router_bloc.dart';
@@ -25,6 +28,7 @@ class DogBreedGame extends StatefulWidget {
 
 class _DogBreedGameState extends State<DogBreedGame> {
   late final ProgressRepository _progressRepository;
+  late final LearnStructureRepository _learnStructureRepository;
 
   late final RouterBloc _routerBloc;
   late final SplashBloc _splashBloc;
@@ -34,10 +38,13 @@ class _DogBreedGameState extends State<DogBreedGame> {
     super.initState();
 
     _progressRepository = MemoryProgressRepository();
+    _learnStructureRepository = LocalLearnStructureRepository();
 
     _routerBloc = RouterBloc();
-    _splashBloc = SplashBloc(progressRepository: _progressRepository)
-      ..add(const SplashEventLoad());
+    _splashBloc = SplashBloc(
+      progressRepository: _progressRepository,
+      learnStructureRepository: _learnStructureRepository,
+    )..add(const SplashEventLoad());
   }
 
   @override
@@ -53,12 +60,15 @@ class _DogBreedGameState extends State<DogBreedGame> {
         home: BlocBuilder<SplashBloc, SplashState>(
           builder: (context, state) {
             if (state is SplashStateLoaded) {
-              return BlocProvider<ProgressCubit>(
-                create: (context) => ProgressCubit(
-                  initial: state.progress,
-                  progressRepository: _progressRepository,
+              return RepositoryProvider<LearnStructure>.value(
+                value: state.structure,
+                child: BlocProvider<ProgressCubit>(
+                  create: (context) => ProgressCubit(
+                    initial: state.progress,
+                    progressRepository: _progressRepository,
+                  ),
+                  child: _AppView(),
                 ),
-                child: _AppView(),
               );
             } else {
               return const SplashScreen();
