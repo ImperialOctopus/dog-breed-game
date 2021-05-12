@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../components/level_header.dart';
 import '../../../model/level/quiz.dart';
+import '../../../model/quiz_result.dart';
 
 /// Screen to show results of quiz.
 class ResultScreen extends StatelessWidget {
@@ -9,12 +10,12 @@ class ResultScreen extends StatelessWidget {
   final Quiz quiz;
 
   /// Score.
-  final int score;
+  final QuizResult result;
 
   /// Screen to show results of quiz.
   const ResultScreen({
     required this.quiz,
-    required this.score,
+    required this.result,
   });
 
   @override
@@ -33,7 +34,7 @@ class ResultScreen extends StatelessWidget {
           const Spacer(),
           const Text('Your Score:'),
           Text(
-            ((score / quiz.questions.length) * 100).toStringAsFixed(0) + '%',
+            ((result.score / result.maxScore) * 100).toStringAsFixed(0) + '%',
             style: Theme.of(context).textTheme.headline2,
           ),
           const Spacer(),

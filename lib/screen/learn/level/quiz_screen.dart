@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../model/level/question.dart';
 import '../../../model/level/quiz.dart';
+import '../../../model/quiz_result.dart';
 import '../../../routes/bloc/router_bloc.dart';
 import '../../../routes/bloc/router_event.dart';
 import 'question_page.dart';
@@ -71,8 +72,14 @@ class _QuizScreenState extends State<QuizScreen> {
         chosenAnswer = null;
       });
     } else {
-      BlocProvider.of<RouterBloc>(context)
-          .add(RouterEventQuizResults(score: score));
+      BlocProvider.of<RouterBloc>(context).add(
+        RouterEventQuizResults(
+            quiz: quiz,
+            result: QuizResult(
+              maxScore: quiz.questions.length,
+              score: score,
+            )),
+      );
     }
   }
 }
