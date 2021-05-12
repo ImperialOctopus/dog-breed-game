@@ -3,7 +3,7 @@ import 'progress_repository.dart';
 
 /// Progress repository stored only in memory.
 class MemoryProgressRepository implements ProgressRepository {
-  Progress _progress = Progress();
+  Progress _progress = const Progress(levels: {});
 
   /// Progress repository stored only in memory.
   MemoryProgressRepository();
