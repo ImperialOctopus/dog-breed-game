@@ -4,7 +4,7 @@ abstract class SplashEvent extends Equatable {
   const SplashEvent();
 }
 
-class SplashEventLoad extends Equatable {
+class SplashEventLoad extends SplashEvent {
   const SplashEventLoad();
 
   @override
