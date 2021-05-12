@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../model/level/quiz.dart';
+import '../../model/quiz_result.dart';
 import '../../screen/learn/level/result_screen.dart';
 import '../provides_page.dart';
 
@@ -10,14 +11,14 @@ class ResultRoute extends StatelessWidget implements ProvidesPage<void> {
   final Quiz quiz;
 
   /// Score.
-  final int score;
+  final QuizResult result;
 
   /// Route for quiz results.
-  const ResultRoute({required this.quiz, required this.score});
+  const ResultRoute({required this.quiz, required this.result});
 
   @override
   Widget build(BuildContext context) {
-    return ResultScreen(quiz: quiz, score: score);
+    return ResultScreen(quiz: quiz, result: result);
   }
 
   @override

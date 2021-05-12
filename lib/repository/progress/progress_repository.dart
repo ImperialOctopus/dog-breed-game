@@ -1,5 +1,4 @@
-import 'package:dog_breed_game/model/learn_structure.dart';
-
+import '../../model/learn_structure.dart';
 import '../../model/progress/progress.dart';
 
 /// Repository for user progress through levels.

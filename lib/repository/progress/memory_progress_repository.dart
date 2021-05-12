@@ -1,9 +1,7 @@
-import 'package:dog_breed_game/model/learn_structure.dart';
-
+import '../../model/learn_structure.dart';
 import '../../model/progress/progress.dart';
 import '../../model/progress/progress_item_score.dart';
 import '../../model/progress/world_progress.dart';
-import '../../model/world.dart';
 import 'progress_repository.dart';
 
 /// Progress repository stored only in memory.
