@@ -1,3 +1,4 @@
+import '../../exception/progress_key_not_found_exception.dart';
 import 'progress_item.dart';
 
 /// Function to replace worlds in progress model.
@@ -19,13 +20,11 @@ class WorldProgress {
     // So if value doesn't exist the key must be invalid.
     final _progress = _levels[label];
     if (_progress == null) {
-      throw ArgumentError('Invalid progress key: ' + label);
+      throw ProgressKeyNotFoundException('Invalid progress key: ' + label);
     }
     return _progress;
   }
 
-  /// Transform properties of this by a function.
-  WorldProgress migrate(MapLevels mapLevels) => WorldProgress(
-        levels: mapLevels(_levels),
-      );
+  /// Percentage score for this world.
+  double get result => 0.4;
 }

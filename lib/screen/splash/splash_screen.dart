@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 
 /// Splash screen.
 class SplashScreen extends StatelessWidget {
+  /// Message to display.
+  final String message;
+
   /// Splash screen.
-  const SplashScreen();
+  const SplashScreen([this.message = '']);
 
   @override
   Widget build(BuildContext context) {
@@ -11,9 +14,9 @@ class SplashScreen extends StatelessWidget {
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: const [
-            CircularProgressIndicator(),
-            Text('Loading saved data...')
+          children: [
+            const CircularProgressIndicator(),
+            Text(message),
           ],
         ),
       ),

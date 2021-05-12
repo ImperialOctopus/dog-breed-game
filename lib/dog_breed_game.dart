@@ -70,6 +70,8 @@ class _DogBreedGameState extends State<DogBreedGame> {
                   child: _AppView(),
                 ),
               );
+            } else if (state is SplashStateLoading) {
+              return SplashScreen(state.loadingMessage ?? '');
             } else {
               return const SplashScreen();
             }

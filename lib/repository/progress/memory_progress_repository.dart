@@ -1,5 +1,7 @@
+import '../../exception/progress_key_not_found_exception.dart';
 import '../../model/learn_structure.dart';
 import '../../model/progress/progress.dart';
+import '../../model/progress/progress_item.dart';
 import '../../model/progress/progress_item_none.dart';
 import '../../model/progress/progress_item_score.dart';
 import '../../model/progress/world_progress.dart';
@@ -20,36 +22,32 @@ class MemoryProgressRepository implements ProgressRepository {
 
   @override
   Future<Progress> get loadProgress async {
-    await Future<void>.delayed(const Duration(seconds: 1));
+    await Future<void>.delayed(const Duration(milliseconds: 600));
     return _progress;
   }
 
   @override
   Future<Progress> migrateProgress(
       Progress progress, LearnStructure structure) async {
-    final _newProgress = progress.migrate((worldProgress) {
-      for (final _world in structure.worlds) {
-        var _worldProgress = worldProgress[_world.id];
+    final worldMap = <String, WorldProgress>{};
 
-        _worldProgress ??= const WorldProgress(levels: {});
-        _worldProgress = _worldProgress.migrate((levelProgress) {
-          for (final _level in _world.levels) {
-            var _levelProgress = levelProgress[_level.id];
-
-            _levelProgress ??= const ProgressItemNone();
-
-            levelProgress[_level.id] = _levelProgress;
-          }
-          return levelProgress;
-        });
-
-        worldProgress[_world.id] = _worldProgress;
+    for (final world in structure.worlds) {
+      final levelMap = <String, ProgressItem>{};
+      for (final level in world.levels) {
+        ProgressItem _levelProgress;
+        try {
+          _levelProgress = progress.getWorld(world.label).getLevel(level.label);
+        } on ProgressKeyNotFoundException {
+          _levelProgress = const ProgressItemNone();
+        }
+        levelMap[level.label] = _levelProgress;
       }
-      return worldProgress;
-    });
+      final _worldProgress = WorldProgress(levels: levelMap);
+      worldMap[world.label] = _worldProgress;
+    }
 
-    //await Future<void>.delayed(const Duration(seconds: 1));
-    return _newProgress;
+    await Future<void>.delayed(const Duration(milliseconds: 200));
+    return Progress(worlds: worldMap);
   }
 
   @override
