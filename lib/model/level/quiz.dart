@@ -8,13 +8,13 @@ class Quiz extends Level {
 
   /// Data for a quiz.
   const Quiz({
-    required String id,
+    required String label,
     required String title,
     String? subtitle,
     required String imagePath,
     required this.questions,
   }) : super(
-          id: id,
+          label: label,
           title: title,
           subtitle: subtitle,
           imagePath: imagePath,

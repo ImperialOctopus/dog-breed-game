@@ -1,7 +1,7 @@
 /// Model of a level.
 abstract class Level {
   /// Unique identifier of a level.
-  final String id;
+  final String label;
 
   /// Title of lesson.
   final String title;
@@ -16,7 +16,7 @@ abstract class Level {
   /// [icon] is shown to the left of the title. [id] is used to store lesson
   /// progress.
   const Level({
-    required this.id,
+    required this.label,
     required this.title,
     this.subtitle,
     required this.imagePath,
