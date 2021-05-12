@@ -1,7 +1,7 @@
 /// Model of a level.
 abstract class Level {
   /// Unique identifier of a level.
-  final int id;
+  final String id;
 
   /// Title of lesson.
   final String title;

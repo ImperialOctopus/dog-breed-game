@@ -4,17 +4,21 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../model/level/question.dart';
 import '../../../model/level/quiz.dart';
 import '../../../model/quiz_result.dart';
+import '../../../model/world.dart';
 import '../../../routes/bloc/router_bloc.dart';
 import '../../../routes/bloc/router_event.dart';
 import 'question_page.dart';
 
 /// Screen to show a quiz.
 class QuizScreen extends StatefulWidget {
+  /// World that owns this quiz.
+  final World world;
+
   /// Quiz to display.
   final Quiz quiz;
 
   /// Screen to show a quiz.
-  const QuizScreen({required this.quiz});
+  const QuizScreen({required this.world, required this.quiz});
 
   @override
   _QuizScreenState createState() => _QuizScreenState();

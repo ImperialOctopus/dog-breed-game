@@ -9,7 +9,7 @@ class Lesson extends Level {
 
   /// Informational lesson from a level.
   const Lesson({
-    required int id,
+    required String id,
     required String title,
     String? subtitle,
     required String imagePath,
