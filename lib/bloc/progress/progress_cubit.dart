@@ -13,4 +13,10 @@ class ProgressCubit extends Cubit<Progress> {
       required ProgressRepository progressRepository})
       : _progressRepository = progressRepository,
         super(initial);
+
+  /// Update progress for an activity.
+  Future<void> updateProgress() async {
+    //TODO: implement update progress.
+    await _progressRepository.saveProgress(state);
+  }
 }
