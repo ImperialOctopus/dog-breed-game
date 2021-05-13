@@ -37,5 +37,7 @@ class WorldProgress {
   }
 
   /// Percentage score for this world.
-  double get result => 0.4;
+  double get result => _levels.isEmpty
+      ? 0
+      : _levels.values.where((level) => level.complete).length / _levels.length;
 }
