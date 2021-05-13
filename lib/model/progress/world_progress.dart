@@ -25,6 +25,17 @@ class WorldProgress {
     return _progress;
   }
 
+  /// Returns a copy of this with a level replaced.
+  WorldProgress replaceLevel(
+      String label, ProgressItem Function(ProgressItem levelProgress) f) {
+    final _map = Map<String, ProgressItem>.from(_levels);
+    final _old = getLevel(label);
+
+    _map['label'] = f(_old);
+
+    return WorldProgress(levels: _map);
+  }
+
   /// Percentage score for this world.
   double get result => 0.4;
 }
