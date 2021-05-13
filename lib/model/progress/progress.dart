@@ -25,4 +25,15 @@ class Progress {
     }
     return _progress;
   }
+
+  /// Returns a copy of this with a world replaced.
+  Progress replaceWorld(
+      String label, WorldProgress Function(WorldProgress worldProgress) f) {
+    final _map = Map<String, WorldProgress>.from(_worlds);
+    final _old = getWorld(label);
+
+    _map['label'] = f(_old);
+
+    return Progress(worlds: _map);
+  }
 }

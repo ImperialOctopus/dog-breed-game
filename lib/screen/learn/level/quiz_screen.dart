@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../bloc/progress/progress_cubit.dart';
 import '../../../model/level/question.dart';
 import '../../../model/level/quiz.dart';
+import '../../../model/progress/progress_item_score.dart';
 import '../../../model/quiz_result.dart';
 import '../../../model/world.dart';
 import '../../../routes/bloc/router_bloc.dart';
@@ -70,12 +72,17 @@ class _QuizScreenState extends State<QuizScreen> {
   }
 
   void onNextPressed() {
-    if (questionIndex < quiz.questions.length - 1) {
+    if (questionIndex + 1 < quiz.questions.length) {
       setState(() {
         questionIndex += 1;
         chosenAnswer = null;
       });
     } else {
+      BlocProvider.of<ProgressCubit>(context).updateProgress(
+        widget.world.label,
+        widget.quiz.label,
+        ProgressItemScore(score, quiz.questions.length),
+      );
       BlocProvider.of<RouterBloc>(context).add(
         RouterEventQuizResults(
             quiz: quiz,
