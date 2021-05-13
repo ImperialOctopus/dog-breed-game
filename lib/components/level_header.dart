@@ -11,6 +11,9 @@ class LevelHeader extends StatelessWidget {
   /// Text of subtitle.
   final String? subtitle;
 
+  /// Trailing widget.
+  final Widget? trailing;
+
   /// Height.
   final double height;
 
@@ -22,6 +25,7 @@ class LevelHeader extends StatelessWidget {
       {required this.leading,
       required this.title,
       this.subtitle,
+      this.trailing,
       this.height = 100,
       this.onTap});
 
@@ -37,18 +41,21 @@ class LevelHeader extends StatelessWidget {
             child: leading,
           ),
           Container(width: 10),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(title),
-              if (subtitle != null)
-                Padding(
-                  padding: const EdgeInsets.only(top: 4),
-                  child: Text(subtitle!),
-                ),
-            ],
-          )
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(title),
+                if (subtitle != null)
+                  Padding(
+                    padding: const EdgeInsets.only(top: 4),
+                    child: Text(subtitle!),
+                  ),
+              ],
+            ),
+          ),
+          if (trailing != null) trailing!,
         ],
       ),
     );
