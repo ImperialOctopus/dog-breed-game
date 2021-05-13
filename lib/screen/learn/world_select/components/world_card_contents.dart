@@ -33,11 +33,7 @@ class WorldCardContents extends StatelessWidget {
             ElevatedButton(
               child: const Text('Start'),
               style: ElevatedButton.styleFrom(
-                //primary: const Color(0xFF162A49),
-                textStyle: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 20,
-                ),
+                //textStyle: TextStyle(color: Colors.white),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(_startButtonBorderRadius),
                 ),
