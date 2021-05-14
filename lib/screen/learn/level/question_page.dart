@@ -37,11 +37,6 @@ class QuestionPage extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         AnimatedSwitcher(
-          child: FixedHeightCoverBox(
-            key: ValueKey<String>(question.imagePath),
-            child: Image.asset(question.imagePath),
-            height: 300,
-          ),
           duration: const Duration(milliseconds: 300),
           transitionBuilder: (child, animation) {
             return SlideTransition(
@@ -54,6 +49,11 @@ class QuestionPage extends StatelessWidget {
           },
           switchOutCurve: const Threshold(0),
           switchInCurve: Curves.ease,
+          child: FixedHeightCoverBox(
+            key: ValueKey<String>(question.imagePath),
+            height: 300,
+            child: Image.asset(question.imagePath),
+          ),
         ),
         TweenAnimationBuilder<double>(
           tween: Tween<double>(begin: 0, end: progress),
@@ -117,12 +117,12 @@ class QuestionPage extends StatelessWidget {
 
   Widget _answerButton(int answer) {
     return AnimatedTheme(
-      child: OutlinedButton(
-        child: Text(question.answers.elementAt(answer)),
-        onPressed: () => onAnswerPressed(answer),
-      ),
       data: ThemeData(outlinedButtonTheme: _buttonStyle(answer)),
       duration: const Duration(milliseconds: 200),
+      child: OutlinedButton(
+        onPressed: () => onAnswerPressed(answer),
+        child: Text(question.answers.elementAt(answer)),
+      ),
     );
   }
 

@@ -11,8 +11,8 @@ class FixedHeightCoverBox extends StatelessWidget {
   /// Asset image with a fixed height and infinite width.
   const FixedHeightCoverBox({
     Key? key,
-    required this.child,
     required this.height,
+    required this.child,
   }) : super(key: key);
 
   @override
