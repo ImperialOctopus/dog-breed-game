@@ -20,11 +20,11 @@ class LevelSelectItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return LevelHeader(
-      leading: Hero(
-        tag: level,
-        child: SizedBox(
-          height: height,
-          width: 150,
+      leading: SizedBox(
+        height: height,
+        width: 150,
+        child: Hero(
+          tag: level,
           child: Image.asset(level.imagePath, fit: BoxFit.cover),
         ),
       ),

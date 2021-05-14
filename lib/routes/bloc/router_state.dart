@@ -9,12 +9,18 @@ import '../../model/world.dart';
 abstract class RouterState extends Equatable {
   /// State for router bloc.
   const RouterState();
+
+  /// What to replace state with on pop.
+  RouterState get popsInto;
 }
 
 /// /
 class RouterStateHome extends RouterState {
   /// Home route.
   const RouterStateHome();
+
+  @override
+  RouterState get popsInto => this;
 
   @override
   List<Object?> get props => [];
@@ -24,6 +30,9 @@ class RouterStateHome extends RouterState {
 class RouterStateLearn extends RouterState {
   /// /learn
   const RouterStateLearn();
+
+  @override
+  RouterState get popsInto => const RouterStateHome();
 
   @override
   List<Object?> get props => [];
@@ -38,6 +47,9 @@ class RouterStateLearnWorld extends RouterStateLearn {
   const RouterStateLearnWorld({required this.world});
 
   @override
+  RouterState get popsInto => const RouterStateLearn();
+
+  @override
   List<Object?> get props => [world];
 }
 
@@ -49,6 +61,9 @@ class RouterStateLearnLevel extends RouterStateLearnWorld {
 
   /// Level to display.
   final Level level;
+
+  @override
+  RouterState get popsInto => RouterStateLearnWorld(world: world);
 
   @override
   List<Object?> get props => [...super.props, level];
@@ -66,6 +81,9 @@ class RouterStateQuizResult extends RouterStateLearnWorld {
   const RouterStateQuizResult(
       {required World world, required this.quiz, required this.result})
       : super(world: world);
+
+  @override
+  RouterState get popsInto => RouterStateLearnWorld(world: world);
 
   @override
   List<Object?> get props => [...super.props, quiz, result];
