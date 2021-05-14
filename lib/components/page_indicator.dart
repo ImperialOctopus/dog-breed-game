@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 /// Indicator for PageView pages.
 class PageIndicator extends StatelessWidget {
-  static const _activeColor = Colors.blue;
+  //static const _activeColor = Colors.blue;
   static const _inactiveColor = Colors.grey;
 
   /// Whether this page is active.
@@ -19,8 +19,10 @@ class PageIndicator extends StatelessWidget {
       height: isActive ? 12 : 8,
       width: isActive ? 12 : 8,
       decoration: BoxDecoration(
-          color: isActive ? _activeColor : _inactiveColor,
-          borderRadius: const BorderRadius.all(Radius.circular(12))),
+        color: isActive ? Theme.of(context).primaryColor : _inactiveColor,
+        borderRadius: const BorderRadius.all(Radius.circular(12)),
+        border: isActive ? Border.all(width: 1, color: _inactiveColor) : null,
+      ),
     );
   }
 }
