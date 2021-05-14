@@ -14,7 +14,7 @@ class LevelSelectHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PhysicalModel(
-      color: Colors.white,
+      color: Theme.of(context).cardColor,
       elevation: 2,
       child: Row(
         children: [
