@@ -32,7 +32,7 @@ class Progress {
     final _map = Map<String, WorldProgress>.from(_worlds);
     final _old = getWorld(label);
 
-    _map['label'] = f(_old);
+    _map[label] = f(_old);
 
     return Progress(worlds: _map);
   }

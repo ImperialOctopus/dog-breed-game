@@ -29,6 +29,8 @@ class LevelHeader extends StatelessWidget {
       this.height = 100,
       this.onTap});
 
+  static const double _padding = 10;
+
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -40,7 +42,7 @@ class LevelHeader extends StatelessWidget {
             width: 150,
             child: leading,
           ),
-          Container(width: 10),
+          Container(width: _padding),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -56,6 +58,7 @@ class LevelHeader extends StatelessWidget {
             ),
           ),
           if (trailing != null) trailing!,
+          Container(width: _padding),
         ],
       ),
     );

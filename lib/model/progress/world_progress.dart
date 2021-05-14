@@ -31,13 +31,17 @@ class WorldProgress {
     final _map = Map<String, ProgressItem>.from(_levels);
     final _old = getLevel(label);
 
-    _map['label'] = f(_old);
+    _map[label] = f(_old);
 
     return WorldProgress(levels: _map);
   }
 
   /// Percentage score for this world.
-  double get result => _levels.isEmpty
-      ? 0
-      : _levels.values.where((level) => level.complete).length / _levels.length;
+  double get result => _levels.isEmpty ? 0 : complete / levelCount;
+
+  /// Number of levels that are complete.
+  int get complete => _levels.values.where((level) => level.complete).length;
+
+  /// Total number of levels.
+  int get levelCount => _levels.length;
 }
