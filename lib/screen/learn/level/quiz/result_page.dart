@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-import '../../../components/level_header.dart';
-import '../../../model/level/quiz.dart';
-import '../../../model/quiz_result.dart';
+import '../../../../components/level_header.dart';
+import '../../../../model/level/quiz.dart';
+import '../../../../model/quiz_result.dart';
 
 /// Screen to show results of quiz.
-class ResultScreen extends StatelessWidget {
+class ResultPage extends StatelessWidget {
   /// Level this is the result for.
   final Quiz quiz;
 
@@ -13,7 +13,7 @@ class ResultScreen extends StatelessWidget {
   final QuizResult result;
 
   /// Screen to show results of quiz.
-  const ResultScreen({
+  const ResultPage({
     required this.quiz,
     required this.result,
   });
@@ -27,7 +27,10 @@ class ResultScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           LevelHeader(
-            leading: Image.asset(quiz.imagePath, fit: BoxFit.cover),
+            leading: Hero(
+              tag: quiz,
+              child: Image.asset(quiz.imagePath, fit: BoxFit.cover),
+            ),
             title: quiz.title,
             subtitle: quiz.subtitle,
           ),

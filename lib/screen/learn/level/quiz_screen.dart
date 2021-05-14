@@ -7,9 +7,22 @@ import '../../../model/level/quiz.dart';
 import '../../../model/progress/progress_item_score.dart';
 import '../../../model/quiz_result.dart';
 import '../../../model/world.dart';
-import '../../../routes/bloc/router_bloc.dart';
-import '../../../routes/bloc/router_event.dart';
-import 'question_page.dart';
+import '../../../theme/animation.dart';
+import 'quiz/question_page.dart';
+import 'quiz/quiz_intro_page.dart';
+import 'quiz/result_page.dart';
+
+/// State for quiz screen.
+enum QuizScreenPage {
+  /// Introduction page.
+  intro,
+
+  /// Page containing questions.
+  quiz,
+
+  /// Results page.
+  results,
+}
 
 /// Screen to show a quiz.
 class QuizScreen extends StatefulWidget {
@@ -29,6 +42,8 @@ class QuizScreen extends StatefulWidget {
 class _QuizScreenState extends State<QuizScreen> {
   int? chosenAnswer;
 
+  late QuizScreenPage page;
+
   late int questionIndex;
   late int score;
 
@@ -39,24 +54,58 @@ class _QuizScreenState extends State<QuizScreen> {
       (questionIndex + ((chosenAnswer == null) ? 0 : 1)) /
       quiz.questions.length;
 
+  static const _introSwitchDuration = quizSwitcherDuration;
+
   @override
   void initState() {
     super.initState();
+    page = QuizScreenPage.intro;
     questionIndex = 0;
     score = 0;
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(),
-      body: QuestionPage(
-        question: currentQuestion,
-        progress: progress,
-        chosenAnswer: chosenAnswer,
-        onAnswerPressed: onAnswerPressed,
-        onNextPressed: onNextPressed,
-      ),
+    return AnimatedSwitcher(
+      duration: _introSwitchDuration,
+      transitionBuilder: (child, animation) {
+        return SlideTransition(
+          position: Tween<Offset>(
+            begin: const Offset(1, 0),
+            end: Offset.zero,
+          ).animate(animation),
+          child: child,
+        );
+      },
+      switchOutCurve: const Threshold(0),
+      switchInCurve: Curves.ease,
+      child: () {
+        switch (page) {
+          case QuizScreenPage.intro:
+            return QuizIntroPage(
+              quiz: quiz,
+              onNext: () => setState(() {
+                page = QuizScreenPage.quiz;
+              }),
+            );
+          case QuizScreenPage.quiz:
+            return QuestionPage(
+              question: currentQuestion,
+              progress: progress,
+              chosenAnswer: chosenAnswer,
+              onAnswerPressed: onAnswerPressed,
+              onNextPressed: onNextPressed,
+            );
+          case QuizScreenPage.results:
+            return ResultPage(
+              quiz: quiz,
+              result: QuizResult(
+                maxScore: quiz.questions.length,
+                score: score,
+              ),
+            );
+        }
+      }(),
     );
   }
 
@@ -83,14 +132,9 @@ class _QuizScreenState extends State<QuizScreen> {
         widget.quiz.label,
         ProgressItemScore(score, quiz.questions.length),
       );
-      BlocProvider.of<RouterBloc>(context).add(
-        RouterEventQuizResults(
-            quiz: quiz,
-            result: QuizResult(
-              maxScore: quiz.questions.length,
-              score: score,
-            )),
-      );
+      setState(() {
+        page = QuizScreenPage.results;
+      });
     }
   }
 }
