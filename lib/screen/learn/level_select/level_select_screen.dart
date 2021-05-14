@@ -28,7 +28,8 @@ class LevelSelectScreen extends StatelessWidget {
           Expanded(
             child: ListView(
               children: world.levels
-                  .map<Widget>((level) => LevelSelectItem(level: level))
+                  .map<Widget>(
+                      (level) => LevelSelectItem(world: world, level: level))
                   .separate(const Divider(height: 0))
                   .toList(),
             ),

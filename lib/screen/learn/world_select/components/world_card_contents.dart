@@ -44,7 +44,9 @@ class WorldCardContents extends StatelessWidget {
             WorldProgressCubitBuilder(
               worldLabel: world.label,
               builder: (context, progress) => Text(
-                (progress.result * 100).round().toString() + '\% Complete',
+                progress.levelCount > 0
+                    ? '${progress.complete} / ${progress.levelCount}'
+                    : '',
                 style: const TextStyle(
                   fontWeight: FontWeight.normal,
                   fontSize: 20,

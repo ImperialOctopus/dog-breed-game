@@ -11,6 +11,8 @@ class LevelSelectHeader extends StatelessWidget {
   /// Header for level select page.
   const LevelSelectHeader({required this.world});
 
+  static const double _padding = 10;
+
   @override
   Widget build(BuildContext context) {
     return PhysicalModel(
@@ -28,7 +30,7 @@ class LevelSelectHeader extends StatelessWidget {
           ),
           Expanded(
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
+              padding: const EdgeInsets.symmetric(horizontal: _padding),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -36,8 +38,9 @@ class LevelSelectHeader extends StatelessWidget {
                   WorldProgressCubitBuilder(
                     worldLabel: world.label,
                     builder: (context, progress) => Text(
-                      (progress.result * 100).round().toString() +
-                          '\% Complete',
+                      progress.levelCount > 0
+                          ? '${progress.complete} / ${progress.levelCount}'
+                          : '',
                     ),
                   ),
                 ],

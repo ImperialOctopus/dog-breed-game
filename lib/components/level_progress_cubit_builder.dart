@@ -27,6 +27,7 @@ class LevelProgressCubitBuilder extends StatelessWidget {
     return BlocBuilder<ProgressCubit, Progress>(
       builder: (context, state) {
         final _progress = state.getWorld(worldLabel).getLevel(levelLabel);
+
         return builder(context, _progress);
       },
     );

@@ -23,9 +23,10 @@ class ProgressCubit extends Cubit<Progress> {
 
     if (progressItem.result > _previous.result) {
       final _newProgress = _state.replaceWorld(
-          worldLabel,
-          (worldProgress) => worldProgress.replaceLevel(
-              levelLabel, (levelProgress) => progressItem));
+        worldLabel,
+        (worldProgress) => worldProgress.replaceLevel(
+            levelLabel, (levelProgress) => progressItem),
+      );
 
       emit(_newProgress);
       await _progressRepository.saveProgress(_newProgress);
