@@ -31,7 +31,6 @@ class WorldCardContents extends StatelessWidget {
         Row(
           children: <Widget>[
             ElevatedButton(
-              child: const Text('Start'),
               style: ElevatedButton.styleFrom(
                 //textStyle: TextStyle(color: Colors.white),
                 shape: RoundedRectangleBorder(
@@ -39,6 +38,7 @@ class WorldCardContents extends StatelessWidget {
                 ),
               ),
               onPressed: onPressed,
+              child: const Text('Start'),
             ),
             const Spacer(),
             WorldProgressCubitBuilder(
