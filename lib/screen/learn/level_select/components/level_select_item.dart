@@ -34,35 +34,5 @@ class LevelSelectItem extends StatelessWidget {
       onTap: () => BlocProvider.of<RouterBloc>(context)
           .add(RouterEventLevelSelected(level: level)),
     );
-
-    return InkWell(
-      onTap: () => BlocProvider.of<RouterBloc>(context)
-          .add(RouterEventLevelSelected(level: level)),
-      child: Row(
-        children: [
-          Hero(
-            tag: level,
-            child: SizedBox(
-              height: height,
-              width: 150,
-              child: Image.asset(level.imagePath, fit: BoxFit.cover),
-            ),
-          ),
-          Container(width: 10),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(level.title),
-              if (level.subtitle != null)
-                Padding(
-                  padding: const EdgeInsets.only(top: 4),
-                  child: Text(level.subtitle!),
-                ),
-            ],
-          )
-        ],
-      ),
-    );
   }
 }
