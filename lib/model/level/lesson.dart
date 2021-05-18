@@ -5,7 +5,7 @@ import 'level.dart';
 /// Informational lesson from a level.
 class Lesson extends Level {
   /// Widget to render as this lesson's main body.
-  final List<Widget> children;
+  final List<List<Widget>> content;
 
   /// Informational lesson from a level.
   const Lesson({
@@ -13,7 +13,7 @@ class Lesson extends Level {
     required String title,
     String? subtitle,
     required String imagePath,
-    required this.children,
+    required this.content,
   }) : super(
           label: label,
           title: title,

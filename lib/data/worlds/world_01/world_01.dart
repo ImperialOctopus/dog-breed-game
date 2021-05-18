@@ -4,7 +4,7 @@ import 'level_02.dart';
 import 'level_03.dart';
 
 /// First world!
-const world01 = World(
+final world01 = World(
   label: '01_most_common',
   title: 'Most Common',
   description: '''The most common dogs found in practice in the UK.
