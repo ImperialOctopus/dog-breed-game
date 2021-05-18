@@ -11,7 +11,7 @@ final level_02 = Lesson(
   content: _content,
 );
 
-final _content = <List<Widget>>[
+final _content = const <List<Widget>>[
   [
     Text('First page'),
     Text('Welcome'),

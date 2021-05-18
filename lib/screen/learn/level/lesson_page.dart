@@ -33,21 +33,25 @@ class LessonPage extends StatelessWidget {
     final _addCompleteButton =
         addCompleteButton ?? (index == lesson.content.length - 1);
 
-    return Padding(
-      padding: EdgeInsets.only(
-        top: _addHeader ? 0 : _padding,
-        left: _padding,
-        right: _padding,
-        bottom: _padding,
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          if (_addHeader) LessonHeader(),
-          ...lesson.content[index],
-          if (_addCompleteButton) LessonCompleteButton(),
-        ],
-      ),
-    );
+    return SingleChildScrollView(
+        child: Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        if (_addHeader)
+          LessonHeader(lesson: lesson)
+        else
+          const SizedBox(height: _padding),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: _padding),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            mainAxisSize: MainAxisSize.min,
+            children: lesson.content[index],
+          ),
+        ),
+        if (_addCompleteButton) Center(child: LessonCompleteButton()),
+      ],
+    ));
   }
 }
