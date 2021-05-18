@@ -7,6 +7,6 @@ class LocalLearnStructureRepository implements LearnStructureRepository {
   @override
   Future<LearnStructure> get loadStructure async {
     await Future<void>.delayed(const Duration(milliseconds: 300));
-    return const LearnStructure(worlds: worlds);
+    return LearnStructure(worlds: worlds);
   }
 }

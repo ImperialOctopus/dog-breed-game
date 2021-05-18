@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../bloc/progress/progress_cubit.dart';
-import '../../../model/level/question.dart';
-import '../../../model/level/quiz.dart';
-import '../../../model/progress/progress_item_score.dart';
-import '../../../model/quiz_result.dart';
-import '../../../model/world.dart';
-import '../../../theme/animation.dart';
-import 'quiz/question_page.dart';
-import 'quiz/quiz_intro_page.dart';
-import 'quiz/result_page.dart';
+import '../../../../bloc/progress/progress_cubit.dart';
+import '../../../../model/level/question.dart';
+import '../../../../model/level/quiz.dart';
+import '../../../../model/progress/progress_item_score.dart';
+import '../../../../model/quiz_result.dart';
+import '../../../../model/world.dart';
+import '../../../../theme/animation.dart';
+import 'question_page.dart';
+import 'quiz_intro_page.dart';
+import 'result_page.dart';
 
 /// State for quiz screen.
 enum QuizScreenPage {

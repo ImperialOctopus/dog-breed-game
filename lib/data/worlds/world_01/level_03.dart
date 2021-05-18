@@ -8,7 +8,9 @@ const level_03 = Lesson(
   title: 'Level 3',
   subtitle: 'Filling In Some Gaps',
   imagePath: 'assets/sample/pom.jpg',
-  children: [
-    Text('Lesson 3'),
+  content: [
+    [
+      Text('Lesson 3'),
+    ],
   ],
 );

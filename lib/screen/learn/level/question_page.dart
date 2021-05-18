@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../../../../components/fixed_height_cover_box.dart';
-import '../../../../model/level/question.dart';
-import '../../../../theme/animation.dart';
-import '../../../../theme/answer_button_theme.dart';
+import '../../../components/fixed_height_cover_box.dart';
+import '../../../model/level/question.dart';
+import '../../../theme/animation.dart';
+import '../../../theme/answer_button_theme.dart';
 
 /// Page to display a single question.
 class QuestionPage extends StatelessWidget {
