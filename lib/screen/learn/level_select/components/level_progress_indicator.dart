@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-import '../../../../model/progress/progress_item.dart';
-import '../../../../model/progress/progress_item_score.dart';
+import '../../../../model/progress/level_progress.dart';
+import '../../../../model/progress/level_scored.dart';
 
 /// Indicator of progress through a level.
 class LevelProgressIndicator extends StatelessWidget {
   /// Progress to indicate.
-  final ProgressItem progress;
+  final LevelProgress progress;
 
   /// Indicator of progress through a level.
   const LevelProgressIndicator({required this.progress});
@@ -17,7 +17,7 @@ class LevelProgressIndicator extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        if (progress is ProgressItemScore)
+        if (progress is LevelScored)
           Padding(
             padding: const EdgeInsets.only(right: _spacing),
             child: Text((progress.result * 100).round().toString() + '\%'),

@@ -4,10 +4,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../bloc/progress/progress_cubit.dart';
 import '../../../../model/level/question.dart';
 import '../../../../model/level/quiz.dart';
-import '../../../../model/progress/progress_item_score.dart';
 import '../../../../model/quiz_result.dart';
-import '../../../../model/world.dart';
 import '../../../../theme/animation.dart';
+import '../../../model/progress/level_scored.dart';
 import 'question_page.dart';
 import 'quiz_intro_page.dart';
 import 'result_page.dart';
@@ -26,14 +25,11 @@ enum QuizScreenPage {
 
 /// Screen to show a quiz.
 class QuizScreen extends StatefulWidget {
-  /// World that owns this quiz.
-  final World world;
-
   /// Quiz to display.
   final Quiz quiz;
 
   /// Screen to show a quiz.
-  const QuizScreen({required this.world, required this.quiz});
+  const QuizScreen({required this.quiz});
 
   @override
   _QuizScreenState createState() => _QuizScreenState();
@@ -128,9 +124,8 @@ class _QuizScreenState extends State<QuizScreen> {
       });
     } else {
       BlocProvider.of<ProgressCubit>(context).updateProgress(
-        widget.world.label,
-        widget.quiz.label,
-        ProgressItemScore(score, quiz.questions.length),
+        widget.quiz,
+        LevelScored(score, widget.quiz.questions.length),
       );
       setState(() {
         page = QuizScreenPage.results;

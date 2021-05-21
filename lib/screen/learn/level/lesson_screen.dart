@@ -2,19 +2,15 @@ import 'package:flutter/material.dart';
 
 import '../../../components/page_indicator.dart';
 import '../../../model/level/lesson.dart';
-import '../../../model/world.dart';
 import 'lesson_page.dart';
 
 /// Screen to show a single lesson.
 class LessonScreen extends StatefulWidget {
-  /// World this belongs to.
-  final World world;
-
   /// Lesson to show on this screen.
   final Lesson lesson;
 
   /// Screen to show a single lesson.
-  const LessonScreen({required this.world, required this.lesson});
+  const LessonScreen({required this.lesson});
 
   @override
   _LessonScreenState createState() => _LessonScreenState();

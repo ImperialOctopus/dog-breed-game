@@ -4,16 +4,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../components/level_header.dart';
 import '../../../../components/level_progress_cubit_builder.dart';
 import '../../../../model/level/level.dart';
-import '../../../../model/world.dart';
 import '../../../../routes/bloc/router_bloc.dart';
 import '../../../../routes/bloc/router_event.dart';
 import 'level_progress_indicator.dart';
 
 /// Header with information about a level.
 class LevelSelectItem extends StatelessWidget {
-  /// World the level belongs to.
-  final World world;
-
   /// Level this selects.
   final Level level;
 
@@ -21,7 +17,7 @@ class LevelSelectItem extends StatelessWidget {
   static const double height = 100;
 
   /// Header with information about a level.
-  const LevelSelectItem({required this.world, required this.level});
+  const LevelSelectItem({required this.level});
 
   @override
   Widget build(BuildContext context) {
@@ -35,8 +31,7 @@ class LevelSelectItem extends StatelessWidget {
         ),
       ),
       trailing: LevelProgressCubitBuilder(
-        worldLabel: world.label,
-        levelLabel: level.label,
+        level: level,
         builder: (context, progress) =>
             LevelProgressIndicator(progress: progress),
       ),
