@@ -15,7 +15,7 @@ List<Page> buildRoutes(RouterState routerState) {
       if (routerState is RouterStateLearnWorld) ...[
         WorldRoute(world: routerState.world).page,
         if (routerState is RouterStateLearnLevel)
-          LevelRoute(world: routerState.world, level: routerState.level).page,
+          LevelRoute(level: routerState.level).page,
       ],
     ],
   ];

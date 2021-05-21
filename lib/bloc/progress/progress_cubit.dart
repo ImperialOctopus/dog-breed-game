@@ -1,7 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../model/level/level.dart';
+import '../../model/progress/level_progress.dart';
 import '../../model/progress/progress.dart';
-import '../../model/progress/progress_item.dart';
 import '../../repository/progress/progress_repository.dart';
 
 /// Cubit of progress after app loads.
@@ -16,17 +17,12 @@ class ProgressCubit extends Cubit<Progress> {
         super(initial);
 
   /// Update progress for an activity.
-  Future<void> updateProgress(
-      String worldLabel, String levelLabel, ProgressItem progressItem) async {
+  Future<void> updateProgress(Level level, LevelProgress newProgress) async {
     final _state = state;
-    final _previous = _state.getWorld(worldLabel).getLevel(levelLabel);
+    final _previous = _state.getLevel(level);
 
-    if (progressItem.result > _previous.result) {
-      final _newProgress = _state.replaceWorld(
-        worldLabel,
-        (worldProgress) => worldProgress.replaceLevel(
-            levelLabel, (levelProgress) => progressItem),
-      );
+    if (newProgress.result > _previous.result) {
+      final _newProgress = _state.setLevel(level, newProgress);
 
       emit(_newProgress);
       await _progressRepository.saveProgress(_newProgress);

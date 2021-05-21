@@ -36,7 +36,7 @@ class LevelSelectHeader extends StatelessWidget {
                 children: [
                   Text(world.title),
                   WorldProgressCubitBuilder(
-                    worldLabel: world.label,
+                    world: world,
                     builder: (context, progress) => Text(
                       progress.levelCount > 0
                           ? '${progress.complete} / ${progress.levelCount}'

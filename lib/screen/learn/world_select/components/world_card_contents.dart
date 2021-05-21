@@ -42,7 +42,7 @@ class WorldCardContents extends StatelessWidget {
             ),
             const Spacer(),
             WorldProgressCubitBuilder(
-              worldLabel: world.label,
+              world: world,
               builder: (context, progress) => Text(
                 progress.levelCount > 0
                     ? '${progress.complete} / ${progress.levelCount}'

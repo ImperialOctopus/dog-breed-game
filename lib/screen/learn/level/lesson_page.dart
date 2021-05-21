@@ -50,7 +50,8 @@ class LessonPage extends StatelessWidget {
             children: lesson.content[index],
           ),
         ),
-        if (_addCompleteButton) Center(child: LessonCompleteButton()),
+        if (_addCompleteButton)
+          Center(child: LessonCompleteButton(lesson: lesson)),
       ],
     ));
   }

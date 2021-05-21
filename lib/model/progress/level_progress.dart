@@ -1,5 +1,5 @@
 /// Progress for a level.
-abstract class ProgressItem {
+abstract class LevelProgress {
   /// Whether this item is complete.
   bool get complete;
 
@@ -7,5 +7,5 @@ abstract class ProgressItem {
   double get result;
 
   /// Progress for a level.
-  const ProgressItem();
+  const LevelProgress();
 }

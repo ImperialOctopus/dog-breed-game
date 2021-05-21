@@ -1,9 +1,9 @@
-import 'progress_item.dart';
+import 'level_progress.dart';
 
 /// Level complete.
-class ProgressItemComplete extends ProgressItem {
+class LevelComplete extends LevelProgress {
   /// Level complete.
-  const ProgressItemComplete();
+  const LevelComplete();
 
   @override
   bool get complete => true;
