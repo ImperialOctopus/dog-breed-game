@@ -1,5 +1,7 @@
+import 'question.dart';
+
 /// Question for a quiz.
-class Question {
+class ImageIdQuestion implements Question {
   /// Image path.
   final String imagePath;
 
@@ -7,7 +9,7 @@ class Question {
   final List<String> answers;
 
   /// Correct answer index.
-  final int correctAnswer;
+  final int _correctAnswer;
 
   /// Size of dog.
   final String? size;
@@ -15,12 +17,15 @@ class Question {
   /// Rarity of dog.
   final String? rarity;
 
+  @override
+  bool isCorrect(Object answer) => answer == _correctAnswer;
+
   /// Const constructor.
-  const Question({
+  const ImageIdQuestion({
     required this.imagePath,
     required this.answers,
-    required this.correctAnswer,
+    required int correctAnswer,
     this.size,
     this.rarity,
-  });
+  }) : _correctAnswer = correctAnswer;
 }

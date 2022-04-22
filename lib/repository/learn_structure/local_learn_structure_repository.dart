@@ -1,4 +1,4 @@
-import '../../data/worlds/worlds.dart';
+import '../../data/story/worlds.dart';
 import '../../model/learn_structure.dart';
 import 'learn_structure_repository.dart';
 

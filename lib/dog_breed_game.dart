@@ -13,7 +13,7 @@ import 'repository/progress/progress_repository.dart';
 import 'routes/bloc/router_bloc.dart';
 import 'routes/bloc/router_event.dart';
 import 'routes/bloc/router_state.dart';
-import 'routes/routes.dart';
+import 'routes/router.dart';
 import 'screen/splash/splash_screen.dart';
 import 'theme/theme.dart';
 
