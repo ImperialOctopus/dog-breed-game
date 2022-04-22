@@ -11,7 +11,7 @@ class MemoryProgressRepository implements ProgressRepository {
   Progress _progress = const Progress(levels: {
     '01_01_common_breeds': LevelScored(2, 7),
     '01_02_uncommon_breeds': LevelScored(5, 7),
-    '01_03_some_gaps': LevelScored(2, 10),
+    '01_03_some_gaps': LevelNotComplete(),
   });
 
   /// Progress repository stored only in memory.

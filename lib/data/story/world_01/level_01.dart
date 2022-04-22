@@ -1,4 +1,4 @@
-import '../../../model/level/question.dart';
+import '../../../model/questions/image_id_question.dart';
 import '../../../model/level/quiz.dart';
 
 /// Level 1 - Common breeds
@@ -8,7 +8,7 @@ const level_01 = Quiz(
   subtitle: 'Common Breeds',
   imagePath: 'assets/sample/labrador.jpg',
   questions: [
-    Question(
+    ImageIdQuestion(
       imagePath: 'assets/sample/labrador.jpg',
       answers: [
         'Dog',
@@ -20,18 +20,18 @@ const level_01 = Quiz(
       size: 'Small',
       rarity: 'Unobtainable',
     ),
-    Question(
+    ImageIdQuestion(
       imagePath: 'assets/sample/box.jpg',
       answers: [
         'Conglomerate',
         'Zebra',
         'Pog',
-        'Pug',
+        'Bug',
       ],
       correctAnswer: 1,
       size: 'Small',
     ),
-    Question(
+    ImageIdQuestion(
       imagePath: 'assets/sample/kiss.jpg',
       answers: [
         'Doge',
@@ -42,7 +42,7 @@ const level_01 = Quiz(
       correctAnswer: 3,
       size: 'Very Big',
     ),
-    Question(
+    ImageIdQuestion(
       imagePath: 'assets/sample/look.jpg',
       answers: [
         'SpongeBob',

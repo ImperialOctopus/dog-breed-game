@@ -1,38 +1,42 @@
 import 'package:flutter/material.dart';
 
-import '../../../components/fixed_height_cover_box.dart';
-import '../../../model/level/question.dart';
-import '../../../theme/animation.dart';
-import '../../../theme/answer_button_theme.dart';
+import '../../../../components/fixed_height_cover_box.dart';
+import '../../../../model/questions/image_id_question.dart';
+import '../../../../theme/animation.dart';
+import '../../../../theme/answer_button_theme.dart';
 
 /// Page to display a single question.
-class QuestionPage extends StatelessWidget {
+class ImageIdQuestionPage extends StatefulWidget {
   /// Question to display.
-  final Question question;
+  final ImageIdQuestion question;
 
   /// Progress to show on bar at the bottom.
   final double progress;
 
-  /// Answer the player chose.
-  final int? chosenAnswer;
-
   /// Callback when answer button is pressed.
-  final Function(int) onAnswerPressed;
+  final Function(bool) onQuestionAnswered;
 
   /// Callback when next button is pressed.
   final Function() onNextPressed;
 
   /// Page to display a single question.
-  const QuestionPage({
+  const ImageIdQuestionPage({
     required this.question,
     required this.progress,
-    required this.onAnswerPressed,
+    required this.onQuestionAnswered,
     required this.onNextPressed,
-    required this.chosenAnswer,
   });
 
   static const _switcherDuration = quizSwitcherDuration;
   static const _progressSlideDuration = Duration(milliseconds: 100);
+
+  @override
+  _ImageIdQuestionPageState createState() => _ImageIdQuestionPageState();
+}
+
+class _ImageIdQuestionPageState extends State<ImageIdQuestionPage> {
+  /// Answer the player chose.
+  int? chosenAnswer;
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +47,7 @@ class QuestionPage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           AnimatedSwitcher(
-            duration: _switcherDuration,
+            duration: ImageIdQuestionPage._switcherDuration,
             transitionBuilder: (child, animation) {
               return SlideTransition(
                 position: Tween<Offset>(
@@ -56,14 +60,14 @@ class QuestionPage extends StatelessWidget {
             switchOutCurve: const Threshold(0),
             switchInCurve: Curves.ease,
             child: FixedHeightCoverBox(
-              key: ValueKey<String>(question.imagePath),
+              key: ValueKey<String>(widget.question.imagePath),
               height: 300,
-              child: Image.asset(question.imagePath),
+              child: Image.asset(widget.question.imagePath),
             ),
           ),
           TweenAnimationBuilder<double>(
-            tween: Tween<double>(begin: 0, end: progress),
-            duration: _progressSlideDuration,
+            tween: Tween<double>(begin: 0, end: widget.progress),
+            duration: ImageIdQuestionPage._progressSlideDuration,
             builder: (context, progress, _) =>
                 LinearProgressIndicator(value: progress),
           ),
@@ -76,7 +80,7 @@ class QuestionPage extends StatelessWidget {
                   children: [
                     const Padding(
                         padding: EdgeInsets.all(5), child: Icon(Icons.rule)),
-                    Text(question.size ?? '???'),
+                    Text(widget.question.size ?? '???'),
                   ],
                 )),
                 Expanded(
@@ -84,7 +88,7 @@ class QuestionPage extends StatelessWidget {
                   children: [
                     const Padding(
                         padding: EdgeInsets.all(5), child: Icon(Icons.people)),
-                    Text(question.rarity ?? '???'),
+                    Text(widget.question.rarity ?? '???'),
                   ],
                 )),
               ],
@@ -128,7 +132,7 @@ class QuestionPage extends StatelessWidget {
       duration: const Duration(milliseconds: 200),
       child: OutlinedButton(
         onPressed: () => onAnswerPressed(answer),
-        child: Text(question.answers.elementAt(answer)),
+        child: Text(widget.question.answers.elementAt(answer)),
       ),
     );
   }
@@ -137,7 +141,7 @@ class QuestionPage extends StatelessWidget {
     if (chosenAnswer == null) {
       return answerDefaultStyle;
     }
-    if (thisAnswer == question.correctAnswer) {
+    if (widget.question.isCorrect(thisAnswer)) {
       return answerCorrectStyle;
     }
     if (thisAnswer == chosenAnswer) {
@@ -148,8 +152,15 @@ class QuestionPage extends StatelessWidget {
 
   Widget _nextPageButton() {
     return ElevatedButton(
-      onPressed: (chosenAnswer == null) ? null : onNextPressed,
+      onPressed: (chosenAnswer == null) ? null : widget.onNextPressed,
       child: const Text('Next'),
     );
+  }
+
+  void onAnswerPressed(int answer) {
+    setState(() {
+      chosenAnswer = answer;
+    });
+    widget.onQuestionAnswered(widget.question.isCorrect(answer));
   }
 }
