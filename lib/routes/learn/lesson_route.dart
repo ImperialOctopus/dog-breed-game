@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import '../../model/level/lesson.dart';
 import '../../model/level/level.dart';
 import '../../model/level/quiz.dart';
-import '../../screen/learn/quiz/lesson_screen.dart';
-import '../../screen/question_page/quiz_screen.dart';
+import '../../screens/learn/quiz/lesson_screen.dart';
+import '../../screens/question_page/quiz_screen.dart';
 import '../provides_page.dart';
 
 /// Route for a level.
