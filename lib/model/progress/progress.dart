@@ -1,4 +1,4 @@
-import '../../exception/progress_key_not_found_exception.dart';
+import '../../exceptions/progress_key_not_found_exception.dart';
 import '../level/level.dart';
 import '../world.dart';
 import 'level_progress.dart';

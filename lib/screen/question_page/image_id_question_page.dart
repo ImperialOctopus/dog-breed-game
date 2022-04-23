@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../../../../components/fixed_height_cover_box.dart';
-import '../../../../model/questions/image_id_question.dart';
-import '../../../../theme/animation.dart';
-import '../../../../theme/answer_button_theme.dart';
+import '../../components/fixed_height_cover_box.dart';
+import '../../model/questions/image_id_question.dart';
+import '../../theme/animation.dart';
+import '../../theme/answer_button_theme.dart';
 
 /// Page to display a single question.
 class ImageIdQuestionPage extends StatefulWidget {
