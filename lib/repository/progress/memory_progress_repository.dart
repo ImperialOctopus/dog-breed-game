@@ -1,4 +1,4 @@
-import '../../exception/progress_key_not_found_exception.dart';
+import '../../exceptions/progress_key_not_found_exception.dart';
 import '../../model/learn_structure.dart';
 import '../../model/progress/level_not_complete.dart';
 import '../../model/progress/level_progress.dart';
