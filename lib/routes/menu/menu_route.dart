@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../screen/menu/menu_screen.dart';
+import '../../screens/menu/menu_screen.dart';
 import '../provides_page.dart';
 
 /// Main menu route.

@@ -14,7 +14,7 @@ import 'routes/bloc/router_bloc.dart';
 import 'routes/bloc/router_event.dart';
 import 'routes/bloc/router_state.dart';
 import 'routes/router.dart';
-import 'screen/splash/splash_screen.dart';
+import 'screens/splash/splash_screen.dart';
 import 'theme/theme.dart';
 
 /// Main app that provides blocs.

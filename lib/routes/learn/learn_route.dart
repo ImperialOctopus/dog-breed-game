@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../model/learn_structure.dart';
-import '../../screen/learn/level_select/world_select_screen.dart';
+import '../../screens/learn/level_select/world_select_screen.dart';
 import '../provides_page.dart';
 
 /// Learn main route.
