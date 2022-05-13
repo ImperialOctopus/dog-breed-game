@@ -37,11 +37,12 @@ class MenuScreen extends StatelessWidget {
                   child: const Text('Learn'),
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.symmetric(vertical: 5),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 5),
                 child: ElevatedButton(
-                  onPressed: null,
-                  child: Text('Practice'),
+                  onPressed: () => BlocProvider.of<RouterBloc>(context)
+                      .add(const RouterEventPractice()),
+                  child: const Text('Practice'),
                 ),
               ),
             ],

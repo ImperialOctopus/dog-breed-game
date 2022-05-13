@@ -18,6 +18,15 @@ class RouterEventPop extends RouterEvent {
   List<Object?> get props => [];
 }
 
+/// Open the practice page.
+class RouterEventPractice extends RouterEvent {
+  /// Open the practice page.
+  const RouterEventPractice();
+
+  @override
+  List<Object?> get props => [];
+}
+
 /// Open the learn page.
 class RouterEventLearn extends RouterEvent {
   /// Open the learn page.
