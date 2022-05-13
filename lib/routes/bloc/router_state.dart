@@ -26,6 +26,18 @@ class RouterStateHome extends RouterState {
   List<Object?> get props => [];
 }
 
+/// /practice
+class RouterStatePractice extends RouterState {
+  /// /practice
+  const RouterStatePractice();
+
+  @override
+  RouterState get popsInto => const RouterStateHome();
+
+  @override
+  List<Object?> get props => [];
+}
+
 /// /learn
 class RouterStateLearn extends RouterState {
   /// /learn

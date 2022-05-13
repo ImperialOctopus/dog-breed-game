@@ -14,6 +14,14 @@ class RouterBloc extends Bloc<RouterEvent, RouterState> {
       yield state.popsInto;
       return;
     }
+
+    // Practice path
+    if (event is RouterEventPractice) {
+      yield const RouterStatePractice();
+      return;
+    }
+
+    // Learn path
     if (event is RouterEventLearn) {
       yield const RouterStateLearn();
       return;
@@ -30,8 +38,8 @@ class RouterBloc extends Bloc<RouterEvent, RouterState> {
           world: _state.world,
           level: _level,
         );
+        return;
       }
-      return;
     }
 
     throw FallThroughError();

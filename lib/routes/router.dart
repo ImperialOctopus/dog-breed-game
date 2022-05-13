@@ -5,11 +5,15 @@ import 'learn/learn_route.dart';
 import 'learn/lesson_route.dart';
 import 'learn/world_route.dart';
 import 'menu/menu_route.dart';
+import 'practice/quiz_settings_route.dart';
 
 /// Build the app's routes from the state of the router bloc.
 List<Page> buildRoutes(RouterState routerState) {
   return [
     const MenuRoute().page,
+    if (routerState is RouterStatePractice) ...[
+      const QuizSettingsRoute().page,
+    ],
     if (routerState is RouterStateLearn) ...[
       const LearnRoute().page,
       if (routerState is RouterStateLearnWorld) ...[
