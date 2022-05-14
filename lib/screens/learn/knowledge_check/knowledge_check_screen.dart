@@ -122,7 +122,7 @@ class _KnowledgeCheckScreenState extends State<KnowledgeCheckScreen> {
     }
     if (page == KnowledgeCheckState.results) {
       return KnowledgeCheckResultPage(
-        quiz: widget.knowledgeCheck,
+        knowledgeCheck: widget.knowledgeCheck,
         result: KnowledgeCheckResult(
           maxScore: widget.knowledgeCheck.questions.length,
           score: score,

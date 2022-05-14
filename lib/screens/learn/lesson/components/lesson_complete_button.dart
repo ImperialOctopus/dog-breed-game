@@ -4,8 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../bloc/progress/progress_cubit.dart';
 import '../../../../model/level/lesson.dart';
 import '../../../../model/progress/level_complete.dart';
-import '../../../../router/bloc/router_bloc.dart';
-import '../../../../router/bloc/router_event.dart';
+import '../../../../router/actions/router_pop.dart';
+import '../../../../router/router_bloc.dart';
 
 /// Button for the end of a lesson.
 class LessonCompleteButton extends StatelessWidget {
@@ -21,7 +21,7 @@ class LessonCompleteButton extends StatelessWidget {
       onPressed: () {
         BlocProvider.of<ProgressCubit>(context)
             .updateProgress(lesson, const LevelComplete());
-        BlocProvider.of<RouterBloc>(context).add(const RouterEventPop());
+        BlocProvider.of<RouterBloc>(context).add(const RouterPop());
       },
       child: Row(
         children: const [Text('Mark as Complete '), Icon(Icons.check)],

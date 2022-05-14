@@ -2,7 +2,7 @@ import '../questions/question.dart';
 import 'level.dart';
 
 /// Data for a quiz.
-class KnowledgeCheck implements Level {
+class KnowledgeCheck extends Level {
   /// List of questions.
   final List<Question> questions;
 

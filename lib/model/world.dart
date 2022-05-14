@@ -1,7 +1,9 @@
+import 'package:equatable/equatable.dart';
+
 import 'level/level.dart';
 
 /// Data structure for a world.
-class World {
+class World extends Equatable {
   /// Text to display as title.
   final String title;
 
@@ -25,4 +27,7 @@ class World {
     required this.imagePath,
     required this.levels,
   });
+
+  @override
+  List<Object?> get props => [title, description, subtitle, imagePath, levels];
 }

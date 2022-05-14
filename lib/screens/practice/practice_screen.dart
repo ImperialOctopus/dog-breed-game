@@ -2,16 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../model/practice/practice_settings.dart';
-import '../../router/bloc/router_bloc.dart';
-import '../../router/bloc/router_event.dart';
+import '../../router/actions/router_start_practice.dart';
+import '../../router/router_bloc.dart';
 
-/// Screen for the practice quiz.
+/// Screen to set up a practice quiz.
 class PracticeScreen extends StatelessWidget {
-  /// Settings for the quiz to play.
-  final PracticeSettings settings;
-
-  /// Screen for the practice quiz.
-  const PracticeScreen({required this.settings});
+  /// Screen to set up a practice quiz.
+  const PracticeScreen();
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +19,7 @@ class PracticeScreen extends StatelessWidget {
         children: [
           ElevatedButton(
             onPressed: () => BlocProvider.of<RouterBloc>(context)
-                .add(RouterEventPracticeQuiz(settings: settings)),
+                .add(RouterStartPractice(settings: PracticeSettings())),
             child: const Text('Start'),
           ),
         ],

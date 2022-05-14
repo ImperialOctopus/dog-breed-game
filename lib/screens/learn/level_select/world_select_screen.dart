@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../components/page_indicator.dart';
 import '../../../model/world.dart';
-import '../../../router/bloc/router_bloc.dart';
-import '../../../router/bloc/router_event.dart';
+import '../../../router/actions/router_open_world.dart';
+import '../../../router/router_bloc.dart';
 import 'components/sliding_card.dart';
 import 'components/world_card_contents.dart';
 
@@ -51,20 +51,21 @@ class _WorldSelectScreenState extends State<WorldSelectScreen> {
               child: PageView(
                 controller: pageController,
                 onPageChanged: (index) => setState(() => activePage = index),
-                children: widget.worlds.map((world) {
-                  return SlidingCard(
-                    image: Image.asset(
-                      world.imagePath,
-                      fit: BoxFit.cover,
-                    ),
-                    heroTag: world,
-                    child: WorldCardContents(
-                      world: world,
-                      onPressed: () => BlocProvider.of<RouterBloc>(context)
-                          .add(RouterEventWorldSelected(world: world)),
-                    ),
-                  );
-                }).toList(),
+                children: widget.worlds
+                    .map((world) => SlidingCard(
+                          image: Image.asset(
+                            world.imagePath,
+                            fit: BoxFit.cover,
+                          ),
+                          heroTag: world,
+                          child: WorldCardContents(
+                            world: world,
+                            onPressed: () =>
+                                BlocProvider.of<RouterBloc>(context)
+                                    .add(RouterOpenWorld(world: world)),
+                          ),
+                        ))
+                    .toList(),
               ),
             ),
             Padding(

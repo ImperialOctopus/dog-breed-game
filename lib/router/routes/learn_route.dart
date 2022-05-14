@@ -3,7 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../model/learn_structure.dart';
 import '../../screens/learn/level_select/world_select_screen.dart';
+import '../router_state.dart';
 import '../provides_page.dart';
+import 'menu_route.dart';
 
 /// Learn main route.
 class LearnRoute extends StatelessWidget implements ProvidesPage<void> {
@@ -21,4 +23,21 @@ class LearnRoute extends StatelessWidget implements ProvidesPage<void> {
 
   @override
   Page<void> get page => MaterialPage(child: this);
+}
+
+/// /learn
+class LearnRouteState extends RouterState {
+  /// /learn
+  const LearnRouteState();
+
+  @override
+  List<Page> get routes => [
+        const LearnRoute().page,
+      ];
+
+  @override
+  RouterState get popsInto => const MenuRouteState();
+
+  @override
+  List<Object?> get props => [];
 }

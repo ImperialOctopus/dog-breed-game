@@ -1,5 +1,7 @@
+import 'package:equatable/equatable.dart';
+
 /// Model of a level.
-abstract class Level {
+abstract class Level extends Equatable {
   /// Unique identifier of a level.
   String get label;
 
@@ -16,4 +18,7 @@ abstract class Level {
   /// [icon] is shown to the left of the title. [id] is used to store lesson
   /// progress.
   const Level();
+
+  @override
+  List<Object?> get props => [title, subtitle, imagePath, label];
 }
