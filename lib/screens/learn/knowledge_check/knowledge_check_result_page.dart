@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 
-import '../../../../components/level_header.dart';
-import '../../../../model/level/quiz.dart';
-import '../../../../model/quiz_result.dart';
+import '../../../../../components/level_header.dart';
+import '../../../../model/level/knowledge_check.dart';
+import '../../../../model/level/knowledge_check_result.dart';
 
 /// Screen to show results of quiz.
-class ResultPage extends StatelessWidget {
+class KnowledgeCheckResultPage extends StatelessWidget {
   /// Level this is the result for.
-  final Quiz quiz;
+  final KnowledgeCheck quiz;
 
   /// Score.
-  final QuizResult result;
+  final KnowledgeCheckResult result;
 
   /// Screen to show results of quiz.
-  const ResultPage({
+  const KnowledgeCheckResultPage({
     required this.quiz,
     required this.result,
   });

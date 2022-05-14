@@ -2,7 +2,7 @@ import '../questions/question.dart';
 import 'level.dart';
 
 /// Data for a quiz.
-class Quiz implements Level {
+class KnowledgeCheck implements Level {
   /// List of questions.
   final List<Question> questions;
 
@@ -19,7 +19,7 @@ class Quiz implements Level {
   final String label;
 
   /// Data for a quiz.
-  const Quiz({
+  const KnowledgeCheck({
     required this.label,
     required this.title,
     this.subtitle,

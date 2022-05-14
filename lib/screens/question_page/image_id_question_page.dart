@@ -11,7 +11,7 @@ class ImageIdQuestionPage extends StatefulWidget {
   final ImageIdQuestion question;
 
   /// Progress to show on bar at the bottom.
-  final double progress;
+  final double? progress;
 
   /// Callback when answer button is pressed.
   final Function(bool) onQuestionAnswered;

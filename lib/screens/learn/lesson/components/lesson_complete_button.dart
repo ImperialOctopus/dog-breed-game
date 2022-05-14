@@ -4,8 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../bloc/progress/progress_cubit.dart';
 import '../../../../model/level/lesson.dart';
 import '../../../../model/progress/level_complete.dart';
-import '../../../../routes/bloc/router_bloc.dart';
-import '../../../../routes/bloc/router_event.dart';
+import '../../../../router/bloc/router_bloc.dart';
+import '../../../../router/bloc/router_event.dart';
 
 /// Button for the end of a lesson.
 class LessonCompleteButton extends StatelessWidget {

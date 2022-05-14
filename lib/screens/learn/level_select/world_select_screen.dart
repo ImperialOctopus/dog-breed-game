@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../components/page_indicator.dart';
 import '../../../model/world.dart';
-import '../../../routes/bloc/router_bloc.dart';
-import '../../../routes/bloc/router_event.dart';
+import '../../../router/bloc/router_bloc.dart';
+import '../../../router/bloc/router_event.dart';
 import 'components/sliding_card.dart';
 import 'components/world_card_contents.dart';
 
