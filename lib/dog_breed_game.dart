@@ -10,10 +10,9 @@ import 'repository/learn_structure/learn_structure_repository.dart';
 import 'repository/learn_structure/local_learn_structure_repository.dart';
 import 'repository/progress/memory_progress_repository.dart';
 import 'repository/progress/progress_repository.dart';
-import 'router/bloc/router_bloc.dart';
-import 'router/bloc/router_event.dart';
-import 'router/bloc/router_state.dart';
-import 'router/router.dart';
+import 'router/actions/router_pop.dart';
+import 'router/router_bloc.dart';
+import 'router/router_state.dart';
 import 'screens/splash/splash_screen.dart';
 import 'theme/theme.dart';
 
@@ -90,7 +89,7 @@ class _AppView extends StatelessWidget {
     return BlocBuilder<RouterBloc, RouterState>(
         builder: (context, routerState) {
       return Navigator(
-        pages: buildRoutes(routerState),
+        pages: routerState.buildRouteStack,
         observers: [_heroController],
         onPopPage: (route, dynamic result) {
           if (!route.didPop(result)) {
@@ -98,7 +97,7 @@ class _AppView extends StatelessWidget {
           }
 
           // Update the list of pages by sending pop to the bloc.
-          BlocProvider.of<RouterBloc>(context).add(const RouterEventPop());
+          BlocProvider.of<RouterBloc>(context).add(const RouterPop());
 
           return true;
         },

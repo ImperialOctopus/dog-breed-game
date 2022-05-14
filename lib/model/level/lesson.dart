@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'level.dart';
 
 /// Informational lesson from a level.
-class Lesson implements Level {
+class Lesson extends Level {
   /// Widget to render as this lesson's main body.
   final List<List<Widget>> content;
 

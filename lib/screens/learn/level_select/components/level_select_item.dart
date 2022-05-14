@@ -4,8 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../components/level_header.dart';
 import '../../../../components/level_progress_cubit_builder.dart';
 import '../../../../model/level/level.dart';
-import '../../../../router/bloc/router_bloc.dart';
-import '../../../../router/bloc/router_event.dart';
+import '../../../../router/actions/router_open_level.dart';
+import '../../../../router/router_bloc.dart';
 import 'level_progress_indicator.dart';
 
 /// Header with information about a level.
@@ -39,7 +39,7 @@ class LevelSelectItem extends StatelessWidget {
       subtitle: level.subtitle,
       height: height,
       onTap: () => BlocProvider.of<RouterBloc>(context)
-          .add(RouterEventLevelSelected(level: level)),
+          .add(RouterOpenLevel(level: level)),
     );
   }
 }
