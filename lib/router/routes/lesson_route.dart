@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
+import '../../model/level/knowledge_check.dart';
 import '../../model/level/lesson.dart';
 import '../../model/level/level.dart';
-import '../../model/level/quiz.dart';
-import '../../screens/learn/quiz/lesson_screen.dart';
-import '../../screens/question_page/quiz_screen.dart';
+import '../../screens/learn/knowledge_check/knowledge_check_screen.dart';
+import '../../screens/learn/lesson/lesson_screen.dart';
 import '../provides_page.dart';
 
 /// Route for a level.
@@ -21,8 +21,8 @@ class LevelRoute extends StatelessWidget implements ProvidesPage<void> {
     final _level = level;
 
     // Return screen for the type of lesson this is.
-    if (_level is Quiz) {
-      return QuizScreen(quiz: _level);
+    if (_level is KnowledgeCheck) {
+      return KnowledgeCheckScreen(knowledgeCheck: _level);
     }
     if (_level is Lesson) {
       return LessonScreen(lesson: _level);

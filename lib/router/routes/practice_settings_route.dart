@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 
-import '../../screens/practice/quiz_settings_screen.dart';
+import '../../screens/practice/practice_settings_screen.dart';
 import '../provides_page.dart';
 
 /// Practice main route.
-class QuizSettingsRoute extends StatelessWidget implements ProvidesPage<void> {
+class PracticeSettingsRoute extends StatelessWidget
+    implements ProvidesPage<void> {
   /// Practice main route.
-  const QuizSettingsRoute();
+  const PracticeSettingsRoute();
 
   @override
   Widget build(BuildContext context) {

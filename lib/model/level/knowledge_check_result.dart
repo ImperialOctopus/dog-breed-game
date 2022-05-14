@@ -1,5 +1,5 @@
 /// Result from a quiz attempt.
-class QuizResult {
+class KnowledgeCheckResult {
   /// Highest possible score.
   final int maxScore;
 
@@ -7,5 +7,5 @@ class QuizResult {
   final int score;
 
   /// Result from a quiz attempt.
-  const QuizResult({required this.score, required this.maxScore});
+  const KnowledgeCheckResult({required this.score, required this.maxScore});
 }

@@ -1,8 +1,8 @@
 import 'package:equatable/equatable.dart';
 
+import '../../model/level/knowledge_check.dart';
 import '../../model/level/level.dart';
-import '../../model/level/quiz.dart';
-import '../../model/quiz_result.dart';
+import '../../model/practice/practice_settings.dart';
 import '../../model/world.dart';
 
 /// State for router bloc.
@@ -36,6 +36,21 @@ class RouterStatePractice extends RouterState {
 
   @override
   List<Object?> get props => [];
+}
+
+/// /practice/quiz
+class RouterStatePracticeQuiz extends RouterStatePractice {
+  /// Settings for the quiz.
+  final PracticeSettings settings;
+
+  /// /practice/quiz
+  const RouterStatePracticeQuiz({required this.settings});
+
+  @override
+  RouterState get popsInto => const RouterStatePractice();
+
+  @override
+  List<Object?> get props => [settings];
 }
 
 /// /learn
@@ -81,22 +96,24 @@ class RouterStateLearnLevel extends RouterStateLearnWorld {
   List<Object?> get props => [...super.props, level];
 }
 
-/// Show result of a quiz level.
-class RouterStateQuizResult extends RouterStateLearnWorld {
-  /// Score from the quiz.
-  final QuizResult result;
+/// Show result of a knowledge check level.
+class RouterStateKnowledgeCheckResult extends RouterStateLearnWorld {
+  /// Score from the knowledge check.
+  final KnowledgeCheck result;
 
-  /// Quiz level this is the result for.
-  final Quiz quiz;
+  /// Level this is the result for.
+  final KnowledgeCheck knowledgeCheck;
 
   /// Show result of a quiz level.
-  const RouterStateQuizResult(
-      {required World world, required this.quiz, required this.result})
+  const RouterStateKnowledgeCheckResult(
+      {required World world,
+      required this.knowledgeCheck,
+      required this.result})
       : super(world: world);
 
   @override
   RouterState get popsInto => RouterStateLearnWorld(world: world);
 
   @override
-  List<Object?> get props => [...super.props, quiz, result];
+  List<Object?> get props => [...super.props, knowledgeCheck, result];
 }

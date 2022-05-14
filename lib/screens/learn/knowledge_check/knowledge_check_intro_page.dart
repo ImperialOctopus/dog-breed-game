@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 
-import '../../../../model/level/quiz.dart';
+import '../../../../model/level/knowledge_check.dart';
 
-/// Intro page for quiz.
-class QuizIntroPage extends StatelessWidget {
+/// Introduces end-of-lesson quiz.
+class KnowledgeCheckIntroPage extends StatelessWidget {
   /// Quiz this introduces.
-  final Quiz quiz;
+  final KnowledgeCheck knowledgeCheck;
 
   /// Callback for next button is pressed.
   final VoidCallback onNext;
 
-  /// Intro page for quiz.
-  const QuizIntroPage({required this.quiz, required this.onNext});
+  /// Introduces end-of-lesson quiz.
+  const KnowledgeCheckIntroPage(
+      {required this.knowledgeCheck, required this.onNext});
 
   static const double _headerImageHeight = 200;
 
@@ -26,8 +27,8 @@ class QuizIntroPage extends StatelessWidget {
           SizedBox(
             height: _headerImageHeight,
             child: Hero(
-              tag: quiz,
-              child: Image.asset(quiz.imagePath, fit: BoxFit.cover),
+              tag: knowledgeCheck,
+              child: Image.asset(knowledgeCheck.imagePath, fit: BoxFit.cover),
             ),
           ),
           Padding(
@@ -35,8 +36,9 @@ class QuizIntroPage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                Text(quiz.title),
-                if (quiz.subtitle != null) Text(quiz.subtitle!),
+                Text(knowledgeCheck.title),
+                if (knowledgeCheck.subtitle != null)
+                  Text(knowledgeCheck.subtitle!),
               ],
             ),
           ),

@@ -1,8 +1,8 @@
 import '../../../model/questions/image_id_question.dart';
-import '../../../model/level/quiz.dart';
+import '../../../model/level/knowledge_check.dart';
 
 /// Level 1 - Common breeds
-const level_01 = Quiz(
+const level_01 = KnowledgeCheck(
   label: '01_01_common_breeds',
   title: 'Level 1',
   subtitle: 'Common Breeds',
