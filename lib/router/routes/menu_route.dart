@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import '../../screens/menu/menu_screen.dart';
 import '../router_state.dart';
 import '../provides_page.dart';
-import '../transitions/slide_up_transition.dart';
 
 /// Main menu route.
 class MenuRoute extends StatelessWidget with ProvidesPage<void> {
@@ -16,7 +15,7 @@ class MenuRoute extends StatelessWidget with ProvidesPage<void> {
   }
 
   @override
-  Page<void> get page => SlideUpTransition(child: this);
+  Page<void> get page => MaterialPage(child: this);
 }
 
 /// /
