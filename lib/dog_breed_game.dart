@@ -12,7 +12,6 @@ import 'repository/progress/memory_progress_repository.dart';
 import 'repository/progress/progress_repository.dart';
 import 'router/actions/router_pop.dart';
 import 'router/router_bloc.dart';
-import 'router/router_state.dart';
 import 'screens/splash/splash_screen.dart';
 import 'theme/theme.dart';
 
@@ -66,7 +65,7 @@ class _DogBreedGameState extends State<DogBreedGame> {
                     initial: state.progress,
                     progressRepository: _progressRepository,
                   ),
-                  child: _AppView(),
+                  child: _AppView(routerBloc: _routerBloc),
                 ),
               );
             } else if (state is SplashStateLoading) {
@@ -81,27 +80,48 @@ class _DogBreedGameState extends State<DogBreedGame> {
   }
 }
 
-class _AppView extends StatelessWidget {
+class _AppView extends StatefulWidget {
+  final RouterBloc routerBloc;
+
+  const _AppView({required this.routerBloc});
+
+  @override
+  _AppViewState createState() => _AppViewState();
+}
+
+class _AppViewState extends State<_AppView> {
   final _heroController = HeroController();
+
+  var _pages = <Page>[];
+
+  _AppViewState();
+
+  @override
+  void initState() {
+    super.initState();
+    updatePages(widget.routerBloc.state.buildRouteStack);
+    widget.routerBloc.listen((state) => updatePages(state.buildRouteStack));
+  }
+
+  void updatePages(List<Page<dynamic>> pages) => setState(() {
+        _pages = pages;
+      });
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<RouterBloc, RouterState>(
-        builder: (context, routerState) {
-      return Navigator(
-        pages: routerState.buildRouteStack,
-        observers: [_heroController],
-        onPopPage: (route, dynamic result) {
-          if (!route.didPop(result)) {
-            return false;
-          }
+    return Navigator(
+      pages: _pages,
+      observers: [_heroController],
+      onPopPage: (route, dynamic result) {
+        if (!route.didPop(result)) {
+          return false;
+        }
 
-          // Update the list of pages by sending pop to the bloc.
-          BlocProvider.of<RouterBloc>(context).add(const RouterPop());
+        // Update the list of pages by sending pop to the bloc.
+        BlocProvider.of<RouterBloc>(context).add(const RouterPop());
 
-          return true;
-        },
-      );
-    });
+        return true;
+      },
+    );
   }
 }
