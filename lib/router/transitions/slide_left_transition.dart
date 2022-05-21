@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 
 /// Page wrapper for slide left transition.
-class SlideLeftTransition<T> extends Page<T> {
+class SlideLeftTransition<T> extends MaterialPage<T> {
   /// Child widget.
+  @override
   final Widget child;
 
   /// Page wrapper for slide left transition.
-  const SlideLeftTransition({required this.child});
+  const SlideLeftTransition({required this.child, LocalKey? key})
+      : super(child: child, key: key);
 
   @override
   Route<T> createRoute(BuildContext context) {

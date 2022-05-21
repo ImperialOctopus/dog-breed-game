@@ -10,13 +10,15 @@ class PracticeRoute extends StatelessWidget implements ProvidesPage<void> {
   /// Practice main route.
   const PracticeRoute();
 
+  final _key = const ValueKey<Type>(PracticeRoute);
+
   @override
   Widget build(BuildContext context) {
     return const PracticeScreen();
   }
 
   @override
-  Page<void> get page => MaterialPage(child: this);
+  Page<void> get page => MaterialPage(child: this, key: _key);
 }
 
 /// /practice

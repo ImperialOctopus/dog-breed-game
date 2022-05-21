@@ -12,6 +12,8 @@ class LearnRoute extends StatelessWidget implements ProvidesPage<void> {
   /// Learn main route.
   const LearnRoute();
 
+  final _key = const ValueKey<Type>(LearnRoute);
+
   @override
   Widget build(BuildContext context) {
     // Learn structure is acquired here and used to build the world select.
@@ -22,7 +24,7 @@ class LearnRoute extends StatelessWidget implements ProvidesPage<void> {
   }
 
   @override
-  Page<void> get page => MaterialPage(child: this);
+  Page<void> get page => MaterialPage(child: this, key: _key);
 }
 
 /// /learn
