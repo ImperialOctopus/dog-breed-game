@@ -9,13 +9,15 @@ class MenuRoute extends StatelessWidget with ProvidesPage<void> {
   /// Main menu route.
   const MenuRoute();
 
+  final _key = const ValueKey<Type>(MenuRoute);
+
   @override
   Widget build(BuildContext context) {
     return const MenuScreen();
   }
 
   @override
-  Page<void> get page => MaterialPage(child: this);
+  Page<void> get page => MaterialPage(child: this, key: _key);
 }
 
 /// /

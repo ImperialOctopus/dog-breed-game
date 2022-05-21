@@ -14,13 +14,15 @@ class WorldRoute extends StatelessWidget implements ProvidesPage<void> {
   /// Level select inside a world.
   const WorldRoute({required this.world});
 
+  final _key = const ValueKey<Type>(WorldRoute);
+
   @override
   Widget build(BuildContext context) {
     return LevelSelectScreen(world: world);
   }
 
   @override
-  Page<void> get page => MaterialPage(child: this);
+  Page<void> get page => MaterialPage(child: this, key: _key);
 }
 
 /// /learn/{world}

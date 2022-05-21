@@ -15,13 +15,15 @@ class LevelRoute extends StatelessWidget implements ProvidesPage<void> {
   /// Route for a level.
   const LevelRoute({required this.level});
 
+  final _key = const ValueKey<Type>(LevelRoute);
+
   @override
   Widget build(BuildContext context) {
     return LevelScreen(level: level);
   }
 
   @override
-  Page<void> get page => MaterialPage(child: this);
+  Page<void> get page => MaterialPage(child: this, key: _key);
 }
 
 /// /learn/{world}/{level}
