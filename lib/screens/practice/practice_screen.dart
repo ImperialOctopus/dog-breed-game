@@ -15,18 +15,29 @@ class PracticeScreen extends StatefulWidget {
 }
 
 class _PracticeScreenState extends State<PracticeScreen> {
-  static const _defaultSettings =
-      PracticeSettings(questionNumber: 0, lives: 0, time: false, difficulty: 0);
-
-  static const _questionNumberText = <int?, String>{};
-
-  static const _livesText = <int?, String>{};
-
-  static const _difficultyText = <int?, String>{
-    0: '',
+  static const _questionNumberText = <int?, String>{
+    0: 'Endless',
+    25: '25 Questions',
+    15: '15 Questions',
+    5: '5 Questions',
   };
 
-  PracticeSettings settings = _defaultSettings;
+  static const _livesText = <int?, String>{
+    0: 'Unlimited',
+    5: '5 Lives',
+    3: '3 Lives',
+    1: 'No Mistakes',
+  };
+
+  static const _difficultyText = <int?, String>{
+    0: 'Common Breeds Only (1)',
+    1: 'Uncommon Breeds (2)',
+    2: 'Rare Breeds (3)',
+    3: 'All Breeds (4)'
+  };
+
+  PracticeSettings settings = const PracticeSettings(
+      questionNumber: 0, lives: 0, time: false, difficulty: 0);
 
   void _updateQuestionNumber(int? value) {
     if (value == null) {
@@ -64,22 +75,10 @@ class _PracticeScreenState extends State<PracticeScreen> {
     });
   }
 
-  Widget _buildModal({Widget? title, required Map<int?, String> listMap}) =>
-      Container(
-        height: 200,
-        color: Colors.amber,
-        child: Center(
-          child: ListView(
-            children: <Widget>[
-              if (title != null) title,
-              ...listMap.entries.map<Widget>(
-                (mapEntry) => ListTile(
-                  title: Text(mapEntry.value),
-                  onTap: () => Navigator.pop<int?>(context, mapEntry.key),
-                ),
-              ),
-            ],
-          ),
+  Widget _buildModal({required List<Widget> children}) => SafeArea(
+        child: ListView(
+          shrinkWrap: true,
+          children: children,
         ),
       );
 
@@ -87,62 +86,123 @@ class _PracticeScreenState extends State<PracticeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          const Text('Practice Quiz'),
-          Expanded(
-            child: ListView(
-              children: [
-                ListTile(
-                  title: const Text('Questions'),
-                  subtitle:
-                      Text(_questionNumberText[settings.questionNumber] ?? ''),
-                  onTap: () => showModalBottomSheet<int?>(
-                    context: context,
-                    builder: (BuildContext context) => _buildModal(
-                        title: const Text('Number of Questions'),
-                        listMap: _questionNumberText),
-                  ).then(_updateQuestionNumber),
-                ),
-                ListTile(
-                  title: const Text('Lives'),
-                  subtitle: Text(settings.questionNumber == 0
-                      ? 'Unlimited'
-                      : settings.questionNumber.toString()),
-                  onTap: () => showModalBottomSheet<int?>(
-                    context: context,
-                    builder: (BuildContext context) => _buildModal(
-                        title: const Text('Lives'),
-                        listMap: _questionNumberText),
-                  ).then(_updateQuestionNumber),
-                ),
-                SwitchListTile(
-                  title: const Text('Time Limit'),
-                  value: settings.time,
-                  onChanged: _updateTime,
-                ),
-                ListTile(
-                  title: const Text('Difficulty'),
-                  subtitle: Text(settings.difficulty.toString()),
-                  onTap: () => showModalBottomSheet<int?>(
-                    context: context,
-                    builder: (BuildContext context) => _buildModal(
-                        title: const Text('Difficulty'),
-                        listMap: _difficultyText),
-                  ).then(_updateDifficulty),
-                ),
-              ],
+      body: SafeArea(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Expanded(
+              child: ListView(
+                children: [
+                  ListTile(
+                    title: const Text('Questions'),
+                    subtitle: Text(
+                        _questionNumberText[settings.questionNumber] ?? ''),
+                    onTap: () => showModalBottomSheet<int?>(
+                      context: context,
+                      builder: (BuildContext context) => _buildModal(children: [
+                        ListTile(
+                          title: const Text('Endless'),
+                          onTap: () => Navigator.pop<int?>(context, 0),
+                        ),
+                        ListTile(
+                          title: const Text('Long (25)'),
+                          onTap: () => Navigator.pop<int?>(context, 25),
+                        ),
+                        ListTile(
+                          title: const Text('Normal (15)'),
+                          onTap: () => Navigator.pop<int?>(context, 15),
+                        ),
+                        ListTile(
+                          title: const Text('Quick (5)'),
+                          onTap: () => Navigator.pop<int?>(context, 5),
+                        ),
+                        ListTile(
+                          title: const Text('Cancel',
+                              style: TextStyle(color: Colors.red)),
+                          onTap: () => Navigator.pop<int?>(context, null),
+                        ),
+                      ]),
+                    ).then(_updateQuestionNumber),
+                  ),
+                  ListTile(
+                    title: const Text('Mistakes Allowed'),
+                    subtitle: Text(_livesText[settings.lives] ?? ''),
+                    onTap: () => showModalBottomSheet<int?>(
+                      context: context,
+                      builder: (BuildContext context) => _buildModal(children: [
+                        ListTile(
+                          title: const Text('Unlimited'),
+                          onTap: () => Navigator.pop<int?>(context, 0),
+                        ),
+                        ListTile(
+                          title: const Text('Normal (5 Lives)'),
+                          onTap: () => Navigator.pop<int?>(context, 5),
+                        ),
+                        ListTile(
+                          title: const Text('Challenge (3 Lives)'),
+                          onTap: () => Navigator.pop<int?>(context, 3),
+                        ),
+                        ListTile(
+                          title: const Text('No Mistakes (1 Life)'),
+                          onTap: () => Navigator.pop<int?>(context, 1),
+                        ),
+                        ListTile(
+                          title: const Text('Cancel',
+                              style: TextStyle(color: Colors.red)),
+                          onTap: () => Navigator.pop<int?>(context, null),
+                        ),
+                      ]),
+                    ).then(_updateLives),
+                  ),
+                  ListTile(
+                    title: const Text('Difficulty'),
+                    subtitle: Text(_difficultyText[settings.difficulty] ?? ''),
+                    onTap: () => showModalBottomSheet<int?>(
+                      context: context,
+                      builder: (BuildContext context) => _buildModal(children: [
+                        ListTile(
+                          title: const Text('Beginner (Common Breeds Only)'),
+                          onTap: () => Navigator.pop<int?>(context, 0),
+                        ),
+                        ListTile(
+                          title:
+                              const Text('Intermediate (Some Uncommon Breeds)'),
+                          onTap: () => Navigator.pop<int?>(context, 1),
+                        ),
+                        ListTile(
+                          title: const Text('Expert (Some Rare Breeds)'),
+                          onTap: () => Navigator.pop<int?>(context, 2),
+                        ),
+                        ListTile(
+                          title: const Text('Challenge (All Breeds)'),
+                          onTap: () => Navigator.pop<int?>(context, 3),
+                        ),
+                        ListTile(
+                          title: const Text('Cancel',
+                              style: TextStyle(color: Colors.red)),
+                          onTap: () => Navigator.pop<int?>(context, null),
+                        ),
+                      ]),
+                    ).then(_updateDifficulty),
+                  ),
+                  SwitchListTile(
+                    title: const Text('Time Limit'),
+                    value: settings.time,
+                    onChanged: _updateTime,
+                  ),
+                ],
+              ),
             ),
-          ),
-          Center(
-            child: ElevatedButton(
-              onPressed: () => BlocProvider.of<RouterBloc>(context)
-                  .add(RouterStartPractice(settings: settings)),
-              child: const Text('Start'),
+            Center(
+              child: ElevatedButton(
+                onPressed: () => BlocProvider.of<RouterBloc>(context)
+                    .add(RouterStartPractice(settings: settings)),
+                child: const Text('Start Practice!'),
+              ),
             ),
-          ),
-        ],
+            Container(height: 16),
+          ],
+        ),
       ),
     );
   }
