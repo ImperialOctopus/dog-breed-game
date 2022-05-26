@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../model/practice/practice_settings.dart';
 import '../../model/questions/question.dart';
-import '../../repository/question/questions_repository.dart';
+import '../../repository/question/question_repository.dart';
 import '../../router/actions/router_pop.dart';
 import '../../router/router_bloc.dart';
 import '../../theme/animation.dart';
@@ -35,7 +35,7 @@ class _PracticeQuizScreenState extends State<PracticeQuizScreen> {
   double get progress =>
       questionNumber == 0 ? 0 : questionsAnswered / questionNumber;
 
-  static const _introSwitchDuration = quizSwitcherDuration;
+  static const _introSwitchDuration = AnimationTheme.quizSwitcherDuration;
 
   @override
   void initState() {
