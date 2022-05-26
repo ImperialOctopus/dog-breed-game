@@ -27,7 +27,7 @@ class ImageIdQuestionPage extends StatefulWidget {
     required this.onNextPressed,
   });
 
-  static const _switcherDuration = quizSwitcherDuration;
+  static const _switcherDuration = AnimationTheme.quizSwitcherDuration;
   static const _progressSlideDuration = Duration(milliseconds: 100);
 
   @override

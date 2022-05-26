@@ -10,6 +10,8 @@ import 'repository/learn_structure/learn_structure_repository.dart';
 import 'repository/learn_structure/local_learn_structure_repository.dart';
 import 'repository/progress/memory_progress_repository.dart';
 import 'repository/progress/progress_repository.dart';
+import 'repository/question/local_question_repository.dart';
+import 'repository/question/question_repository.dart';
 import 'router/actions/router_pop.dart';
 import 'router/router_bloc.dart';
 import 'screens/splash/splash_screen.dart';
@@ -27,6 +29,7 @@ class DogBreedGame extends StatefulWidget {
 class _DogBreedGameState extends State<DogBreedGame> {
   late final ProgressRepository _progressRepository;
   late final LearnStructureRepository _learnStructureRepository;
+  late final QuestionRepository _questionRepository;
 
   late final RouterBloc _routerBloc;
   late final SplashBloc _splashBloc;
@@ -37,6 +40,7 @@ class _DogBreedGameState extends State<DogBreedGame> {
 
     _progressRepository = MemoryProgressRepository();
     _learnStructureRepository = LocalLearnStructureRepository();
+    _questionRepository = LocalQuestionRepository();
 
     _routerBloc = RouterBloc();
     _splashBloc = SplashBloc(
@@ -47,33 +51,43 @@ class _DogBreedGameState extends State<DogBreedGame> {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
+    return MultiRepositoryProvider(
       providers: [
-        BlocProvider.value(value: _routerBloc),
-        BlocProvider.value(value: _splashBloc),
+        RepositoryProvider<ProgressRepository>.value(
+            value: _progressRepository),
+        RepositoryProvider<QuestionRepository>.value(
+            value: _questionRepository),
+        RepositoryProvider<LearnStructureRepository>.value(
+            value: _learnStructureRepository),
       ],
-      child: MaterialApp(
-        title: 'Dog Breed Game',
-        theme: themeData,
-        home: BlocBuilder<SplashBloc, SplashState>(
-          builder: (context, state) {
-            if (state is SplashStateLoaded) {
-              return RepositoryProvider<LearnStructure>.value(
-                value: state.structure,
-                child: BlocProvider<ProgressCubit>(
-                  create: (context) => ProgressCubit(
-                    initial: state.progress,
-                    progressRepository: _progressRepository,
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider.value(value: _routerBloc),
+          BlocProvider.value(value: _splashBloc),
+        ],
+        child: MaterialApp(
+          title: 'Dog Breed Game',
+          theme: themeData,
+          home: BlocBuilder<SplashBloc, SplashState>(
+            builder: (context, state) {
+              if (state is SplashStateLoaded) {
+                return RepositoryProvider<LearnStructure>.value(
+                  value: state.structure,
+                  child: BlocProvider<ProgressCubit>(
+                    create: (context) => ProgressCubit(
+                      initial: state.progress,
+                      progressRepository: _progressRepository,
+                    ),
+                    child: _AppView(routerBloc: _routerBloc),
                   ),
-                  child: _AppView(routerBloc: _routerBloc),
-                ),
-              );
-            } else if (state is SplashStateLoading) {
-              return SplashScreen(state.loadingMessage ?? '');
-            } else {
-              return const SplashScreen();
-            }
-          },
+                );
+              } else if (state is SplashStateLoading) {
+                return SplashScreen(state.loadingMessage ?? '');
+              } else {
+                return const SplashScreen();
+              }
+            },
+          ),
         ),
       ),
     );

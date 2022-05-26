@@ -49,7 +49,7 @@ class _KnowledgeCheckScreenState extends State<KnowledgeCheckScreen> {
       (questionIndex + (currentQuestionAnswered ? 1 : 0)) /
       widget.knowledgeCheck.questions.length;
 
-  static const _introSwitchDuration = quizSwitcherDuration;
+  static const _introSwitchDuration = AnimationTheme.quizSwitcherDuration;
 
   @override
   void initState() {
