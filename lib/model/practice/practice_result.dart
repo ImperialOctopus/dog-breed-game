@@ -1,19 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-/// Reason for practice ending.
-enum PracticeEndReason {
-  /// Ran out of lives.
-  lives,
-
-  /// Ran out of time in a timed quiz.
-  time,
-
-  /// Ran out of questions.
-  questions,
-
-  /// User ended quiz early.
-  concede,
-}
+import 'practice_end_state.dart';
 
 /// Result from a practice quiz.
 class PracticeResult extends Equatable {
@@ -24,14 +11,14 @@ class PracticeResult extends Equatable {
   final int score;
 
   /// Reason for the end of the practice.
-  final PracticeEndReason practiceEndReason;
+  final PracticeEndState practiceEndState;
 
   /// Result from a practice quiz.
   const PracticeResult(
       {required this.mistakes,
       required this.score,
-      required this.practiceEndReason});
+      required this.practiceEndState});
 
   @override
-  List<Object?> get props => [mistakes, score, practiceEndReason];
+  List<Object?> get props => [mistakes, score, practiceEndState];
 }
