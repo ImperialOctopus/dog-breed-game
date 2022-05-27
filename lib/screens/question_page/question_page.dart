@@ -27,7 +27,7 @@ class QuestionPage extends StatelessWidget {
     required this.question,
     required this.progress,
     required this.onQuestionAnswered,
-    this.nextButton,
+    required this.nextButton,
     this.quizOver = false,
   }) : super(key: key);
 
@@ -40,6 +40,8 @@ class QuestionPage extends StatelessWidget {
         question: _question,
         progress: progress,
         onQuestionAnswered: onQuestionAnswered,
+        nextButton: nextButton,
+        quizOver: quizOver,
       );
     }
     throw FallThroughError();

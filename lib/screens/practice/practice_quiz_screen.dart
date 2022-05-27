@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../model/practice/practice_end_state.dart';
+import '../../model/practice/practice_result.dart';
 import '../../model/practice/practice_settings.dart';
 import '../../model/questions/question.dart';
 import '../../repository/question/question_repository.dart';
+import '../../router/actions/router_end_practice.dart';
+import '../../router/router_bloc.dart';
 import '../../theme/animation.dart';
 import '../question_page/question_page.dart';
 
@@ -80,6 +83,15 @@ class _PracticeQuizScreenState extends State<PracticeQuizScreen> {
   void onNextPressed() {
     setState(() {
       if (endState != PracticeEndState.continuing) {
+        BlocProvider.of<RouterBloc>(context).add(
+          RouterEndPractice(
+              settings: widget.settings,
+              result: PracticeResult(
+                mistakes: mistakesMade,
+                score: questionsAnswered - mistakesMade,
+                practiceEndState: endState,
+              )),
+        );
         return;
       }
 
@@ -116,7 +128,9 @@ class _PracticeQuizScreenState extends State<PracticeQuizScreen> {
         onQuestionAnswered: onQuestionAnswered,
         nextButton: ElevatedButton(
           onPressed: onNextPressed,
-          child: const Text('Next'),
+          child: endState == PracticeEndState.continuing
+              ? const Text('Next')
+              : const Text('Results'),
         ),
       ),
     );

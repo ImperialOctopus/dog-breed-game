@@ -19,16 +19,20 @@ class ImageIdQuestionPage extends StatefulWidget {
   /// Button for next page.
   final Widget? nextButton;
 
+  /// Change appearance for quiz ended.
+  final bool quizOver;
+
   /// Page to display a single question.
   const ImageIdQuestionPage({
     required this.question,
     required this.progress,
     required this.onQuestionAnswered,
-    this.nextButton,
+    required this.nextButton,
+    required this.quizOver,
   });
 
   static const _switcherDuration = AnimationTheme.quizSwitcherDuration;
-  static const _progressSlideDuration = Duration(milliseconds: 100);
+  static const _progressSlideDuration = AnimationTheme.progressSlideDuration;
 
   @override
   _ImageIdQuestionPageState createState() => _ImageIdQuestionPageState();
@@ -66,7 +70,8 @@ class _ImageIdQuestionPageState extends State<ImageIdQuestionPage> {
             ),
           ),
           TweenAnimationBuilder<double>(
-            tween: Tween<double>(begin: 0, end: widget.progress),
+            tween: Tween<double>(
+                begin: 0, end: widget.quizOver ? 1 : widget.progress),
             duration: ImageIdQuestionPage._progressSlideDuration,
             builder: (context, progress, _) =>
                 LinearProgressIndicator(value: progress),
