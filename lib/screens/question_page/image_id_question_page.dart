@@ -16,15 +16,15 @@ class ImageIdQuestionPage extends StatefulWidget {
   /// Callback when answer button is pressed.
   final Function(bool) onQuestionAnswered;
 
-  /// Callback when next button is pressed.
-  final Function() onNextPressed;
+  /// Button for next page.
+  final Widget? nextButton;
 
   /// Page to display a single question.
   const ImageIdQuestionPage({
     required this.question,
     required this.progress,
     required this.onQuestionAnswered,
-    required this.onNextPressed,
+    this.nextButton,
   });
 
   static const _switcherDuration = AnimationTheme.quizSwitcherDuration;
@@ -117,10 +117,11 @@ class _ImageIdQuestionPageState extends State<ImageIdQuestionPage> {
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 10),
-            child: Center(child: _nextPageButton()),
-          ),
+          if (widget.nextButton != null && chosenAnswer != null)
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 10),
+              child: Center(child: widget.nextButton),
+            ),
         ],
       ),
     );
@@ -150,14 +151,8 @@ class _ImageIdQuestionPageState extends State<ImageIdQuestionPage> {
     return answerDefaultStyle;
   }
 
-  Widget _nextPageButton() {
-    return ElevatedButton(
-      onPressed: (chosenAnswer == null) ? null : widget.onNextPressed,
-      child: const Text('Next'),
-    );
-  }
-
   void onAnswerPressed(int answer) {
+    if (chosenAnswer != null) return;
     setState(() {
       chosenAnswer = answer;
     });

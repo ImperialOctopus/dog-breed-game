@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../model/practice/practice_end_state.dart';
 import '../../model/practice/practice_settings.dart';
 import '../../model/questions/question.dart';
 import '../../repository/question/question_repository.dart';
-import '../../router/actions/router_pop.dart';
-import '../../router/router_bloc.dart';
 import '../../theme/animation.dart';
 import '../question_page/question_page.dart';
 
@@ -29,6 +28,7 @@ class _PracticeQuizScreenState extends State<PracticeQuizScreen> {
   late final Question Function() questionGenerator;
   late Question currentQuestion;
 
+  PracticeEndState endState = PracticeEndState.continuing;
   int questionsAnswered = 0;
   int mistakesMade = 0;
 
@@ -50,23 +50,39 @@ class _PracticeQuizScreenState extends State<PracticeQuizScreen> {
     setState(() {
       if (!correct) {
         mistakesMade += 1;
+
+        if (lives > 0 && mistakesMade >= lives) {
+          // ran out of lives
+          endState = PracticeEndState.lives;
+        }
       }
       questionsAnswered += 1;
+
+      if (questionNumber > 0 && questionsAnswered >= questionNumber) {
+        // ran out of questions
+        endState = PracticeEndState.questions;
+      }
+    });
+  }
+
+  void onTimeExpires() {
+    setState(() {
+      endState = PracticeEndState.time;
+    });
+  }
+
+  void onConcede() {
+    setState(() {
+      endState = PracticeEndState.concede;
     });
   }
 
   void onNextPressed() {
     setState(() {
-      if (lives > 0 && mistakesMade >= lives) {
-        // ran out of lives
-        BlocProvider.of<RouterBloc>(context).add(const RouterPop());
+      if (endState != PracticeEndState.continuing) {
         return;
       }
-      if (questionNumber > 0 && questionsAnswered >= questionNumber) {
-        // ran out of questions
-        BlocProvider.of<RouterBloc>(context).add(const RouterPop());
-        return;
-      }
+
       // Repeat generation if we get the same question again.
       var _nextQuestion = questionGenerator();
       while (_nextQuestion == currentQuestion) {
@@ -96,8 +112,12 @@ class _PracticeQuizScreenState extends State<PracticeQuizScreen> {
         key: ValueKey(currentQuestion),
         question: currentQuestion,
         progress: progress,
-        onNextPressed: onNextPressed,
+        quizOver: endState != PracticeEndState.continuing,
         onQuestionAnswered: onQuestionAnswered,
+        nextButton: ElevatedButton(
+          onPressed: onNextPressed,
+          child: const Text('Next'),
+        ),
       ),
     );
   }
