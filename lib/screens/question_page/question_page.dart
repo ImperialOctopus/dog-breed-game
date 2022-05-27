@@ -20,11 +20,12 @@ class QuestionPage extends StatelessWidget {
 
   /// Page to display a question.
   const QuestionPage({
+    Key? key,
     required this.question,
     required this.progress,
     required this.onQuestionAnswered,
     required this.onNextPressed,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

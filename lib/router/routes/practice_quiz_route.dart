@@ -15,7 +15,7 @@ class PracticeQuizRoute extends StatelessWidget implements ProvidesPage<void> {
   /// Practice main route.
   const PracticeQuizRoute({required this.settings});
 
-  final _key = const ValueKey<Type>(PracticeQuizRoute);
+  LocalKey get _key => const ValueKey<Type>(PracticeQuizRoute);
 
   @override
   Widget build(BuildContext context) {

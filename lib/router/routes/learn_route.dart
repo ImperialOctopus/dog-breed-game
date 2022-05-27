@@ -5,6 +5,7 @@ import '../../model/learn_structure.dart';
 import '../../screens/learn/level_select/world_select_screen.dart';
 import '../router_state.dart';
 import '../provides_page.dart';
+import '../transitions/default_transition.dart';
 import 'menu_route.dart';
 
 /// Learn main route.
@@ -12,7 +13,7 @@ class LearnRoute extends StatelessWidget implements ProvidesPage<void> {
   /// Learn main route.
   const LearnRoute();
 
-  final _key = const ValueKey<Type>(LearnRoute);
+  LocalKey get _key => const ValueKey<Type>(LearnRoute);
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +25,7 @@ class LearnRoute extends StatelessWidget implements ProvidesPage<void> {
   }
 
   @override
-  Page<void> get page => MaterialPage(child: this, key: _key);
+  Page<void> get page => DefaultTransition(child: this, key: _key);
 }
 
 /// /learn
