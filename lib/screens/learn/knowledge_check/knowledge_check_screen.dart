@@ -86,20 +86,23 @@ class _KnowledgeCheckScreenState extends State<KnowledgeCheckScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedSwitcher(
-      duration: _introSwitchDuration,
-      transitionBuilder: (child, animation) {
-        return SlideTransition(
-          position: Tween<Offset>(
-            begin: const Offset(1, 0),
-            end: Offset.zero,
-          ).animate(animation),
-          child: child,
-        );
-      },
-      switchOutCurve: const Threshold(0),
-      switchInCurve: Curves.ease,
-      child: _buildChild(page),
+    return Scaffold(
+      appBar: AppBar(),
+      body: AnimatedSwitcher(
+        duration: _introSwitchDuration,
+        transitionBuilder: (child, animation) {
+          return SlideTransition(
+            position: Tween<Offset>(
+              begin: const Offset(1, 0),
+              end: Offset.zero,
+            ).animate(animation),
+            child: child,
+          );
+        },
+        switchOutCurve: const Threshold(0),
+        switchInCurve: Curves.ease,
+        child: _buildChild(page),
+      ),
     );
   }
 
