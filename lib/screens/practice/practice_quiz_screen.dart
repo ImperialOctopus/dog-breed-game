@@ -74,27 +74,25 @@ class _PracticeQuizScreenState extends State<PracticeQuizScreen> {
     });
   }
 
-  void onConcede() {
-    setState(() {
-      endState = PracticeEndState.concede;
-    });
+  void onConcedePressed() {
+    endState = PracticeEndState.concede;
+    onNextPressed();
   }
 
   void onNextPressed() {
+    if (endState != PracticeEndState.continuing) {
+      BlocProvider.of<RouterBloc>(context).add(
+        RouterEndPractice(
+            settings: widget.settings,
+            result: PracticeResult(
+              mistakes: mistakesMade,
+              score: questionsAnswered - mistakesMade,
+              practiceEndState: endState,
+            )),
+      );
+      return;
+    }
     setState(() {
-      if (endState != PracticeEndState.continuing) {
-        BlocProvider.of<RouterBloc>(context).add(
-          RouterEndPractice(
-              settings: widget.settings,
-              result: PracticeResult(
-                mistakes: mistakesMade,
-                score: questionsAnswered - mistakesMade,
-                practiceEndState: endState,
-              )),
-        );
-        return;
-      }
-
       // Repeat generation if we get the same question again.
       var _nextQuestion = questionGenerator();
       while (_nextQuestion == currentQuestion) {
@@ -107,30 +105,35 @@ class _PracticeQuizScreenState extends State<PracticeQuizScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedSwitcher(
-      duration: _introSwitchDuration,
-      transitionBuilder: (child, animation) {
-        return SlideTransition(
-          position: Tween<Offset>(
-            begin: const Offset(1, 0),
-            end: Offset.zero,
-          ).animate(animation),
-          child: child,
-        );
-      },
-      switchOutCurve: const Threshold(0),
-      switchInCurve: Curves.ease,
-      child: QuestionPage(
-        key: ValueKey(currentQuestion),
-        question: currentQuestion,
-        progress: progress,
-        quizOver: endState != PracticeEndState.continuing,
-        onQuestionAnswered: onQuestionAnswered,
-        nextButton: ElevatedButton(
-          onPressed: onNextPressed,
-          child: endState == PracticeEndState.continuing
-              ? const Text('Next')
-              : const Text('Results'),
+    return Scaffold(
+      appBar: AppBar(actions: [
+        IconButton(onPressed: onConcedePressed, icon: const Icon(Icons.cancel)),
+      ]),
+      body: AnimatedSwitcher(
+        duration: _introSwitchDuration,
+        transitionBuilder: (child, animation) {
+          return SlideTransition(
+            position: Tween<Offset>(
+              begin: const Offset(1, 0),
+              end: Offset.zero,
+            ).animate(animation),
+            child: child,
+          );
+        },
+        switchOutCurve: const Threshold(0),
+        switchInCurve: Curves.ease,
+        child: QuestionPage(
+          key: ValueKey(currentQuestion),
+          question: currentQuestion,
+          progress: progress,
+          quizOver: endState != PracticeEndState.continuing,
+          onQuestionAnswered: onQuestionAnswered,
+          nextButton: ElevatedButton(
+            onPressed: onNextPressed,
+            child: endState == PracticeEndState.continuing
+                ? const Text('Next')
+                : const Text('Results'),
+          ),
         ),
       ),
     );

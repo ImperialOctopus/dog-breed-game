@@ -44,91 +44,88 @@ class _ImageIdQuestionPageState extends State<ImageIdQuestionPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          AnimatedSwitcher(
-            duration: ImageIdQuestionPage._switcherDuration,
-            transitionBuilder: (child, animation) {
-              return SlideTransition(
-                position: Tween<Offset>(
-                  begin: const Offset(1, 0),
-                  end: Offset.zero,
-                ).animate(animation),
-                child: child,
-              );
-            },
-            switchOutCurve: const Threshold(0),
-            switchInCurve: Curves.ease,
-            child: FixedHeightCoverBox(
-              key: ValueKey<String>(widget.question.imagePath),
-              height: 300,
-              child: Image.asset(widget.question.imagePath),
-            ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        AnimatedSwitcher(
+          duration: ImageIdQuestionPage._switcherDuration,
+          transitionBuilder: (child, animation) {
+            return SlideTransition(
+              position: Tween<Offset>(
+                begin: const Offset(1, 0),
+                end: Offset.zero,
+              ).animate(animation),
+              child: child,
+            );
+          },
+          switchOutCurve: const Threshold(0),
+          switchInCurve: Curves.ease,
+          child: FixedHeightCoverBox(
+            key: ValueKey<String>(widget.question.imagePath),
+            height: 300,
+            child: Image.asset(widget.question.imagePath),
           ),
-          TweenAnimationBuilder<double>(
-            tween: Tween<double>(
-                begin: 0, end: widget.quizOver ? 1 : widget.progress),
-            duration: ImageIdQuestionPage._progressSlideDuration,
-            builder: (context, progress, _) =>
-                LinearProgressIndicator(value: progress),
+        ),
+        TweenAnimationBuilder<double>(
+          tween: Tween<double>(
+              begin: 0, end: widget.quizOver ? 1 : widget.progress),
+          duration: ImageIdQuestionPage._progressSlideDuration,
+          builder: (context, progress, _) =>
+              LinearProgressIndicator(value: progress),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(10),
+          child: Row(
+            children: [
+              Expanded(
+                  child: Row(
+                children: [
+                  const Padding(
+                      padding: EdgeInsets.all(5), child: Icon(Icons.rule)),
+                  Text(widget.question.size ?? '???'),
+                ],
+              )),
+              Expanded(
+                  child: Row(
+                children: [
+                  const Padding(
+                      padding: EdgeInsets.all(5), child: Icon(Icons.people)),
+                  Text(widget.question.rarity ?? '???'),
+                ],
+              )),
+            ],
           ),
-          Padding(
-            padding: const EdgeInsets.all(10),
-            child: Row(
+        ),
+        Expanded(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Expanded(
-                    child: Row(
-                  children: [
-                    const Padding(
-                        padding: EdgeInsets.all(5), child: Icon(Icons.rule)),
-                    Text(widget.question.size ?? '???'),
-                  ],
-                )),
-                Expanded(
-                    child: Row(
-                  children: [
-                    const Padding(
-                        padding: EdgeInsets.all(5), child: Icon(Icons.people)),
-                    Text(widget.question.rarity ?? '???'),
-                  ],
-                )),
+                Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Row(children: [
+                        Expanded(child: _answerButton(0)),
+                        Expanded(child: _answerButton(1)),
+                      ]),
+                      Row(children: [
+                        Expanded(child: _answerButton(2)),
+                        Expanded(child: _answerButton(3)),
+                      ]),
+                    ]),
               ],
             ),
           ),
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Row(children: [
-                          Expanded(child: _answerButton(0)),
-                          Expanded(child: _answerButton(1)),
-                        ]),
-                        Row(children: [
-                          Expanded(child: _answerButton(2)),
-                          Expanded(child: _answerButton(3)),
-                        ]),
-                      ]),
-                ],
-              ),
-            ),
+        ),
+        if (widget.nextButton != null && chosenAnswer != null)
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 10),
+            child: Center(child: widget.nextButton),
           ),
-          if (widget.nextButton != null && chosenAnswer != null)
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 10),
-              child: Center(child: widget.nextButton),
-            ),
-        ],
-      ),
+      ],
     );
   }
 

@@ -20,29 +20,26 @@ class KnowledgeCheckResultPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          LevelHeader(
-            leading: Hero(
-              tag: knowledgeCheck,
-              child: Image.asset(knowledgeCheck.imagePath, fit: BoxFit.cover),
-            ),
-            title: knowledgeCheck.title,
-            subtitle: knowledgeCheck.subtitle,
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        LevelHeader(
+          leading: Hero(
+            tag: knowledgeCheck,
+            child: Image.asset(knowledgeCheck.imagePath, fit: BoxFit.cover),
           ),
-          const Spacer(),
-          const Text('Your Score:'),
-          Text(
-            ((result.score / result.maxScore) * 100).toStringAsFixed(0) + '%',
-            style: Theme.of(context).textTheme.headline2,
-          ),
-          const Spacer(),
-        ],
-      ),
+          title: knowledgeCheck.title,
+          subtitle: knowledgeCheck.subtitle,
+        ),
+        const Spacer(),
+        const Text('Your Score:'),
+        Text(
+          ((result.score / result.maxScore) * 100).toStringAsFixed(0) + '%',
+          style: Theme.of(context).textTheme.headline2,
+        ),
+        const Spacer(),
+      ],
     );
   }
 }
