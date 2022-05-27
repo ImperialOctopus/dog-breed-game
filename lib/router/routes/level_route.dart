@@ -5,6 +5,7 @@ import '../../model/world.dart';
 import '../../screens/learn/level_screen.dart';
 import '../router_state.dart';
 import '../provides_page.dart';
+import '../transitions/default_transition.dart';
 import 'world_route.dart';
 
 /// Route for a level.
@@ -15,7 +16,7 @@ class LevelRoute extends StatelessWidget implements ProvidesPage<void> {
   /// Route for a level.
   const LevelRoute({required this.level});
 
-  final _key = const ValueKey<Type>(LevelRoute);
+  LocalKey get _key => const ValueKey<Type>(LevelRoute);
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +24,7 @@ class LevelRoute extends StatelessWidget implements ProvidesPage<void> {
   }
 
   @override
-  Page<void> get page => MaterialPage(child: this, key: _key);
+  Page<void> get page => DefaultTransition(child: this, key: _key);
 }
 
 /// /learn/{world}/{level}

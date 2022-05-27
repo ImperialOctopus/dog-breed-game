@@ -67,8 +67,13 @@ class _PracticeQuizScreenState extends State<PracticeQuizScreen> {
         BlocProvider.of<RouterBloc>(context).add(const RouterPop());
         return;
       }
+      // Repeat generation if we get the same question again.
+      var _nextQuestion = questionGenerator();
+      while (_nextQuestion == currentQuestion) {
+        _nextQuestion = questionGenerator();
+      }
       // Move on to next question.
-      currentQuestion = questionGenerator();
+      currentQuestion = _nextQuestion;
     });
   }
 
@@ -88,6 +93,7 @@ class _PracticeQuizScreenState extends State<PracticeQuizScreen> {
       switchOutCurve: const Threshold(0),
       switchInCurve: Curves.ease,
       child: QuestionPage(
+        key: ValueKey(currentQuestion),
         question: currentQuestion,
         progress: progress,
         onNextPressed: onNextPressed,

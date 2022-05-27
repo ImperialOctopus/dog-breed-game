@@ -3,13 +3,14 @@ import 'package:flutter/material.dart';
 import '../../screens/menu/menu_screen.dart';
 import '../router_state.dart';
 import '../provides_page.dart';
+import '../transitions/default_transition.dart';
 
 /// Main menu route.
 class MenuRoute extends StatelessWidget with ProvidesPage<void> {
   /// Main menu route.
   const MenuRoute();
 
-  final _key = const ValueKey<Type>(MenuRoute);
+  LocalKey get _key => const ValueKey<Type>(MenuRoute);
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +18,7 @@ class MenuRoute extends StatelessWidget with ProvidesPage<void> {
   }
 
   @override
-  Page<void> get page => MaterialPage(child: this, key: _key);
+  Page<void> get page => DefaultTransition(child: this, key: _key);
 }
 
 /// /

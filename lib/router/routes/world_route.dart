@@ -4,6 +4,7 @@ import '../../model/world.dart';
 import '../../screens/learn/level_select/level_select_screen.dart';
 import '../router_state.dart';
 import '../provides_page.dart';
+import '../transitions/default_transition.dart';
 import 'learn_route.dart';
 
 /// Level select inside a world.
@@ -14,7 +15,7 @@ class WorldRoute extends StatelessWidget implements ProvidesPage<void> {
   /// Level select inside a world.
   const WorldRoute({required this.world});
 
-  final _key = const ValueKey<Type>(WorldRoute);
+  LocalKey get _key => const ValueKey<Type>(WorldRoute);
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +23,7 @@ class WorldRoute extends StatelessWidget implements ProvidesPage<void> {
   }
 
   @override
-  Page<void> get page => MaterialPage(child: this, key: _key);
+  Page<void> get page => DefaultTransition(child: this, key: _key);
 }
 
 /// /learn/{world}
