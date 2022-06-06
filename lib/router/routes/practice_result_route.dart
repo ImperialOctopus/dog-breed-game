@@ -46,8 +46,8 @@ class PracticeResultRouteState extends RouterState {
 
   @override
   List<Page> get routes => [
-        PracticeResultRoute(settings: settings, result: result).page,
         PracticeQuizRoute(settings: settings).page,
+        PracticeResultRoute(settings: settings, result: result).page,
       ];
 
   @override

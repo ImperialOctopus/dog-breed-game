@@ -19,7 +19,7 @@ class PracticeResultScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(),
       body: SafeArea(
-        child: Center(child: Text(result.score.toString())),
+        child: Center(child: Text(result.toString())),
       ),
     );
   }
