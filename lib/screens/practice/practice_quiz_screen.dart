@@ -81,15 +81,17 @@ class _PracticeQuizScreenState extends State<PracticeQuizScreen> {
 
   void onNextPressed() {
     if (endState != PracticeEndState.continuing) {
-      BlocProvider.of<RouterBloc>(context).add(
-        RouterEndPractice(
-            settings: widget.settings,
-            result: PracticeResult(
-              mistakes: mistakesMade,
-              score: questionsAnswered - mistakesMade,
-              practiceEndState: endState,
-            )),
-      );
+      setState(() {
+        BlocProvider.of<RouterBloc>(context).add(
+          RouterEndPractice(
+              settings: widget.settings,
+              result: PracticeResult(
+                mistakes: mistakesMade,
+                score: questionsAnswered - mistakesMade,
+                practiceEndState: endState,
+              )),
+        );
+      });
       return;
     }
     setState(() {
