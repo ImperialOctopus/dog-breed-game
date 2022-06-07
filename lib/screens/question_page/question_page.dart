@@ -13,10 +13,13 @@ class QuestionPage extends StatelessWidget {
   final double? progress;
 
   /// Callback when answer button is pressed.
-  final Function(bool) onQuestionAnswered;
+  final void Function(bool) onQuestionAnswered;
 
   /// Button to go to the next question.
-  final Widget? nextButton;
+  final Widget? nextButtonContent;
+
+  /// Callback for next function.
+  final void Function() onNextPressed;
 
   /// Indicate that the quiz is over.
   final bool quizOver;
@@ -27,7 +30,8 @@ class QuestionPage extends StatelessWidget {
     required this.question,
     required this.progress,
     required this.onQuestionAnswered,
-    required this.nextButton,
+    required this.nextButtonContent,
+    required this.onNextPressed,
     this.quizOver = false,
   }) : super(key: key);
 
@@ -40,7 +44,8 @@ class QuestionPage extends StatelessWidget {
         question: _question,
         progress: progress,
         onQuestionAnswered: onQuestionAnswered,
-        nextButton: nextButton,
+        nextButtonContent: nextButtonContent,
+        onNextPressed: onNextPressed,
         quizOver: quizOver,
       );
     }

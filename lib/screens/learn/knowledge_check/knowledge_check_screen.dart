@@ -120,12 +120,11 @@ class _KnowledgeCheckScreenState extends State<KnowledgeCheckScreen> {
         question: currentQuestion,
         progress: progress,
         onQuestionAnswered: onQuestionAnswered,
-        nextButton: ElevatedButton(
-          onPressed: onNextPressed,
-          child: questionIndex + 1 == widget.knowledgeCheck.questions.length
-              ? const Text('Results')
-              : const Text('Next'),
-        ),
+        nextButtonContent:
+            questionIndex + 1 == widget.knowledgeCheck.questions.length
+                ? const Text('Results')
+                : const Text('Next'),
+        onNextPressed: onNextPressed,
       );
     }
     if (page == KnowledgeCheckState.results) {

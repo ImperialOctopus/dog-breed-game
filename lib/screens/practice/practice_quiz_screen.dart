@@ -130,12 +130,10 @@ class _PracticeQuizScreenState extends State<PracticeQuizScreen> {
           progress: progress,
           quizOver: endState != PracticeEndState.continuing,
           onQuestionAnswered: onQuestionAnswered,
-          nextButton: ElevatedButton(
-            onPressed: onNextPressed,
-            child: endState == PracticeEndState.continuing
-                ? const Text('Next')
-                : const Text('Results'),
-          ),
+          nextButtonContent: endState == PracticeEndState.continuing
+              ? const Text('Next')
+              : const Text('Results'),
+          onNextPressed: onNextPressed,
         ),
       ),
     );
