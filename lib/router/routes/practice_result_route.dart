@@ -6,7 +6,6 @@ import '../../screens/practice/practice_result_screen.dart';
 import '../provides_page.dart';
 import '../router_state.dart';
 import '../transitions/default_transition.dart';
-import 'practice_quiz_route.dart';
 import 'practice_route.dart';
 
 /// Practice result route.
@@ -46,7 +45,7 @@ class PracticeResultRouteState extends RouterState {
 
   @override
   List<Page> get routes => [
-        PracticeQuizRoute(settings: settings).page,
+        //PracticeQuizRoute(settings: settings).page,
         PracticeResultRoute(settings: settings, result: result).page,
       ];
 
