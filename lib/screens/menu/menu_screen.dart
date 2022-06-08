@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../model/practice/practice_end_state.dart';
+import '../../model/practice/practice_result.dart';
+import '../../model/practice/practice_settings.dart';
+import '../../model/question_difficulty.dart';
+import '../../router/actions/router_end_practice.dart';
 import '../../router/actions/router_open_menu_option.dart';
 import '../../router/router_bloc.dart';
 
@@ -45,6 +50,26 @@ class MenuScreen extends StatelessWidget {
                       const RouterOpenMenuOption(
                           mainMenuOption: MainMenuOption.practice)),
                   child: const Text('Practice'),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 5),
+                child: ElevatedButton(
+                  onPressed: () => BlocProvider.of<RouterBloc>(context)
+                      .add(const RouterEndPractice(
+                    settings: PracticeSettings(
+                      questionNumber: null,
+                      lives: 5,
+                      time: false,
+                      difficulty: QuestionDifficulty.beginner,
+                    ),
+                    result: PracticeResult(
+                      mistakes: 2,
+                      score: 3,
+                      practiceEndState: PracticeEndState.questions,
+                    ),
+                  )),
+                  child: const Text('Developer'),
                 ),
               ),
             ],
