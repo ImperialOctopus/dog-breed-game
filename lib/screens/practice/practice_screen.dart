@@ -62,6 +62,12 @@ class _PracticeScreenState extends State<PracticeScreen> {
   }
 
   void _updateLives(int? value) {
+    if (value == null) {
+      return;
+    }
+    if (value == 0) {
+      value = null;
+    }
     setState(() {
       settings = PracticeSettings(
         questionNumber: settings.questionNumber,
@@ -73,6 +79,9 @@ class _PracticeScreenState extends State<PracticeScreen> {
   }
 
   void _updateTime(bool? value) {
+    if (value == null) {
+      return;
+    }
     setState(() {
       settings = PracticeSettings(
         questionNumber: settings.questionNumber,
@@ -84,6 +93,9 @@ class _PracticeScreenState extends State<PracticeScreen> {
   }
 
   void _updateDifficulty(QuestionDifficulty? value) {
+    if (value == null) {
+      return;
+    }
     setState(() {
       settings = PracticeSettings(
         questionNumber: settings.questionNumber,
