@@ -4,6 +4,7 @@ import '../../components/fixed_height_cover_box.dart';
 import '../../model/questions/image_id_question.dart';
 import '../../theme/animation.dart';
 import '../../theme/answer_button_theme.dart';
+import 'components/dog_info_bar.dart';
 
 /// Page to display a single question.
 class ImageIdQuestionPage extends StatefulWidget {
@@ -78,29 +79,7 @@ class _ImageIdQuestionPageState extends State<ImageIdQuestionPage> {
           builder: (context, progress, _) =>
               LinearProgressIndicator(value: progress),
         ),
-        Padding(
-          padding: const EdgeInsets.all(10),
-          child: Row(
-            children: [
-              Expanded(
-                  child: Row(
-                children: [
-                  const Padding(
-                      padding: EdgeInsets.all(5), child: Icon(Icons.rule)),
-                  Text(widget.question.size ?? '???'),
-                ],
-              )),
-              Expanded(
-                  child: Row(
-                children: [
-                  const Padding(
-                      padding: EdgeInsets.all(5), child: Icon(Icons.people)),
-                  Text(widget.question.rarity ?? '???'),
-                ],
-              )),
-            ],
-          ),
-        ),
+        DogInfoBar(size: widget.question.size, rarity: widget.question.rarity),
         Expanded(
           child: AnimatedSwitcher(
               duration: ImageIdQuestionPage._switcherDuration,

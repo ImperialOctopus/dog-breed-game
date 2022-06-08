@@ -24,10 +24,6 @@ class PracticeQuizScreen extends StatefulWidget {
 }
 
 class _PracticeQuizScreenState extends State<PracticeQuizScreen> {
-  int get questionNumber => widget.settings.questionNumber;
-  int get difficulty => widget.settings.difficulty;
-  int get lives => widget.settings.lives;
-
   late final Question Function() questionGenerator;
   late Question currentQuestion;
 
@@ -35,8 +31,9 @@ class _PracticeQuizScreenState extends State<PracticeQuizScreen> {
   int questionsAnswered = 0;
   int mistakesMade = 0;
 
-  double get progress =>
-      questionNumber == 0 ? 0 : questionsAnswered / questionNumber;
+  double get progress => widget.settings.questionNumber != null
+      ? questionsAnswered / widget.settings.questionNumber!
+      : 0;
 
   static const _introSwitchDuration = AnimationTheme.quizSwitcherDuration;
 
@@ -45,7 +42,7 @@ class _PracticeQuizScreenState extends State<PracticeQuizScreen> {
     super.initState();
 
     questionGenerator = RepositoryProvider.of<QuestionRepository>(context)
-        .getQuestionGenerator(difficulty: difficulty);
+        .getQuestionGenerator(difficulty: widget.settings.difficulty);
     currentQuestion = questionGenerator();
   }
 
@@ -54,14 +51,16 @@ class _PracticeQuizScreenState extends State<PracticeQuizScreen> {
       if (!correct) {
         mistakesMade += 1;
 
-        if (lives > 0 && mistakesMade >= lives) {
+        if (widget.settings.lives != null &&
+            mistakesMade >= widget.settings.lives!) {
           // ran out of lives
           endState = PracticeEndState.lives;
         }
       }
       questionsAnswered += 1;
 
-      if (questionNumber > 0 && questionsAnswered >= questionNumber) {
+      if (widget.settings.questionNumber != null &&
+          questionsAnswered >= widget.settings.questionNumber!) {
         // ran out of questions
         endState = PracticeEndState.questions;
       }
