@@ -17,24 +17,24 @@ class PracticeScreen extends StatefulWidget {
 
 class _PracticeScreenState extends State<PracticeScreen> {
   static const _questionNumberText = <int?, String>{
-    0: 'Endless',
+    null: 'Endless',
     25: '25 Questions',
     15: '15 Questions',
     5: '5 Questions',
   };
 
   static const _livesText = <int?, String>{
-    0: 'Unlimited',
+    null: 'Unlimited',
     5: '5 Lives',
     3: '3 Lives',
     1: 'No Mistakes',
   };
 
-  static const _difficultyText = <int?, String>{
-    0: 'Common Breeds Only (1)',
-    1: 'Uncommon Breeds (2)',
-    2: 'Rare Breeds (3)',
-    3: 'All Breeds (4)'
+  static const _difficultyText = <QuestionDifficulty, String>{
+    QuestionDifficulty.beginner: 'Common Breeds Only (1)',
+    QuestionDifficulty.intermediate: 'Uncommon Breeds (2)',
+    QuestionDifficulty.expert: 'Rare Breeds (3)',
+    QuestionDifficulty.challenge: 'All Breeds (4)'
   };
 
   PracticeSettings settings = const PracticeSettings(
