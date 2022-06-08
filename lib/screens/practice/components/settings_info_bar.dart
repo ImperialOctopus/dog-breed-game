@@ -1,0 +1,85 @@
+import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import '../../../model/question_difficulty.dart';
+
+/// Information bar for the settings for a quiz.
+class SettingsInfoBar extends StatelessWidget {
+  /// Question difficulty.
+  final QuestionDifficulty difficulty;
+
+  /// Number of lives allowed for question.
+  final int? lives;
+
+  /// Number of mistakes made in quiz.
+  final int mistakes;
+
+  /// Whether time was enabled for the quiz.
+  final bool timeEnabled;
+
+  /// Information bar for the settings for a quiz.
+  const SettingsInfoBar(
+      {required this.difficulty,
+      required this.lives,
+      required this.mistakes,
+      required this.timeEnabled});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(10),
+      child: Row(
+        children: [
+          Expanded(
+              child: Row(
+            children: [
+              const Padding(
+                  padding: EdgeInsets.all(5),
+                  child: FaIcon(FontAwesomeIcons.temperatureHigh)),
+              Text(difficulty.toString()),
+            ],
+          )),
+          (timeEnabled)
+              ? Expanded(
+                  child: Row(
+                  children: [
+                    const Padding(
+                        padding: EdgeInsets.all(5),
+                        child: Icon(Icons.timer_off_outlined)),
+                  ],
+                ))
+              : Expanded(
+                  child: Row(
+                  children: [
+                    const Padding(
+                        padding: EdgeInsets.all(5),
+                        child: Icon(Icons.timer_outlined)),
+                  ],
+                )),
+          Expanded(
+            child: Row(
+              children: (lives == null)
+                  ? [
+                      const Padding(
+                          padding: EdgeInsets.all(5),
+                          child: FaIcon(FontAwesomeIcons.heartCircleXmark)),
+                      Text('$mistakes'),
+                    ]
+                  : [
+                      (mistakes < lives!)
+                          ? const Padding(
+                              padding: EdgeInsets.all(5),
+                              child: FaIcon(FontAwesomeIcons.heart),
+                            )
+                          : const Padding(
+                              padding: EdgeInsets.all(5),
+                              child: FaIcon(FontAwesomeIcons.heartCrack)),
+                      Text('${lives! - mistakes} / $lives'),
+                    ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}

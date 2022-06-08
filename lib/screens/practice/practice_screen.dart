@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../model/practice/practice_settings.dart';
+import '../../model/question_difficulty.dart';
 import '../../router/actions/router_start_practice.dart';
 import '../../router/router_bloc.dart';
 
@@ -37,41 +38,59 @@ class _PracticeScreenState extends State<PracticeScreen> {
   };
 
   PracticeSettings settings = const PracticeSettings(
-      questionNumber: 0, lives: 0, time: false, difficulty: 0);
+    questionNumber: null,
+    lives: null,
+    time: false,
+    difficulty: QuestionDifficulty.beginner,
+  );
 
   void _updateQuestionNumber(int? value) {
     if (value == null) {
       return;
     }
+    if (value == 0) {
+      value = null;
+    }
     setState(() {
-      settings = settings.copyWith(questionNumber: value);
+      settings = PracticeSettings(
+        questionNumber: value,
+        lives: settings.lives,
+        time: settings.time,
+        difficulty: settings.difficulty,
+      );
     });
   }
 
   void _updateLives(int? value) {
-    if (value == null) {
-      return;
-    }
     setState(() {
-      settings = settings.copyWith(lives: value);
+      settings = PracticeSettings(
+        questionNumber: settings.questionNumber,
+        lives: value,
+        time: settings.time,
+        difficulty: settings.difficulty,
+      );
     });
   }
 
   void _updateTime(bool? value) {
-    if (value == null) {
-      return;
-    }
     setState(() {
-      settings = settings.copyWith(time: value);
+      settings = PracticeSettings(
+        questionNumber: settings.questionNumber,
+        lives: settings.lives,
+        time: value,
+        difficulty: settings.difficulty,
+      );
     });
   }
 
-  void _updateDifficulty(int? value) {
-    if (value == null) {
-      return;
-    }
+  void _updateDifficulty(QuestionDifficulty? value) {
     setState(() {
-      settings = settings.copyWith(difficulty: value);
+      settings = PracticeSettings(
+        questionNumber: settings.questionNumber,
+        lives: settings.lives,
+        time: settings.time,
+        difficulty: value,
+      );
     });
   }
 
@@ -157,33 +176,38 @@ class _PracticeScreenState extends State<PracticeScreen> {
                   ListTile(
                     title: const Text('Difficulty'),
                     subtitle: Text(_difficultyText[settings.difficulty] ?? ''),
-                    onTap: () => showModalBottomSheet<int?>(
+                    onTap: () => showModalBottomSheet<QuestionDifficulty?>(
                       context: context,
                       builder: (BuildContext context) => _buildModal(children: [
                         ListTile(
                           title: const Text('Beginner (Common Breeds Only)'),
-                          onTap: () => Navigator.pop<int?>(context, 0),
+                          onTap: () => Navigator.pop<QuestionDifficulty?>(
+                              context, QuestionDifficulty.beginner),
                         ),
                         ListTile(
                           title:
                               const Text('Intermediate (Some Uncommon Breeds)'),
-                          onTap: () => Navigator.pop<int?>(context, 1),
+                          onTap: () => Navigator.pop<QuestionDifficulty?>(
+                              context, QuestionDifficulty.intermediate),
                         ),
                         ListTile(
                           title: const Text('Expert (Some Rare Breeds)'),
-                          onTap: () => Navigator.pop<int?>(context, 2),
+                          onTap: () => Navigator.pop<QuestionDifficulty?>(
+                              context, QuestionDifficulty.expert),
                         ),
                         ListTile(
                           title: const Text('Challenge (All Breeds)'),
-                          onTap: () => Navigator.pop<int?>(context, 3),
+                          onTap: () => Navigator.pop<QuestionDifficulty?>(
+                              context, QuestionDifficulty.challenge),
                         ),
                         ListTile(
                           title: const Text('Cancel',
                               style: TextStyle(color: Colors.red)),
-                          onTap: () => Navigator.pop<int?>(context, null),
+                          onTap: () =>
+                              Navigator.pop<QuestionDifficulty?>(context, null),
                         ),
                       ]),
-                    ).then(_updateDifficulty),
+                    ).then<void>(_updateDifficulty),
                   ),
                   SwitchListTile(
                     title: const Text('Time Limit'),
