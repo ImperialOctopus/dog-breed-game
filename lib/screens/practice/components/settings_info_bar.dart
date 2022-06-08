@@ -31,7 +31,7 @@ class SettingsInfoBar extends StatelessWidget {
       child: Row(
         children: [
           Expanded(
-              child: Row(
+              child: Column(
             children: [
               const Padding(
                   padding: EdgeInsets.all(5),
@@ -39,33 +39,39 @@ class SettingsInfoBar extends StatelessWidget {
               Text(difficulty.toString()),
             ],
           )),
-          (timeEnabled)
-              ? Expanded(
-                  child: Row(
-                  children: [
-                    const Padding(
-                        padding: EdgeInsets.all(5),
-                        child: Icon(Icons.timer_off_outlined)),
-                  ],
-                ))
-              : Expanded(
-                  child: Row(
-                  children: [
-                    const Padding(
-                        padding: EdgeInsets.all(5),
-                        child: Icon(Icons.timer_outlined)),
-                  ],
-                )),
           Expanded(
-            child: Row(
-              children: (lives == null)
-                  ? [
+            child: (timeEnabled)
+                ? Column(
+                    children: [
+                      const Padding(
+                          padding: EdgeInsets.all(5),
+                          child: Icon(Icons.timer_outlined)),
+                      Expanded(
+                        child: Text('a'),
+                      ),
+                    ],
+                  )
+                : Column(
+                    children: [
+                      const Padding(
+                          padding: EdgeInsets.all(5),
+                          child: Icon(Icons.timer_off_outlined)),
+                    ],
+                  ),
+          ),
+          Expanded(
+            child: (lives == null)
+                ? Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
                       const Padding(
                           padding: EdgeInsets.all(5),
                           child: FaIcon(FontAwesomeIcons.heartCircleXmark)),
                       Text('$mistakes'),
-                    ]
-                  : [
+                    ],
+                  )
+                : Column(
+                    children: [
                       (mistakes < lives!)
                           ? const Padding(
                               padding: EdgeInsets.all(5),
@@ -76,7 +82,7 @@ class SettingsInfoBar extends StatelessWidget {
                               child: FaIcon(FontAwesomeIcons.heartCrack)),
                       Text('${lives! - mistakes} / $lives'),
                     ],
-            ),
+                  ),
           ),
         ],
       ),
