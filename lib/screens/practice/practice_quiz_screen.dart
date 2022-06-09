@@ -10,6 +10,7 @@ import '../../router/actions/router_end_practice.dart';
 import '../../router/router_bloc.dart';
 import '../../theme/animation.dart';
 import '../question_page/question_page.dart';
+import 'components/settings_info_bar.dart';
 
 /// Screen for the practice quiz.
 class PracticeQuizScreen extends StatefulWidget {
@@ -110,29 +111,42 @@ class _PracticeQuizScreenState extends State<PracticeQuizScreen> {
       appBar: AppBar(actions: [
         IconButton(onPressed: onConcedePressed, icon: const Icon(Icons.cancel)),
       ]),
-      body: AnimatedSwitcher(
-        duration: _introSwitchDuration,
-        transitionBuilder: (child, animation) {
-          return SlideTransition(
-            position: Tween<Offset>(
-              begin: const Offset(1, 0),
-              end: Offset.zero,
-            ).animate(animation),
-            child: child,
-          );
-        },
-        switchOutCurve: const Threshold(0),
-        switchInCurve: Curves.ease,
-        child: QuestionPage(
-          key: ValueKey(currentQuestion),
-          question: currentQuestion,
-          progress: progress,
-          quizOver: endState != PracticeEndState.continuing,
-          onQuestionAnswered: onQuestionAnswered,
-          nextButtonContent: endState == PracticeEndState.continuing
-              ? const Text('Next')
-              : const Text('Results'),
-          onNextPressed: onNextPressed,
+      body: SafeArea(
+        child: Column(
+          children: [
+            Expanded(
+              child: AnimatedSwitcher(
+                duration: _introSwitchDuration,
+                transitionBuilder: (child, animation) {
+                  return SlideTransition(
+                    position: Tween<Offset>(
+                      begin: const Offset(1, 0),
+                      end: Offset.zero,
+                    ).animate(animation),
+                    child: child,
+                  );
+                },
+                switchOutCurve: const Threshold(0),
+                switchInCurve: Curves.ease,
+                child: QuestionPage(
+                  key: ValueKey(currentQuestion),
+                  question: currentQuestion,
+                  progress: progress,
+                  quizOver: endState != PracticeEndState.continuing,
+                  onQuestionAnswered: onQuestionAnswered,
+                  nextButtonContent: endState == PracticeEndState.continuing
+                      ? const Text('Next')
+                      : const Text('Results'),
+                  onNextPressed: onNextPressed,
+                ),
+              ),
+            ),
+            SettingsInfoBar(
+                difficulty: widget.settings.difficulty,
+                lives: widget.settings.lives,
+                mistakes: mistakesMade,
+                timeEnabled: widget.settings.time),
+          ],
         ),
       ),
     );
