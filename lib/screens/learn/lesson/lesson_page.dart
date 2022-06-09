@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../../model/learn/lesson.dart';
-import 'components/lesson_complete_button.dart';
 import 'components/lesson_header.dart';
 
 /// One page of a lesson.
