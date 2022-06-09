@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../model/level/lesson.dart';
+import '../../../model/learn/lesson.dart';
 
 /// Level 2 - Uncommon breeds
 final level_02 = Lesson(

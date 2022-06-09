@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../model/level/level.dart';
-import '../../model/world.dart';
+import '../../model/learn/level.dart';
+import '../../model/learn/world.dart';
 import '../../screens/learn/level_screen.dart';
 import '../router_state.dart';
 import '../provides_page.dart';

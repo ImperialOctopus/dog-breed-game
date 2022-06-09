@@ -1,4 +1,4 @@
-import '../../model/level/level.dart';
+import '../../model/learn/level.dart';
 import '../router_action.dart';
 import '../router_state.dart';
 import '../routes/level_route.dart';

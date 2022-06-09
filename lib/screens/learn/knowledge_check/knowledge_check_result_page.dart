@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../components/level_header.dart';
-import '../../../../model/level/knowledge_check.dart';
-import '../../../../model/level/knowledge_check_result.dart';
+import '../../../../model/learn/knowledge_check.dart';
+import '../../../../model/learn/knowledge_check_result.dart';
 
 /// Screen to show results of quiz.
 class KnowledgeCheckResultPage extends StatelessWidget {

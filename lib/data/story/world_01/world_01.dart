@@ -1,4 +1,4 @@
-import '../../../model/world.dart';
+import '../../../model/learn/world.dart';
 import 'level_01.dart';
 import 'level_02.dart';
 import 'level_03.dart';

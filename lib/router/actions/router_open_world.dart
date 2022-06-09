@@ -1,4 +1,4 @@
-import '../../model/world.dart';
+import '../../model/learn/world.dart';
 import '../router_action.dart';
 import '../router_state.dart';
 import '../routes/world_route.dart';

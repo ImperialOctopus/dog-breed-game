@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../components/world_progress_cubit_builder.dart';
-import '../../../../model/world.dart';
+import '../../../../model/learn/world.dart';
 
 /// Contents for world card.
 class WorldCardContents extends StatelessWidget {
@@ -41,18 +40,6 @@ class WorldCardContents extends StatelessWidget {
               child: const Text('Start'),
             ),
             const Spacer(),
-            WorldProgressCubitBuilder(
-              world: world,
-              builder: (context, progress) => Text(
-                progress.levelCount > 0
-                    ? '${progress.complete} / ${progress.levelCount}'
-                    : '',
-                style: const TextStyle(
-                  fontWeight: FontWeight.normal,
-                  fontSize: 20,
-                ),
-              ),
-            ),
             const SizedBox(width: 16),
           ],
         )

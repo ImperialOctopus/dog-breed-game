@@ -1,5 +1,5 @@
+import '../../../model/learn/knowledge_check.dart';
 import '../../../model/questions/image_id_question.dart';
-import '../../../model/level/knowledge_check.dart';
 
 /// Level 1 - Common breeds
 const level_01 = KnowledgeCheck(

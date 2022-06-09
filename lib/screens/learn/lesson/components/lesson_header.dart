@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../model/level/lesson.dart';
+import '../../../../model/learn/lesson.dart';
 
 /// Header for the first page of a lesson.
 class LessonHeader extends StatelessWidget {

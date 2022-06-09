@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../components/page_indicator.dart';
-import '../../../model/level/lesson.dart';
+import '../../../model/learn/lesson.dart';
 import 'lesson_page.dart';
 
 /// Screen to show a single lesson.

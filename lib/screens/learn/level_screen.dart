@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../model/level/knowledge_check.dart';
-import '../../model/level/lesson.dart';
-import '../../model/level/level.dart';
+import '../../model/learn/knowledge_check.dart';
+import '../../model/learn/lesson.dart';
+import '../../model/learn/level.dart';
 import 'knowledge_check/knowledge_check_screen.dart';
 import 'lesson/lesson_screen.dart';
 

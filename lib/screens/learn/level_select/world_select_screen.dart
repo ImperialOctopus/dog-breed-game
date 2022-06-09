@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../components/page_indicator.dart';
-import '../../../model/world.dart';
+import '../../../model/learn/world.dart';
 import '../../../router/actions/router_open_world.dart';
 import '../../../router/router_bloc.dart';
 import 'components/sliding_card.dart';
