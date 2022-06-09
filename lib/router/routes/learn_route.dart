@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../model/learn_structure.dart';
+import '../../data/story/worlds.dart';
 import '../../screens/learn/level_select/world_select_screen.dart';
 import '../router_state.dart';
 import '../provides_page.dart';
@@ -20,7 +19,7 @@ class LearnRoute extends StatelessWidget implements ProvidesPage<void> {
     // Learn structure is acquired here and used to build the world select.
     // Below this point data is acquired directly from parents.
     return WorldSelectScreen(
-      worlds: RepositoryProvider.of<LearnStructure>(context).worlds,
+      worlds: worlds,
     );
   }
 

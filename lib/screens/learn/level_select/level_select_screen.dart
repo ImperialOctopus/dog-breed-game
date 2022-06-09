@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../extensions/iterable_separate.dart';
-import '../../../model/world.dart';
+import '../../../model/learn/world.dart';
 import 'components/level_select_header.dart';
 import 'components/level_select_item.dart';
 

@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-import 'level/level.dart';
+import 'level.dart';
 
 /// Data structure for a world.
 class World extends Equatable {

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../components/world_progress_cubit_builder.dart';
-import '../../../../model/world.dart';
+import '../../../../model/learn/world.dart';
 
 /// Header for level select page.
 class LevelSelectHeader extends StatelessWidget {
@@ -35,14 +34,6 @@ class LevelSelectHeader extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(world.title),
-                  WorldProgressCubitBuilder(
-                    world: world,
-                    builder: (context, progress) => Text(
-                      progress.levelCount > 0
-                          ? '${progress.complete} / ${progress.levelCount}'
-                          : '',
-                    ),
-                  ),
                 ],
               ),
             ),

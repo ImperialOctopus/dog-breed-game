@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../../bloc/progress/progress_cubit.dart';
 import '../../../../../theme/animation.dart';
-import '../../../../model/level/knowledge_check.dart';
-import '../../../../model/level/knowledge_check_result.dart';
-import '../../../../model/progress/level_scored.dart';
+import '../../../../model/learn/knowledge_check.dart';
+import '../../../../model/learn/knowledge_check_result.dart';
 import '../../../../model/questions/question.dart';
 import '../../question_page/question_page.dart';
 import 'knowledge_check_intro_page.dart';
@@ -75,10 +72,6 @@ class _KnowledgeCheckScreenState extends State<KnowledgeCheckScreen> {
       if (questionIndex + 1 < widget.knowledgeCheck.questions.length) {
         questionIndex += 1;
       } else {
-        BlocProvider.of<ProgressCubit>(context).updateProgress(
-          widget.knowledgeCheck,
-          LevelScored(score, widget.knowledgeCheck.questions.length),
-        );
         page = KnowledgeCheckState.results;
       }
     });

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../model/level/knowledge_check.dart';
+import '../../../../model/learn/knowledge_check.dart';
 
 /// Introduces end-of-lesson quiz.
 class KnowledgeCheckIntroPage extends StatelessWidget {

@@ -1,4 +1,4 @@
-import '../../../model/world.dart';
+import '../../../model/learn/world.dart';
 
 /// Second world!
 const world02 = World(
