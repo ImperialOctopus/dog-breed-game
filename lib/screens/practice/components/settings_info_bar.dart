@@ -26,8 +26,7 @@ class SettingsInfoBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 150,
+    return IntrinsicHeight(
       child: Padding(
         padding: const EdgeInsets.all(10),
         child: Row(
