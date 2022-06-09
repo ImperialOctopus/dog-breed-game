@@ -21,21 +21,29 @@ class PracticeResultScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(),
-      body: SafeArea(
-        child: Column(
-          children: [
-            Center(
-                child: Text((settings.questionNumber != null)
-                    ? '${result.score} / ${settings.questionNumber}'
-                    : '${result.score}')),
-            SettingsInfoBar(
-              difficulty: settings.difficulty,
-              lives: settings.lives,
-              mistakes: result.mistakes,
-              timeEnabled: settings.time,
+      body: Column(
+        children: [
+          const Spacer(),
+          Center(
+            child: Column(
+              children: [
+                const Text('Quiz over! Your score was: '),
+                Text(
+                    (settings.questionNumber != null)
+                        ? '${result.score} / ${settings.questionNumber}'
+                        : '${result.score}',
+                    style: const TextStyle(fontSize: 60)),
+              ],
             ),
-          ],
-        ),
+          ),
+          const Spacer(),
+          SettingsInfoBar(
+            difficulty: settings.difficulty,
+            lives: settings.lives,
+            mistakes: result.mistakes,
+            timeEnabled: settings.time,
+          ),
+        ],
       ),
     );
   }
