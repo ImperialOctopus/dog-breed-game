@@ -3,9 +3,11 @@ import 'package:equatable/equatable.dart';
 import '../question_difficulty.dart';
 
 /// Settings for a practice quiz.
-class PracticeSettings extends Equatable {
-  /// Number of questions to run. Zero equates to infinite.
+class QuizSettings extends Equatable {
+  /// Number of questions to run. Null equates to no limit.
   final int? questionNumber;
+
+  // Some kind of question filter.
 
   /// Number of lives to allow.
   final int? lives;
@@ -17,7 +19,7 @@ class PracticeSettings extends Equatable {
   final QuestionDifficulty difficulty;
 
   /// Settings for a practice quiz.
-  const PracticeSettings(
+  const QuizSettings(
       {required this.questionNumber,
       required this.lives,
       required this.time,

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../model/practice/practice_end_state.dart';
-import '../../model/practice/practice_result.dart';
-import '../../model/practice/practice_settings.dart';
 import '../../model/question_difficulty.dart';
-import '../../router/actions/router_end_practice.dart';
+import '../../model/quiz/quiz_end_state.dart';
+import '../../model/quiz/quiz_result.dart';
+import '../../model/quiz/quiz_settings.dart';
+import '../../router/actions/router_end_quiz.dart';
 import '../../router/actions/router_open_menu_option.dart';
 import '../../router/router_bloc.dart';
 
@@ -57,16 +57,16 @@ class MenuScreen extends StatelessWidget {
                 child: ElevatedButton(
                   onPressed: () => BlocProvider.of<RouterBloc>(context)
                       .add(const RouterEndPractice(
-                    settings: PracticeSettings(
+                    settings: QuizSettings(
                       questionNumber: null,
                       lives: 5,
                       time: false,
                       difficulty: QuestionDifficulty.beginner,
                     ),
-                    result: PracticeResult(
+                    result: QuizResult(
                       mistakes: 2,
                       score: 3,
-                      practiceEndState: PracticeEndState.questions,
+                      endState: QuizEndState.outOfQuestions,
                     ),
                   )),
                   child: const Text('Developer'),

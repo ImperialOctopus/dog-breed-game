@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
 
-import '../../model/practice/practice_result.dart';
-import '../../model/practice/practice_settings.dart';
-import '../../screens/practice/practice_result_screen.dart';
-import '../provides_page.dart';
-import '../router_state.dart';
-import '../transitions/default_transition.dart';
+import '../../../model/quiz/quiz_result.dart';
+import '../../../model/quiz/quiz_settings.dart';
+import '../../../screens/practice/practice_result_screen.dart';
+import '../../provides_page.dart';
+import '../../router_state.dart';
+import '../../transitions/default_transition.dart';
 import 'practice_route.dart';
 
 /// Practice result route.
 class PracticeResultRoute extends StatelessWidget
     implements ProvidesPage<void> {
   /// Settings for the quiz.
-  final PracticeSettings settings;
+  final QuizSettings settings;
 
   /// Result from the quiz.
-  final PracticeResult result;
+  final QuizResult result;
 
   /// Practice main route.
   const PracticeResultRoute({required this.settings, required this.result});
@@ -34,10 +34,10 @@ class PracticeResultRoute extends StatelessWidget
 /// /practice/quiz/result
 class PracticeResultRouteState extends RouterState {
   /// Settings for the quiz.
-  final PracticeSettings settings;
+  final QuizSettings settings;
 
   /// Result from a quiz.
-  final PracticeResult result;
+  final QuizResult result;
 
   /// /practice/quiz/result
   const PracticeResultRouteState(

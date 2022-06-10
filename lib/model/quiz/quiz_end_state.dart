@@ -1,17 +1,17 @@
 /// Reason for practice ending.
-enum PracticeEndState {
+enum QuizEndState {
   /// Not finished yet.
-  continuing,
+  notFinished,
 
   /// Ran out of lives.
-  lives,
+  outOfLives,
 
   /// Ran out of time in a timed quiz.
-  time,
+  outOfTime,
 
   /// Ran out of questions.
-  questions,
+  outOfQuestions,
 
   /// User ended quiz early.
-  concede,
+  userCondeded,
 }

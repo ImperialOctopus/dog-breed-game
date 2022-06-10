@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
 
-import '../../model/learn/world.dart';
-import '../../screens/learn/level_select/level_select_screen.dart';
-import '../router_state.dart';
-import '../provides_page.dart';
-import '../transitions/default_transition.dart';
-import 'learn_route.dart';
+import '../../../model/learn/world.dart';
+import '../../../screens/learn/level_select/level_select_screen.dart';
+import '../../router_state.dart';
+import '../../provides_page.dart';
+import '../../transitions/default_transition.dart';
+import 'world_select_route.dart';
 
 /// Level select inside a world.
-class WorldRoute extends StatelessWidget implements ProvidesPage<void> {
+class LevelSelectRoute extends StatelessWidget implements ProvidesPage<void> {
   /// World to display.
   final World world;
 
   /// Level select inside a world.
-  const WorldRoute({required this.world});
+  const LevelSelectRoute({required this.world});
 
-  LocalKey get _key => const ValueKey<Type>(WorldRoute);
+  LocalKey get _key => const ValueKey<Type>(LevelSelectRoute);
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +36,7 @@ class WorldRouteState extends RouterState {
 
   @override
   List<Page> get routes => [
-        WorldRoute(world: world).page,
+        LevelSelectRoute(world: world).page,
       ];
 
   @override

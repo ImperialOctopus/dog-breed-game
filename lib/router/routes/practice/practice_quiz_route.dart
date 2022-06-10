@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
-import '../../model/practice/practice_settings.dart';
-import '../../screens/practice/practice_quiz_screen.dart';
-import '../provides_page.dart';
-import '../router_state.dart';
-import '../transitions/slide_left_transition.dart';
+import '../../../model/quiz/quiz_settings.dart';
+import '../../../screens/practice/practice_quiz_screen.dart';
+import '../../provides_page.dart';
+import '../../router_state.dart';
+import '../../transitions/slide_left_transition.dart';
 import 'practice_route.dart';
 
 /// Practice main route.
 class PracticeQuizRoute extends StatelessWidget implements ProvidesPage<void> {
   /// Settings for the quiz.
-  final PracticeSettings settings;
+  final QuizSettings settings;
 
   /// Practice main route.
   const PracticeQuizRoute({required this.settings});
@@ -29,7 +29,7 @@ class PracticeQuizRoute extends StatelessWidget implements ProvidesPage<void> {
 /// /practice/quiz
 class PracticeQuizRouteState extends RouterState {
   /// Settings for the quiz.
-  final PracticeSettings settings;
+  final QuizSettings settings;
 
   /// /practice/quiz
   const PracticeQuizRouteState({required this.settings});

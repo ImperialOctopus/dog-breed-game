@@ -1,19 +1,19 @@
-import '../../model/practice/practice_result.dart';
-import '../../model/practice/practice_settings.dart';
+import '../../model/quiz/quiz_result.dart';
+import '../../model/quiz/quiz_settings.dart';
 import '../router_action.dart';
 import '../router_state.dart';
-import '../routes/practice_result_route.dart';
+import '../routes/practice/practice_result_route.dart';
 
 /// Practice quiz page.
-class RouterEndPractice extends RouterAction {
+class RouterEndQuiz extends RouterAction {
   /// Settings for the quiz.
-  final PracticeSettings settings;
+  final QuizSettings settings;
 
   /// Result from the quiz.
-  final PracticeResult result;
+  final QuizResult result;
 
   /// Practice quiz page.
-  const RouterEndPractice({required this.settings, required this.result});
+  const RouterEndQuiz({required this.settings, required this.result});
 
   @override
   Stream<RouterState> mapToState(RouterState currentState) async* {

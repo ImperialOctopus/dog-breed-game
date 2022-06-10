@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../model/practice/practice_end_state.dart';
-import '../../model/practice/practice_result.dart';
-import '../../model/practice/practice_settings.dart';
 import '../../model/questions/question.dart';
+import '../../model/quiz/quiz_end_state.dart';
+import '../../model/quiz/quiz_result.dart';
+import '../../model/quiz/quiz_settings.dart';
 import '../../repository/question/question_repository.dart';
-import '../../router/actions/router_end_practice.dart';
+import '../../router/actions/router_end_quiz.dart';
 import '../../router/router_bloc.dart';
 import '../../theme/animation.dart';
 import '../question_page/question_page.dart';
@@ -15,7 +15,7 @@ import 'components/settings_info_bar.dart';
 /// Screen for the practice quiz.
 class PracticeQuizScreen extends StatefulWidget {
   /// Settings for the quiz to play.
-  final PracticeSettings settings;
+  final QuizSettings settings;
 
   /// Screen for the practice quiz.
   const PracticeQuizScreen({required this.settings});
@@ -28,7 +28,7 @@ class _PracticeQuizScreenState extends State<PracticeQuizScreen> {
   late final Question Function() questionGenerator;
   late Question currentQuestion;
 
-  PracticeEndState endState = PracticeEndState.continuing;
+  QuizEndState endState = QuizEndState.notFinished;
   int questionsAnswered = 0;
   int mistakesMade = 0;
 
@@ -55,7 +55,7 @@ class _PracticeQuizScreenState extends State<PracticeQuizScreen> {
         if (widget.settings.lives != null &&
             mistakesMade >= widget.settings.lives!) {
           // ran out of lives
-          endState = PracticeEndState.lives;
+          endState = QuizEndState.outOfLives;
         }
       }
       questionsAnswered += 1;
@@ -63,32 +63,32 @@ class _PracticeQuizScreenState extends State<PracticeQuizScreen> {
       if (widget.settings.questionNumber != null &&
           questionsAnswered >= widget.settings.questionNumber!) {
         // ran out of questions
-        endState = PracticeEndState.questions;
+        endState = QuizEndState.outOfQuestions;
       }
     });
   }
 
   void onTimeExpires() {
     setState(() {
-      endState = PracticeEndState.time;
+      endState = QuizEndState.outOfTime;
     });
   }
 
   void onConcedePressed() {
-    endState = PracticeEndState.concede;
+    endState = QuizEndState.userCondeded;
     onNextPressed();
   }
 
   void onNextPressed() {
-    if (endState != PracticeEndState.continuing) {
+    if (endState != QuizEndState.notFinished) {
       setState(() {
         BlocProvider.of<RouterBloc>(context).add(
           RouterEndPractice(
               settings: widget.settings,
-              result: PracticeResult(
+              result: QuizResult(
                 mistakes: mistakesMade,
                 score: questionsAnswered - mistakesMade,
-                practiceEndState: endState,
+                endState: endState,
               )),
         );
       });
@@ -132,9 +132,9 @@ class _PracticeQuizScreenState extends State<PracticeQuizScreen> {
                   key: ValueKey(currentQuestion),
                   question: currentQuestion,
                   progress: progress,
-                  quizOver: endState != PracticeEndState.continuing,
+                  quizOver: endState != QuizEndState.notFinished,
                   onQuestionAnswered: onQuestionAnswered,
-                  nextButtonContent: endState == PracticeEndState.continuing
+                  nextButtonContent: endState == QuizEndState.notFinished
                       ? const Text('Next')
                       : const Text('Results'),
                   onNextPressed: onNextPressed,

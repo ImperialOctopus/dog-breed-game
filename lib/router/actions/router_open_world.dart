@@ -1,7 +1,7 @@
 import '../../model/learn/world.dart';
 import '../router_action.dart';
 import '../router_state.dart';
-import '../routes/world_route.dart';
+import '../routes/learn/level_select_route.dart';
 
 /// Open world in learn route.
 class RouterOpenWorld extends RouterAction {

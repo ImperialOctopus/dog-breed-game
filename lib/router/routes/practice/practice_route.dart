@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import '../../screens/practice/practice_screen.dart';
-import '../provides_page.dart';
-import '../router_state.dart';
-import '../transitions/default_transition.dart';
-import 'menu_route.dart';
+import '../../../screens/practice/practice_settings_screen.dart';
+import '../../provides_page.dart';
+import '../../router_state.dart';
+import '../../transitions/default_transition.dart';
+import '../menu_route.dart';
 
 /// Practice main route.
 class PracticeRoute extends StatelessWidget implements ProvidesPage<void> {
@@ -15,7 +15,7 @@ class PracticeRoute extends StatelessWidget implements ProvidesPage<void> {
 
   @override
   Widget build(BuildContext context) {
-    return const PracticeScreen();
+    return const PracticeSettingsScreen();
   }
 
   @override

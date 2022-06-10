@@ -1,7 +1,7 @@
 import '../router_action.dart';
 import '../router_state.dart';
-import '../routes/learn_route.dart';
-import '../routes/practice_route.dart';
+import '../routes/learn/world_select_route.dart';
+import '../routes/practice/practice_route.dart';
 
 /// Options for the open menu route action.
 enum MainMenuOption {

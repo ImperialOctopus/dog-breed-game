@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../model/practice/practice_settings.dart';
 import '../../model/question_difficulty.dart';
-import '../../router/actions/router_start_practice.dart';
+import '../../model/quiz/quiz_settings.dart';
+import '../../router/actions/router_start_quiz.dart';
 import '../../router/router_bloc.dart';
 
 /// Screen to set up a practice quiz.
-class PracticeScreen extends StatefulWidget {
+class PracticeSettingsScreen extends StatefulWidget {
   /// Screen to set up a practice quiz.
-  const PracticeScreen();
+  const PracticeSettingsScreen();
 
   @override
-  State<PracticeScreen> createState() => _PracticeScreenState();
+  State<PracticeSettingsScreen> createState() => _PracticeSettingsScreenState();
 }
 
-class _PracticeScreenState extends State<PracticeScreen> {
+class _PracticeSettingsScreenState extends State<PracticeSettingsScreen> {
   static const _questionNumberText = <int?, String>{
     null: 'Endless',
     25: '25 Questions',
@@ -37,7 +37,7 @@ class _PracticeScreenState extends State<PracticeScreen> {
     QuestionDifficulty.challenge: 'All Breeds (4)'
   };
 
-  PracticeSettings settings = const PracticeSettings(
+  QuizSettings settings = const QuizSettings(
     questionNumber: null,
     lives: null,
     time: false,
@@ -52,7 +52,7 @@ class _PracticeScreenState extends State<PracticeScreen> {
       value = null;
     }
     setState(() {
-      settings = PracticeSettings(
+      settings = QuizSettings(
         questionNumber: value,
         lives: settings.lives,
         time: settings.time,
@@ -69,7 +69,7 @@ class _PracticeScreenState extends State<PracticeScreen> {
       value = null;
     }
     setState(() {
-      settings = PracticeSettings(
+      settings = QuizSettings(
         questionNumber: settings.questionNumber,
         lives: value,
         time: settings.time,
@@ -83,7 +83,7 @@ class _PracticeScreenState extends State<PracticeScreen> {
       return;
     }
     setState(() {
-      settings = PracticeSettings(
+      settings = QuizSettings(
         questionNumber: settings.questionNumber,
         lives: settings.lives,
         time: value,
@@ -97,7 +97,7 @@ class _PracticeScreenState extends State<PracticeScreen> {
       return;
     }
     setState(() {
-      settings = PracticeSettings(
+      settings = QuizSettings(
         questionNumber: settings.questionNumber,
         lives: settings.lives,
         time: settings.time,
