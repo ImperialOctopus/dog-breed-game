@@ -2,22 +2,22 @@ import 'package:flutter/material.dart';
 
 import '../../../model/learn/knowledge_check.dart';
 import '../../../model/learn/world.dart';
-import '../../../screens/learn/knowledge_check/knowledge_check_intro.dart';
+import '../../../screens/practice/practice_quiz_screen.dart';
 import '../../provides_page.dart';
 import '../../router_state.dart';
 import '../../transitions/slide_left_transition.dart';
-import 'level_select_route.dart';
+import 'knowledge_check_intro_route.dart';
 
-/// Knowledge check intro.
-class KnowledgeCheckIntroRoute extends StatelessWidget with ProvidesPage<void> {
+/// Knowledge check quiz.
+class KnowledgeCheckQuizRoute extends StatelessWidget with ProvidesPage<void> {
   /// World this is a child of.
-  final World world;
+  final World? world;
 
   /// Settings for the quiz.
   final KnowledgeCheck knowledgeCheck;
 
   /// Practice main route.
-  const KnowledgeCheckIntroRoute(
+  const KnowledgeCheckQuizRoute(
       {required this.world, required this.knowledgeCheck});
 
   @override
@@ -25,32 +25,31 @@ class KnowledgeCheckIntroRoute extends StatelessWidget with ProvidesPage<void> {
 
   @override
   Widget build(BuildContext context) {
-    return KnowledgeCheckIntroScreen(knowledgeCheck: knowledgeCheck);
+    return PracticeQuizScreen(settings: knowledgeCheck.quizSettings);
   }
 }
 
 /// /learn/{world}/{knowledgeCheck}
-class KnowledgeCheckIntroRouteState extends RouterState {
+class KnowledgeCheckQuizRouteState extends RouterState {
   /// World this is a child of.
-  final World world;
+  final World? world;
 
   /// Settings for the quiz.
   final KnowledgeCheck knowledgeCheck;
 
   /// /learn/{world}/{knowledgeCheck}
-  const KnowledgeCheckIntroRouteState(
+  const KnowledgeCheckQuizRouteState(
       {required this.world, required this.knowledgeCheck});
 
   @override
   List<Page> get routes => [
-        KnowledgeCheckIntroRoute(world: world, knowledgeCheck: knowledgeCheck)
+        KnowledgeCheckQuizRoute(world: world, knowledgeCheck: knowledgeCheck)
             .page,
       ];
 
   @override
-  RouterState get popsInto {
-    return LevelSelectRouteState(world: world);
-  }
+  RouterState get popsInto =>
+      KnowledgeCheckIntroRouteState(knowledgeCheck: knowledgeCheck);
 
   @override
   List<Object?> get props => [world, knowledgeCheck];

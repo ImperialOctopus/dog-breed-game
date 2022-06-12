@@ -8,14 +8,12 @@ import '../../transitions/slide_left_transition.dart';
 import 'practice_route.dart';
 
 /// Practice main route.
-class PracticeQuizRoute extends StatelessWidget implements ProvidesPage<void> {
+class PracticeQuizRoute extends StatelessWidget with ProvidesPage<void> {
   /// Settings for the quiz.
   final QuizSettings settings;
 
   /// Practice main route.
   const PracticeQuizRoute({required this.settings});
-
-  LocalKey get _key => const ValueKey<Type>(PracticeQuizRoute);
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +21,7 @@ class PracticeQuizRoute extends StatelessWidget implements ProvidesPage<void> {
   }
 
   @override
-  Page<void> get page => SlideLeftTransition(child: this, key: _key);
+  Page<void> get page => SlideLeftTransition(child: this);
 }
 
 /// /practice/quiz

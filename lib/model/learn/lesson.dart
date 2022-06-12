@@ -4,9 +4,6 @@ import 'level.dart';
 
 /// Informational lesson from a level.
 class Lesson extends Level {
-  /// Widget to render as this lesson's main body.
-  final List<List<Widget>> content;
-
   @override
   final String title;
 
@@ -16,15 +13,17 @@ class Lesson extends Level {
   @override
   final String imagePath;
 
-  @override
-  final String label;
+  /// Widget to render as this lesson's main body.
+  final List<List<Widget>> content;
 
   /// Informational lesson from a level.
   const Lesson({
-    required this.label,
     required this.title,
     this.subtitle,
     required this.imagePath,
     required this.content,
   });
+
+  @override
+  List<Object?> get props => [title, subtitle, imagePath];
 }

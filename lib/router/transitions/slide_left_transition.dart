@@ -7,8 +7,8 @@ class SlideLeftTransition<T> extends MaterialPage<T> {
   final Widget child;
 
   /// Page wrapper for slide left transition.
-  const SlideLeftTransition({required this.child, LocalKey? key})
-      : super(child: child, key: key);
+  SlideLeftTransition({required this.child, LocalKey? key})
+      : super(child: child, key: key ?? ObjectKey(child));
 
   @override
   Route<T> createRoute(BuildContext context) {

@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../model/question_difficulty.dart';
 import '../../model/quiz/quiz_settings.dart';
-import '../../router/actions/router_start_quiz.dart';
+import '../../router/actions/router_start_practice.dart';
 import '../../router/router_bloc.dart';
 
 /// Screen to set up a practice quiz.

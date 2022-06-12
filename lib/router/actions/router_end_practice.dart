@@ -5,7 +5,7 @@ import '../router_state.dart';
 import '../routes/practice/practice_result_route.dart';
 
 /// Practice quiz page.
-class RouterEndQuiz extends RouterAction {
+class RouterEndPractice extends RouterAction {
   /// Settings for the quiz.
   final QuizSettings settings;
 
@@ -13,7 +13,7 @@ class RouterEndQuiz extends RouterAction {
   final QuizResult result;
 
   /// Practice quiz page.
-  const RouterEndQuiz({required this.settings, required this.result});
+  const RouterEndPractice({required this.settings, required this.result});
 
   @override
   Stream<RouterState> mapToState(RouterState currentState) async* {

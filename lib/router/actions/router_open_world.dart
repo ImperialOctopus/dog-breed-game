@@ -13,7 +13,7 @@ class RouterOpenWorld extends RouterAction {
 
   @override
   Stream<RouterState> mapToState(RouterState currentState) async* {
-    yield WorldRouteState(world: world);
+    yield LevelSelectRouteState(world: world);
   }
 
   @override

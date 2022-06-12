@@ -5,12 +5,10 @@ import '../../../model/quiz/quiz_settings.dart';
 import '../../../screens/practice/practice_result_screen.dart';
 import '../../provides_page.dart';
 import '../../router_state.dart';
-import '../../transitions/default_transition.dart';
 import 'practice_route.dart';
 
 /// Practice result route.
-class PracticeResultRoute extends StatelessWidget
-    implements ProvidesPage<void> {
+class PracticeResultRoute extends StatelessWidget with ProvidesPage<void> {
   /// Settings for the quiz.
   final QuizSettings settings;
 
@@ -20,15 +18,10 @@ class PracticeResultRoute extends StatelessWidget
   /// Practice main route.
   const PracticeResultRoute({required this.settings, required this.result});
 
-  ValueKey<List<Object>> get _key => ValueKey<List<Object>>([settings, result]);
-
   @override
   Widget build(BuildContext context) {
     return PracticeResultScreen(settings: settings, result: result);
   }
-
-  @override
-  Page<void> get page => DefaultTransition(child: this, key: _key);
 }
 
 /// /practice/quiz/result

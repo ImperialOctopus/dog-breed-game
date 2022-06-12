@@ -23,7 +23,7 @@ class RouterOpenMenuOption extends RouterAction {
   @override
   Stream<RouterState> mapToState(RouterState currentState) async* {
     if (mainMenuOption == MainMenuOption.learn) {
-      yield const LearnRouteState();
+      yield const WorldSelectRouteState();
       return;
     }
     if (mainMenuOption == MainMenuOption.practice) {

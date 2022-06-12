@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
+import 'transitions/default_transition.dart';
+
 /// Provides a Flutter navigation page.
-abstract class ProvidesPage<T> {
+mixin ProvidesPage<T> on Widget {
   /// Page for this route.
-  Page<T> get page;
+  Page<T> get page => DefaultTransition<T>(child: this);
 }

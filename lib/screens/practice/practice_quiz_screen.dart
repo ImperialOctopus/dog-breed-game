@@ -6,7 +6,7 @@ import '../../model/quiz/quiz_end_state.dart';
 import '../../model/quiz/quiz_result.dart';
 import '../../model/quiz/quiz_settings.dart';
 import '../../repository/question/question_repository.dart';
-import '../../router/actions/router_end_quiz.dart';
+import '../../router/actions/router_end_practice.dart';
 import '../../router/router_bloc.dart';
 import '../../theme/animation.dart';
 import '../question_page/question_page.dart';

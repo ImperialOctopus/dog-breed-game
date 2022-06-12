@@ -1,9 +1,8 @@
 import '../quiz/quiz_settings.dart';
-import 'has_menu_item.dart';
 import 'level.dart';
 
 /// Data for a quiz.
-class KnowledgeCheck implements HasMenuItem {
+class KnowledgeCheck extends Level {
   @override
   final String title;
 
@@ -13,18 +12,17 @@ class KnowledgeCheck implements HasMenuItem {
   @override
   final String imagePath;
 
-  @override
-  final String label;
-
   /// Settings for the quiz.
   final QuizSettings quizSettings;
 
   /// Data for a quiz.
   const KnowledgeCheck({
-    required this.label,
     required this.title,
     this.subtitle,
     required this.imagePath,
     required this.quizSettings,
   });
+
+  @override
+  List<Object?> get props => [title, subtitle, imagePath, quizSettings];
 }

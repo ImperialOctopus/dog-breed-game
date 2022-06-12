@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../model/question_difficulty.dart';
-import '../../model/quiz/quiz_end_state.dart';
-import '../../model/quiz/quiz_result.dart';
-import '../../model/quiz/quiz_settings.dart';
-import '../../router/actions/router_end_quiz.dart';
-import '../../router/actions/router_open_menu_option.dart';
-import '../../router/router_bloc.dart';
+import '../model/question_difficulty.dart';
+import '../model/quiz/quiz_end_state.dart';
+import '../model/quiz/quiz_result.dart';
+import '../model/quiz/quiz_settings.dart';
+import '../router/actions/router_end_practice.dart';
+import '../router/actions/router_open_menu_option.dart';
+import '../router/router_bloc.dart';
 
 /// Starting menu screen.
 class MenuScreen extends StatelessWidget {

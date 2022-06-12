@@ -5,7 +5,7 @@ import '../../../../model/learn/knowledge_check.dart';
 import '../../../model/quiz/quiz_result.dart';
 
 /// Screen to show results of quiz.
-class KnowledgeCheckResultPage extends StatelessWidget {
+class KnowledgeCheckResultScreen extends StatelessWidget {
   /// Level this is the result for.
   final KnowledgeCheck knowledgeCheck;
 
@@ -13,7 +13,7 @@ class KnowledgeCheckResultPage extends StatelessWidget {
   final QuizResult result;
 
   /// Screen to show results of quiz.
-  const KnowledgeCheckResultPage({
+  const KnowledgeCheckResultScreen({
     required this.knowledgeCheck,
     required this.result,
   });

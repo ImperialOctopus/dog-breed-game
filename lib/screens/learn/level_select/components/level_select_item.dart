@@ -31,8 +31,10 @@ class LevelSelectItem extends StatelessWidget {
       title: level.title,
       subtitle: level.subtitle,
       height: height,
-      onTap: () => BlocProvider.of<RouterBloc>(context)
-          .add(RouterOpenLevel(level: level)),
+      onTap: () {
+        BlocProvider.of<RouterBloc>(context)
+            .add(RouterOpenLevel(level: level, implyWorld: true));
+      },
     );
   }
 }

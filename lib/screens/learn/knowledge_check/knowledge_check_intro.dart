@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../model/learn/knowledge_check.dart';
+import '../../../router/actions/router_start_knowledge_check.dart';
+import '../../../router/router_bloc.dart';
 
 /// Introduces end-of-lesson quiz.
-class KnowledgeCheckIntro extends StatelessWidget {
+class KnowledgeCheckIntroScreen extends StatelessWidget {
   /// Quiz this introduces.
   final KnowledgeCheck knowledgeCheck;
 
-  /// Callback for next button is pressed.
-  final void Function() onNext;
-
   /// Introduces end-of-lesson quiz.
-  const KnowledgeCheckIntro(
-      {required this.knowledgeCheck, required this.onNext});
+  const KnowledgeCheckIntroScreen({required this.knowledgeCheck});
 
   static const double _headerImageHeight = 200;
 
@@ -48,7 +47,11 @@ class KnowledgeCheckIntro extends StatelessWidget {
               padding: const EdgeInsets.only(bottom: 20),
               child: Center(
                 child: ElevatedButton(
-                  onPressed: onNext,
+                  onPressed: () {
+                    BlocProvider.of<RouterBloc>(context).add(
+                        RouterStartKnowledgeCheck(
+                            knowledgeCheck: knowledgeCheck));
+                  },
                   child: const Text('Start'),
                 ),
               ),
