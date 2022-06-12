@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 
 /// Cards for sliding world select.
 class SlidingCard extends StatelessWidget {
-  /// Tag for hero.
-  final Object? heroTag;
-
   /// Image for top of card.
   final Widget image;
 
@@ -17,7 +14,6 @@ class SlidingCard extends StatelessWidget {
   /// Cards for sliding world select.
   const SlidingCard({
     Key? key,
-    this.heroTag,
     required this.image,
     required this.child,
   }) : super(key: key);
@@ -31,21 +27,11 @@ class SlidingCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(borderRadius)),
       child: Column(
         children: <Widget>[
-          if (heroTag == null)
-            ClipRRect(
-              borderRadius: const BorderRadius.vertical(
-                  top: Radius.circular(borderRadius)),
-              child: image,
-            )
-          else
-            Hero(
-              tag: heroTag!,
-              child: ClipRRect(
-                borderRadius: const BorderRadius.vertical(
-                    top: Radius.circular(borderRadius)),
-                child: image,
-              ),
-            ),
+          ClipRRect(
+            borderRadius:
+                const BorderRadius.vertical(top: Radius.circular(borderRadius)),
+            child: image,
+          ),
           const SizedBox(height: 8),
           Expanded(
             child: Padding(

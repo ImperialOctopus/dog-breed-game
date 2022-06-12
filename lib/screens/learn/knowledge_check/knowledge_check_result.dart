@@ -28,10 +28,7 @@ class KnowledgeCheckResultScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             LevelHeader(
-              leading: Hero(
-                tag: knowledgeCheck,
-                child: Image.asset(knowledgeCheck.imagePath, fit: BoxFit.cover),
-              ),
+              leading: Image.asset(knowledgeCheck.imagePath, fit: BoxFit.cover),
               title: knowledgeCheck.title,
               subtitle: knowledgeCheck.subtitle,
             ),

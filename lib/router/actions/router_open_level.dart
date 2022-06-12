@@ -13,15 +13,11 @@ class RouterOpenLevel extends RouterAction {
   /// World that contains this level.
   final World? world;
 
-  /// Get the parent world from the router if available.
-  final bool implyWorld;
-
   /// Level to open.
   final Level level;
 
   /// Open level in learn route.
-  const RouterOpenLevel(
-      {required this.level, this.world, this.implyWorld = false});
+  const RouterOpenLevel({required this.level, this.world});
 
   @override
   Stream<RouterState> mapToState(RouterState currentState) async* {
@@ -29,10 +25,15 @@ class RouterOpenLevel extends RouterAction {
     final _level = level;
 
     // Find current world if required.
-    if (implyWorld) {
+    if (_world == null) {
       if (currentState is LevelSelectRouteState) {
         _world = currentState.world;
       }
+    }
+
+    if (_world == null) {
+      throw StateError(
+          'World cannot be null here. Provide a world or ensure the previous route is level select.');
     }
 
     // Navigate to correct subroute.

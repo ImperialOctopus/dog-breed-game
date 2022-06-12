@@ -22,10 +22,7 @@ class LevelSelectHeader extends StatelessWidget {
           SizedBox(
             height: 70,
             width: 150,
-            child: Hero(
-              tag: world,
-              child: Image.asset(world.imagePath, fit: BoxFit.cover),
-            ),
+            child: Image.asset(world.imagePath, fit: BoxFit.cover),
           ),
           Expanded(
             child: Padding(

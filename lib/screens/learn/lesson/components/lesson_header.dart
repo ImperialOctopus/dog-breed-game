@@ -16,10 +16,7 @@ class LessonHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: _height,
-      child: Hero(
-        tag: lesson,
-        child: Image.asset(lesson.imagePath, fit: BoxFit.cover),
-      ),
+      child: Image.asset(lesson.imagePath, fit: BoxFit.cover),
     );
   }
 }

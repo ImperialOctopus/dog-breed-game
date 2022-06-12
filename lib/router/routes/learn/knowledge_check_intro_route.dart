@@ -5,7 +5,6 @@ import '../../../model/learn/world.dart';
 import '../../../screens/learn/knowledge_check/knowledge_check_intro.dart';
 import '../../provides_page.dart';
 import '../../router_state.dart';
-import '../../transitions/slide_left_transition.dart';
 import 'level_select_route.dart';
 
 /// Knowledge check intro.
@@ -19,9 +18,6 @@ class KnowledgeCheckIntroRoute extends StatelessWidget with ProvidesPage<void> {
   /// Practice main route.
   const KnowledgeCheckIntroRoute(
       {required this.world, required this.knowledgeCheck});
-
-  @override
-  Page<void> get page => SlideLeftTransition(child: this);
 
   @override
   Widget build(BuildContext context) {

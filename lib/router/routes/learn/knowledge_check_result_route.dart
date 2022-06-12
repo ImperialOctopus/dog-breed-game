@@ -6,15 +6,13 @@ import '../../../model/quiz/quiz_result.dart';
 import '../../../screens/learn/knowledge_check/knowledge_check_result.dart';
 import '../../provides_page.dart';
 import '../../router_state.dart';
-import '../../transitions/slide_left_transition.dart';
 import 'level_select_route.dart';
-import 'world_select_route.dart';
 
 /// Knowledge check result.
 class KnowledgeCheckResultRoute extends StatelessWidget
     with ProvidesPage<void> {
   /// World this is a child of.
-  final World? world;
+  final World world;
 
   /// Settings for the quiz.
   final KnowledgeCheck knowledgeCheck;
@@ -24,10 +22,9 @@ class KnowledgeCheckResultRoute extends StatelessWidget
 
   /// Knowledge check result.
   const KnowledgeCheckResultRoute(
-      {this.world, required this.knowledgeCheck, required this.result});
-
-  @override
-  Page<void> get page => SlideLeftTransition(child: this);
+      {required this.world,
+      required this.knowledgeCheck,
+      required this.result});
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +36,7 @@ class KnowledgeCheckResultRoute extends StatelessWidget
 /// /learn/{world}/{knowledgeCheck}
 class KnowledgeCheckResultRouteState extends RouterState {
   /// World this is a child of.
-  final World? world;
+  final World world;
 
   /// Settings for the quiz.
   final KnowledgeCheck knowledgeCheck;
@@ -49,7 +46,9 @@ class KnowledgeCheckResultRouteState extends RouterState {
 
   /// /learn/{world}/{knowledgeCheck}
   const KnowledgeCheckResultRouteState(
-      {this.world, required this.knowledgeCheck, required this.result});
+      {required this.world,
+      required this.knowledgeCheck,
+      required this.result});
 
   @override
   List<Page> get routes => [
@@ -62,11 +61,7 @@ class KnowledgeCheckResultRouteState extends RouterState {
 
   @override
   RouterState get popsInto {
-    if (world != null) {
-      return LevelSelectRouteState(world: world!);
-    } else {
-      return const WorldSelectRouteState();
-    }
+    return LevelSelectRouteState(world: world);
   }
 
   @override

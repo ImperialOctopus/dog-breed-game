@@ -23,17 +23,14 @@ class LevelSelectItem extends StatelessWidget {
       leading: SizedBox(
         height: height,
         width: 150,
-        child: Hero(
-          tag: level,
-          child: Image.asset(level.imagePath, fit: BoxFit.cover),
-        ),
+        child: Image.asset(level.imagePath, fit: BoxFit.cover),
       ),
       title: level.title,
       subtitle: level.subtitle,
       height: height,
       onTap: () {
         BlocProvider.of<RouterBloc>(context)
-            .add(RouterOpenLevel(level: level, implyWorld: true));
+            .add(RouterOpenLevel(level: level, world: null));
       },
     );
   }

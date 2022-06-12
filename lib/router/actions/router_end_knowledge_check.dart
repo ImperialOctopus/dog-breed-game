@@ -8,7 +8,7 @@ import '../routes/learn/knowledge_check_result_route.dart';
 /// Practice quiz page.
 class RouterEndQuiz extends RouterAction {
   /// World this is a child of.
-  final World? world;
+  final World world;
 
   /// Knowledge check this ends.
   final KnowledgeCheck knowledgeCheck;

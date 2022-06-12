@@ -26,10 +26,7 @@ class KnowledgeCheckIntroScreen extends StatelessWidget {
           children: [
             SizedBox(
               height: _headerImageHeight,
-              child: Hero(
-                tag: knowledgeCheck,
-                child: Image.asset(knowledgeCheck.imagePath, fit: BoxFit.cover),
-              ),
+              child: Image.asset(knowledgeCheck.imagePath, fit: BoxFit.cover),
             ),
             Padding(
               padding: const EdgeInsets.all(10),

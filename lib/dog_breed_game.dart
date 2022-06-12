@@ -59,8 +59,6 @@ class _AppView extends StatefulWidget {
 }
 
 class _AppViewState extends State<_AppView> {
-  final _heroController = HeroController();
-
   var _pages = <Page>[];
 
   _AppViewState();
@@ -81,7 +79,6 @@ class _AppViewState extends State<_AppView> {
   Widget build(BuildContext context) {
     return Navigator(
       pages: _pages,
-      observers: [_heroController],
       onPopPage: (route, dynamic result) {
         if (!route.didPop(result)) {
           return false;

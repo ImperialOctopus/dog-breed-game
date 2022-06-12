@@ -22,10 +22,13 @@ class RouterStartKnowledgeCheck extends RouterAction {
       _world = _currentState.world;
     }
 
-    /*
+    if (_world == null) {
+      throw StateError(
+          'World cannot be null here. Provide a world or ensure the previous route is level select.');
+    }
+
     yield KnowledgeCheckQuizRouteState(
         knowledgeCheck: knowledgeCheck, world: _world);
-    */
   }
 
   @override

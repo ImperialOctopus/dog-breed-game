@@ -57,7 +57,6 @@ class _WorldSelectScreenState extends State<WorldSelectScreen> {
                             world.imagePath,
                             fit: BoxFit.cover,
                           ),
-                          heroTag: world,
                           child: WorldCardContents(
                             world: world,
                             onPressed: () =>
