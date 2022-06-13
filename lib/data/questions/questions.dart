@@ -1,8 +1,15 @@
+import '../../model/questions/answer.dart';
+import '../../model/questions/image_answer.dart';
 import '../../model/questions/image_id_question.dart';
 
 /// Temporary sample questions for testing.
 const sampleQuestions = [
   ImageIdQuestion(
+    imageAnswer: ImageAnswer(
+        answer: answer, imagePath: imagePath, difficulty: difficulty),
+    incorrectAnswers: [
+      Answer(name: name, difficulty: difficulty, categories: categories),
+    ],
     imagePath: 'assets/sample/labrador.jpg',
     answers: [
       'Dog',

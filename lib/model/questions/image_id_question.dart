@@ -1,31 +1,19 @@
+import 'answer.dart';
+import 'image_answer.dart';
 import 'question.dart';
 
-/// Question for a quiz.
+/// Image identification question for a quiz.
 class ImageIdQuestion implements Question {
-  /// Image path.
-  final String imagePath;
+  /// Answer for this question.
+  final ImageAnswer imageAnswer;
 
-  /// List of potential answers.
-  final List<String> answers;
+  /// List of possible incorrect answers.
+  final List<Answer> incorrectAnswers;
 
-  /// Correct answer index.
-  final int _correctAnswer;
-
-  /// Size of dog.
-  final String? size;
-
-  /// Rarity of dog.
-  final String? rarity;
+  /// Image identification question for a quiz.
+  const ImageIdQuestion(
+      {required this.imageAnswer, required this.incorrectAnswers});
 
   @override
-  bool isCorrect(Object answer) => answer == _correctAnswer;
-
-  /// Const constructor.
-  const ImageIdQuestion({
-    required this.imagePath,
-    required this.answers,
-    required int correctAnswer,
-    this.size,
-    this.rarity,
-  }) : _correctAnswer = correctAnswer;
+  bool isCorrect(Answer _answer) => _answer == imageAnswer.answer;
 }
