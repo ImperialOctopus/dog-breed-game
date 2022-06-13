@@ -1,22 +1,18 @@
 import 'package:equatable/equatable.dart';
 
-import 'category.dart';
+import 'answer_image.dart';
 
 /// Possible answer for a question.
 class Answer extends Equatable {
   /// Text to describe answer.
   final String name;
 
-  /// Difficulty of this answer.
-  final int difficulty;
-
-  /// Categories this belongs to.
-  final List<Category> categories;
+  /// Images that relate to this answer.
+  final List<AnswerImage> images;
 
   /// Possible answer for a question.
-  const Answer(
-      {required this.name, required this.difficulty, required this.categories});
+  const Answer({required this.name, required this.images});
 
   @override
-  List<Object?> get props => [name, difficulty, categories];
+  List<Object?> get props => [name];
 }

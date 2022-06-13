@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'repository/question/local_question_repository.dart';
-import 'repository/question/question_repository.dart';
 import 'router/actions/router_pop.dart';
 import 'router/router_bloc.dart';
 import 'theme/theme.dart';
@@ -17,35 +15,19 @@ class DogBreedGame extends StatefulWidget {
 }
 
 class _DogBreedGameState extends State<DogBreedGame> {
-  late final QuestionRepository _questionRepository;
-
-  late final RouterBloc _routerBloc;
-
   @override
   void initState() {
     super.initState();
-
-    _questionRepository = LocalQuestionRepository();
-
-    _routerBloc = RouterBloc();
   }
 
   @override
   Widget build(BuildContext context) {
-    return MultiRepositoryProvider(
-      providers: [
-        RepositoryProvider<QuestionRepository>.value(
-            value: _questionRepository),
-      ],
-      child: MultiBlocProvider(
-        providers: [
-          BlocProvider.value(value: _routerBloc),
-        ],
-        child: MaterialApp(
-          title: 'Dog Breed Game',
-          theme: themeData,
-          home: const _AppView(),
-        ),
+    return BlocProvider<RouterBloc>(
+      create: ((context) => RouterBloc()),
+      child: MaterialApp(
+        title: 'Dog Breed Game',
+        theme: themeData,
+        home: const _AppView(),
       ),
     );
   }

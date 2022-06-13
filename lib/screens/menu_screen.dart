@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../model/question_difficulty.dart';
+import '../data/questions/categories.dart';
 import '../model/quiz/quiz_end_state.dart';
 import '../model/quiz/quiz_result.dart';
 import '../model/quiz/quiz_settings.dart';
@@ -56,14 +56,13 @@ class MenuScreen extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(vertical: 5),
                 child: ElevatedButton(
                   onPressed: () => BlocProvider.of<RouterBloc>(context)
-                      .add(const RouterEndPractice(
+                      .add(RouterEndPractice(
                     settings: QuizSettings(
                       questionNumber: null,
+                      categories: [Categories.mostCommonTen],
                       lives: 5,
-                      time: false,
-                      difficulty: QuestionDifficulty.beginner,
                     ),
-                    result: QuizResult(
+                    result: const QuizResult(
                       mistakes: 2,
                       score: 3,
                       endState: QuizEndState.outOfQuestions,

@@ -1,28 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../../../model/question_difficulty.dart';
-
 /// Information bar for the settings for a quiz.
 class SettingsInfoBar extends StatelessWidget {
-  /// Question difficulty.
-  final QuestionDifficulty difficulty;
-
   /// Number of lives allowed for question.
   final int? lives;
 
   /// Number of mistakes made in quiz.
   final int mistakes;
 
-  /// Whether time was enabled for the quiz.
-  final bool timeEnabled;
-
   /// Information bar for the settings for a quiz.
-  const SettingsInfoBar(
-      {required this.difficulty,
-      required this.lives,
-      required this.mistakes,
-      required this.timeEnabled});
+  const SettingsInfoBar({required this.lives, required this.mistakes});
 
   @override
   Widget build(BuildContext context) {
@@ -31,6 +19,8 @@ class SettingsInfoBar extends StatelessWidget {
         padding: const EdgeInsets.all(10),
         child: Row(
           children: [
+            /*
+            // Time indicator
             Expanded(
               child: (timeEnabled)
                   ? Column(
@@ -47,7 +37,9 @@ class SettingsInfoBar extends StatelessWidget {
                             child: Icon(Icons.timer_off_outlined)),
                       ],
                     ),
-            ),
+            ),*/
+            /*
+            // Difficulty indicator.
             Expanded(
                 child: Column(
               children: [
@@ -57,6 +49,7 @@ class SettingsInfoBar extends StatelessWidget {
                 Text(difficulty.toString()),
               ],
             )),
+            */
             Expanded(
               child: (lives == null)
                   ? Column(

@@ -1,4 +1,4 @@
-import 'answer.dart';
+import '../answer.dart';
 
 /// Base class for question model.
 abstract class Question {

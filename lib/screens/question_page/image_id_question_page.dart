@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 import '../../components/fixed_height_cover_box.dart';
-import '../../model/questions/image_id_question.dart';
+import '../../model/questions/answer.dart';
+import '../../model/questions/question_forms/image_id_question.dart';
 import '../../theme/animation.dart';
 import '../../theme/answer_button_theme.dart';
-import 'components/dog_info_bar.dart';
 
 /// Page to display a single question.
 class ImageIdQuestionPage extends StatefulWidget {
@@ -45,7 +45,16 @@ class ImageIdQuestionPage extends StatefulWidget {
 
 class _ImageIdQuestionPageState extends State<ImageIdQuestionPage> {
   /// Answer the player chose.
-  int? chosenAnswer;
+  Answer? chosenAnswer;
+
+  late List<Answer> _answers;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _answers = widget.question.allAnswers.toList()..shuffle();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -67,9 +76,9 @@ class _ImageIdQuestionPageState extends State<ImageIdQuestionPage> {
           switchOutCurve: const Threshold(0),
           switchInCurve: Curves.ease,
           child: FixedHeightCoverBox(
-            key: ValueKey<String>(widget.question.imagePath),
+            key: ValueKey<String>(widget.question.image.imagePath),
             height: 300,
-            child: Image.asset(widget.question.imagePath),
+            child: Image.asset(widget.question.image.imagePath),
           ),
         ),
         TweenAnimationBuilder<double>(
@@ -79,7 +88,7 @@ class _ImageIdQuestionPageState extends State<ImageIdQuestionPage> {
           builder: (context, progress, _) =>
               LinearProgressIndicator(value: progress),
         ),
-        DogInfoBar(size: widget.question.size, rarity: widget.question.rarity),
+        //DogInfoBar(size: widget.question.size, rarity: widget.question.rarity),
         Expanded(
           child: AnimatedSwitcher(
               duration: ImageIdQuestionPage._switcherDuration,
@@ -105,12 +114,12 @@ class _ImageIdQuestionPageState extends State<ImageIdQuestionPage> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Row(children: [
-                              Expanded(child: _answerButton(0)),
-                              Expanded(child: _answerButton(1)),
+                              Expanded(child: _answerButton(_answers[0])),
+                              Expanded(child: _answerButton(_answers[1])),
                             ]),
                             Row(children: [
-                              Expanded(child: _answerButton(2)),
-                              Expanded(child: _answerButton(3)),
+                              Expanded(child: _answerButton(_answers[2])),
+                              Expanded(child: _answerButton(_answers[3])),
                             ]),
                           ]),
                     ],
@@ -135,18 +144,18 @@ class _ImageIdQuestionPageState extends State<ImageIdQuestionPage> {
     );
   }
 
-  Widget _answerButton(int answer) {
+  Widget _answerButton(Answer answer) {
     return AnimatedTheme(
       data: ThemeData(outlinedButtonTheme: _buttonStyle(answer)),
       duration: const Duration(milliseconds: 200),
       child: OutlinedButton(
         onPressed: () => _onAnswerPressed(answer),
-        child: Text(widget.question.answers.elementAt(answer)),
+        child: Text(answer.name),
       ),
     );
   }
 
-  OutlinedButtonThemeData? _buttonStyle(int thisAnswer) {
+  OutlinedButtonThemeData? _buttonStyle(Answer thisAnswer) {
     if (chosenAnswer == null) {
       return answerDefaultStyle;
     }
@@ -159,7 +168,7 @@ class _ImageIdQuestionPageState extends State<ImageIdQuestionPage> {
     return answerDefaultStyle;
   }
 
-  void _onAnswerPressed(int answer) {
+  void _onAnswerPressed(Answer answer) {
     if (chosenAnswer != null) return;
     setState(() {
       chosenAnswer = answer;

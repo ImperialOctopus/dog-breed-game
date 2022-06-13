@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../model/questions/image_id_question.dart';
-import '../../model/questions/question.dart';
+import '../../model/questions/question_forms/image_id_question.dart';
+import '../../model/questions/question_forms/question.dart';
 import 'image_id_question_page.dart';
 
 /// Page to display a question.

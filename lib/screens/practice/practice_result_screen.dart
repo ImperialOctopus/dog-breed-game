@@ -39,10 +39,8 @@ class PracticeResultScreen extends StatelessWidget {
             ),
             const Spacer(),
             SettingsInfoBar(
-              difficulty: settings.difficulty,
               lives: settings.lives,
               mistakes: result.mistakes,
-              timeEnabled: settings.time,
             ),
           ],
         ),

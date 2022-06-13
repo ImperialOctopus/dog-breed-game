@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../model/questions/question.dart';
+import '../../model/questions/question_forms/question.dart';
 import '../../model/quiz/quiz_end_state.dart';
 import '../../model/quiz/quiz_result.dart';
 import '../../model/quiz/quiz_settings.dart';
-import '../../repository/question/question_repository.dart';
+import '../../repositories/question_generator.dart';
 import '../../router/actions/router_end_practice.dart';
 import '../../router/router_bloc.dart';
 import '../../theme/animation.dart';
@@ -25,7 +25,7 @@ class PracticeQuizScreen extends StatefulWidget {
 }
 
 class _PracticeQuizScreenState extends State<PracticeQuizScreen> {
-  late final Question Function() questionGenerator;
+  late final QuestionGenerator questionGenerator;
   late Question currentQuestion;
 
   QuizEndState endState = QuizEndState.notFinished;
@@ -42,9 +42,13 @@ class _PracticeQuizScreenState extends State<PracticeQuizScreen> {
   void initState() {
     super.initState();
 
-    questionGenerator = RepositoryProvider.of<QuestionRepository>(context)
-        .getQuestionGenerator(difficulty: widget.settings.difficulty);
-    currentQuestion = questionGenerator();
+    questionGenerator =
+        QuestionGenerator.fromCategories(widget.settings.categories);
+    getNewQuestion();
+  }
+
+  void getNewQuestion() {
+    currentQuestion = questionGenerator.generateRandomQuestion();
   }
 
   void onQuestionAnswered(bool correct) {
@@ -95,13 +99,7 @@ class _PracticeQuizScreenState extends State<PracticeQuizScreen> {
       return;
     }
     setState(() {
-      // Repeat generation if we get the same question again.
-      var _nextQuestion = questionGenerator();
-      while (_nextQuestion == currentQuestion) {
-        _nextQuestion = questionGenerator();
-      }
-      // Move on to next question.
-      currentQuestion = _nextQuestion;
+      getNewQuestion();
     });
   }
 
@@ -142,10 +140,9 @@ class _PracticeQuizScreenState extends State<PracticeQuizScreen> {
               ),
             ),
             SettingsInfoBar(
-                difficulty: widget.settings.difficulty,
-                lives: widget.settings.lives,
-                mistakes: mistakesMade,
-                timeEnabled: widget.settings.time),
+              lives: widget.settings.lives,
+              mistakes: mistakesMade,
+            ),
           ],
         ),
       ),

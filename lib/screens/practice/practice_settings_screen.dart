@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../model/question_difficulty.dart';
+import '../../data/questions/categories.dart';
+import '../../model/questions/category.dart';
 import '../../model/quiz/quiz_settings.dart';
 import '../../router/actions/router_start_practice.dart';
 import '../../router/router_bloc.dart';
@@ -30,18 +31,15 @@ class _PracticeSettingsScreenState extends State<PracticeSettingsScreen> {
     1: 'No Mistakes',
   };
 
-  static const _difficultyText = <QuestionDifficulty, String>{
-    QuestionDifficulty.beginner: 'Common Breeds Only (1)',
-    QuestionDifficulty.intermediate: 'Uncommon Breeds (2)',
-    QuestionDifficulty.expert: 'Rare Breeds (3)',
-    QuestionDifficulty.challenge: 'All Breeds (4)'
+  static final _categoryText = <Category, String>{
+    Categories.mostCommonTen: '10 Most Common Breeds in UK',
+    Categories.allDogs: 'All Breeds'
   };
 
-  QuizSettings settings = const QuizSettings(
+  QuizSettings settings = QuizSettings(
     questionNumber: null,
+    categories: [Categories.mostCommonTen],
     lives: null,
-    time: false,
-    difficulty: QuestionDifficulty.beginner,
   );
 
   void _updateQuestionNumber(int? value) {
@@ -54,9 +52,8 @@ class _PracticeSettingsScreenState extends State<PracticeSettingsScreen> {
     setState(() {
       settings = QuizSettings(
         questionNumber: value,
+        categories: settings.categories,
         lives: settings.lives,
-        time: settings.time,
-        difficulty: settings.difficulty,
       );
     });
   }
@@ -71,37 +68,21 @@ class _PracticeSettingsScreenState extends State<PracticeSettingsScreen> {
     setState(() {
       settings = QuizSettings(
         questionNumber: settings.questionNumber,
+        categories: settings.categories,
         lives: value,
-        time: settings.time,
-        difficulty: settings.difficulty,
       );
     });
   }
 
-  void _updateTime(bool? value) {
+  void _updateCategory(Category? value) {
     if (value == null) {
       return;
     }
     setState(() {
       settings = QuizSettings(
         questionNumber: settings.questionNumber,
+        categories: [value],
         lives: settings.lives,
-        time: value,
-        difficulty: settings.difficulty,
-      );
-    });
-  }
-
-  void _updateDifficulty(QuestionDifficulty? value) {
-    if (value == null) {
-      return;
-    }
-    setState(() {
-      settings = QuizSettings(
-        questionNumber: settings.questionNumber,
-        lives: settings.lives,
-        time: settings.time,
-        difficulty: value,
       );
     });
   }
@@ -187,44 +168,30 @@ class _PracticeSettingsScreenState extends State<PracticeSettingsScreen> {
                   ),
                   ListTile(
                     title: const Text('Difficulty'),
-                    subtitle: Text(_difficultyText[settings.difficulty] ?? ''),
-                    onTap: () => showModalBottomSheet<QuestionDifficulty?>(
+                    subtitle:
+                        Text(_categoryText[settings.categories.first] ?? ''),
+                    onTap: () => showModalBottomSheet<Category?>(
                       context: context,
                       builder: (BuildContext context) => _buildModal(children: [
                         ListTile(
-                          title: const Text('Beginner (Common Breeds Only)'),
-                          onTap: () => Navigator.pop<QuestionDifficulty?>(
-                              context, QuestionDifficulty.beginner),
+                          title: Text(
+                              'Most Common Breeds in UK (${Categories.mostCommonTen.answers.length})'),
+                          onTap: () => Navigator.pop<Category?>(
+                              context, Categories.mostCommonTen),
                         ),
                         ListTile(
-                          title:
-                              const Text('Intermediate (Some Uncommon Breeds)'),
-                          onTap: () => Navigator.pop<QuestionDifficulty?>(
-                              context, QuestionDifficulty.intermediate),
-                        ),
-                        ListTile(
-                          title: const Text('Expert (Some Rare Breeds)'),
-                          onTap: () => Navigator.pop<QuestionDifficulty?>(
-                              context, QuestionDifficulty.expert),
-                        ),
-                        ListTile(
-                          title: const Text('Challenge (All Breeds)'),
-                          onTap: () => Navigator.pop<QuestionDifficulty?>(
-                              context, QuestionDifficulty.challenge),
+                          title: Text(
+                              'All Available Breeds (${Categories.allDogs.answers.length})'),
+                          onTap: () => Navigator.pop<Category?>(
+                              context, Categories.allDogs),
                         ),
                         ListTile(
                           title: const Text('Cancel',
                               style: TextStyle(color: Colors.red)),
-                          onTap: () =>
-                              Navigator.pop<QuestionDifficulty?>(context, null),
+                          onTap: () => Navigator.pop<Category?>(context, null),
                         ),
                       ]),
-                    ).then<void>(_updateDifficulty),
-                  ),
-                  SwitchListTile(
-                    title: const Text('Time Limit'),
-                    value: settings.time,
-                    onChanged: _updateTime,
+                    ).then<void>(_updateCategory),
                   ),
                 ],
               ),

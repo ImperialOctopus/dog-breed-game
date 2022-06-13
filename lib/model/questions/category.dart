@@ -1,13 +1,18 @@
+import 'package:equatable/equatable.dart';
+
+import 'answer.dart';
+
 /// Difficulty category of a question.
-class Category {
+class Category extends Equatable {
   /// Text name of this category.
   final String name;
 
-  const Category._(this.name);
+  /// Answers in this category.
+  final Set<Answer> answers;
+
+  /// Difficulty category of a question.
+  const Category({required this.name, required this.answers});
 
   @override
-  String toString() => name;
-
-  /// Most common 10 dogs.
-  static const Category mostCommonTen = Category._('Most Common 10 Dogs');
+  List<Object?> get props => [name, answers];
 }
