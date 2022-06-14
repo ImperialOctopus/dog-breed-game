@@ -1,9 +1,10 @@
 import '../../model/questions/category.dart';
 import 'answers/bulldog.dart';
 import 'answers/cocker_spaniel.dart';
-import 'answers/dachshund_miniature.dart';
+import 'answers/dachshund.dart';
 import 'answers/french_bulldog.dart';
 import 'answers/german_shepherd.dart';
+import 'answers/golden_retriever.dart';
 import 'answers/labrador_retriever.dart';
 import 'answers/pug.dart';
 import 'answers/springer_spaniel.dart';
@@ -17,9 +18,10 @@ abstract class Categories {
     answers: {
       bulldog,
       cockerSpaniel,
-      dachshundMiniature,
+      dachshund,
       frenchBulldog,
       germanShepherd,
+      goldenRetriever,
       labradorRetriever,
       pug,
       springerSpaniel,
@@ -33,9 +35,10 @@ abstract class Categories {
     answers: {
       bulldog,
       cockerSpaniel,
-      dachshundMiniature,
+      dachshund,
       frenchBulldog,
       germanShepherd,
+      goldenRetriever,
       labradorRetriever,
       pug,
       springerSpaniel,

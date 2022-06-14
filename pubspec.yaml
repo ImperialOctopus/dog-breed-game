@@ -42,6 +42,16 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/sample/
+    - assets/dogs/bulldog/
+    - assets/dogs/cocker_spaniel/
+    - assets/dogs/dachshund/
+    - assets/dogs/french_bulldog/
+    - assets/dogs/german_shepherd/
+    - assets/dogs/golden_retriever/
+    - assets/dogs/labrador_retriever/
+    - assets/dogs/pug/
+    - assets/dogs/springer_spaniel/
+    - assets/dogs/staffordshire_bull_terrier/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
